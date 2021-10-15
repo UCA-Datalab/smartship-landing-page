@@ -79,10 +79,12 @@ To create the Python environment using Conda:
 To create the Javascript project with `npm`:
   1. Make sure you have installed `npm`
       Instructions: [link](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
+      
   2. Move to static folder
       ```
       cd static
       ```
+
   3. Install the packages
       ```
       npm install
