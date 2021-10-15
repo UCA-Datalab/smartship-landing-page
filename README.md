@@ -44,7 +44,7 @@
 
 ## About the Project
 
-A Weather Routing implementation. Reduce the fuel consumption and travel time of sea journeys by tracing routes that follow ocean currents. 
+Web application for a Weather Routing implementation, implemented in [https://github.com/UCA-Datalab/smart-shipping-2021](https://github.com/UCA-Datalab/smart-shipping-2021)
 
 ## Getting Started
 
