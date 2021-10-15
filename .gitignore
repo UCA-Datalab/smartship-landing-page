@@ -127,3 +127,7 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# JAVASCRIPT
+# Ignore node_modules
+node_modules/
