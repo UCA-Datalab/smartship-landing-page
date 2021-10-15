@@ -45,7 +45,7 @@ var layerControl = mapStuff.layerControl;
 
 // load data (u, v grids) from somewhere (e.g. https://github.com/danwild/wind-js-server)
 
-$.getJSON("static/wind-global.json", function (data) {
+$.getJSON("static/test_data/wind-global.json", function (data) {
   var velocityLayer = L.velocityLayer({
     displayValues: true,
     displayOptions: {
@@ -58,4 +58,19 @@ $.getJSON("static/wind-global.json", function (data) {
   });
 
   layerControl.addOverlay(velocityLayer, "Wind - Global");
+});
+
+$.getJSON("static/test_data/currents-global.json", function (data) {
+  var velocityLayer = L.velocityLayer({
+    displayValues: true,
+    displayOptions: {
+      velocityType: "Global Currents",
+      position: "bottomleft",
+      emptyString: "No currents data"
+    },
+    data: data,
+    maxVelocity: 15
+  });
+
+  layerControl.addOverlay(velocityLayer, "Currents - Global");
 });
