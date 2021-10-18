@@ -60,7 +60,7 @@ $.getJSON("static/test_data/wind-global.json", function (data) {
   layerControl.addOverlay(velocityLayer, "Wind - Global");
 });
 
-$.getJSON("static/test_data/currents-global.json", function (data) {
+$.getJSON("static/test_data/data.json", function (data) {
   var velocityLayer = L.velocityLayer({
     displayValues: true,
     displayOptions: {
@@ -69,7 +69,7 @@ $.getJSON("static/test_data/currents-global.json", function (data) {
       emptyString: "No currents data"
     },
     data: data,
-    maxVelocity: 15
+    maxVelocity: 15,
   });
 
   layerControl.addOverlay(velocityLayer, "Currents - Global");
