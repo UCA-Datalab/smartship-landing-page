@@ -78,7 +78,7 @@
         <!-- ============================================================== -->
         <!-- footer -->
         <!-- ============================================================== -->
-        <footer class="footer text-center"> © 2021 UCA DataLab Canelita en Rama  </footer>
+        <footer class="footer text-center"> © 2021 UCA DataLab </footer>
         <!-- ============================================================== -->
         <!-- End footer -->
         <!-- ============================================================== -->
@@ -98,8 +98,11 @@
     <!--Custom JavaScript -->
     <script src="{{url_for('static',filename='libs/custom.min.js')}}"></script>
     <!-- ============================================================== -->
-    <!-- This page plugins -->
+    <!-- Place for extra scripts -->
     <!-- ============================================================== -->
+    {% block scripts %}
+            
+    {% endblock %}  
    
     
     
