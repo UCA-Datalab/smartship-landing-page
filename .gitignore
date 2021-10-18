@@ -130,6 +130,6 @@ dmypy.json
 
 # JAVASCRIPT
 # Ignore node_modules
-node_modules/
+static/node_modules/
 static/node_modules/leaflet/package.json
 static/node_modules/leaflet-velocity/package.json
