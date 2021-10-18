@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block content %}
+                <!-- ============================================================== -->
+                <!-- Stats box -->
+                <!-- ============================================================== -->
+<div class="row d-flex ">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex justify-content-center">
+                    <div class="m-r-20 align-self-center"><img src="{{url_for('static',filename='images/icon/income.png')}}" alt="Income" /></div>
+                    <div class="align-self-center">
+                        <h6 class="text-muted m-t-10 m-b-0">Optimization Rate</h6>
+                        <h2 class="m-t-0">15%</h2></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex justify-content-center">
+                    <div class="m-r-20 align-self-center"><img src="{{url_for('static',filename='images/icon/expense.png')}}" alt="Income" /></div>
+                    <div class="align-self-center">
+                        <h6 class="text-muted m-t-10 m-b-0">CO2 emissions Saved</h6>
+                        <h2 class="m-t-0">236,000 Kg</h2></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex justify-content-center">
+                    <div class="m-r-20 align-self-center"><img src="{{url_for('static',filename='images/icon/assets.png')}}" alt="Income" /></div>
+                    <div class="align-self-center">
+                        <h6 class="text-muted m-t-10 m-b-0">Fuel Saved</h6>
+                        <h2 class="m-t-0">987,563 Tons</h2></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    
+
+</div>
+{% endblock %}
