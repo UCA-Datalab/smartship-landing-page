@@ -1,0 +1,111 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Deprecated
+    	<link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon.png"> 
+         <link href="../assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet"> 
+    -->
+
+    {% block title %}
+    <title>SmartShipping</title>
+    {% endblock %}
+    
+    <!-- Bootstrap Core CSS -->
+    <link href="{{url_for('static',filename='plugins/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet"> 
+    <!-- Custom CSS -->
+    <link href="{{url_for('static',filename='css/style.css')}}" rel="stylesheet">
+    <!-- Dashboard Page CSS -->
+    <link href="{{url_for('static',filename='css/dashboard.css')}}" rel="stylesheet">
+    <!-- You can change the theme colors from here -->
+    <link href="{{url_for('static',filename='css/colors/default-dark.css')}}" id="theme" rel="stylesheet">
+
+     {% block header %}
+     {% endblock %}
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body class="fix-header fix-sidebar card-no-border">
+    <!-- ============================================================== -->
+    <!-- Preloader - style you can find in spinners.css -->
+    <!-- ============================================================== -->
+    <div class="preloader">
+        <div class="loader">
+            <div class="loader__figure"></div>
+            <p class="loader__label">UCA Datalab</p>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- Main wrapper - style you can find in pages.scss -->
+    <!-- ============================================================== -->
+    <div id="main-wrapper">        
+        <!-- ============================================================== -->
+        <!-- Container fluid  -->
+        <!-- ============================================================== -->
+        <div class="container-fluid">
+        <!-- ============================================================== -->
+        <!-- Title front bar --->
+        <!-- ============================================================== -->
+        <div class="row ">
+            <div class=" col-md mt-4 mb-4">
+                <h1 class="text-themecolor text-center">Smart Shipping: AI powered weather routing</h3>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Title front bar -->
+        <!-- ============================================================== -->
+        {% block content %}
+            
+        {% endblock %}        
+            
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Container fluid  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- footer -->
+        <!-- ============================================================== -->
+        <footer class="footer text-center h5"> © 2021 UCA DataLab </footer>
+        <!-- ============================================================== -->
+        <!-- End footer -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Wrapper -->
+    <!-- ============================================================== -->
+   
+
+    <!--JQuery Core JavaScript-->
+    <script src="{{url_for('static',filename='plugins/jquery/jquery.min.js')}}"></script>
+    <!-- Bootstrap popper Core JavaScript -->
+    <script src="{{url_for('static',filename='plugins/bootstrap/js/popper.min.js')}}"></script>
+    <script src="{{url_for('static',filename='plugins/bootstrap/js/bootstrap.min.js')}}"></script>
+    <!-- slimscrollbar scrollbar JavaScript -->
+    <script src="{{url_for('static', filename='libs/perfect-scrollbar.jquery.min.js')}}"></script>
+    <!--Custom JavaScript -->
+    <script src="{{url_for('static',filename='libs/custom.min.js')}}"></script>
+    <!-- ============================================================== -->
+    <!-- Place for extra scripts -->
+    <!-- ============================================================== -->
+    {% block scripts %}
+            
+    {% endblock %}  
+   
+    
+    
+</body>
+
+</html>
