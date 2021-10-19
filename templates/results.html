@@ -15,6 +15,10 @@ crossorigin=""></script>
 <link rel="stylesheet"
 href="{{url_for('static',filename='node_modules/leaflet-velocity/dist/leaflet-velocity.css')}}" />
 <script src="{{url_for('static',filename='node_modules/leaflet-velocity/dist/leaflet-velocity.js')}}"></script>
+
+
+<link href="{{url_for('static',filename='css/results.css')}}" rel="stylesheet">
+
 {% endblock %}
 
 {% block content %}
@@ -66,19 +70,13 @@ href="{{url_for('static',filename='node_modules/leaflet-velocity/dist/leaflet-ve
     <!-- Place for THE MAP -->
     <!-- ============================================================== -->
 
-    <div class="row d-flex">
-        <div class="col-lg-10">
-            <div class="d-flex justify-content-center">
-                <div id="map"
-                class="leaflet-container leaflet-touch leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom label-rounded"
-                style=" width: 400px; height: 580px;box-shadow: 5px 5px 5px #888;">
-                </div>
+    <div class="col-md-12">
+        <div class="d-flex justify-content-center">
+            <div id="map"
+            class="leaflet-container leaflet-touch leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom map-style">
             </div>
         </div>
     </div>
-
-    
-   
 
 </div>
 {% endblock %}
