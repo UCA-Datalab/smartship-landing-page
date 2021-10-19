@@ -20,12 +20,13 @@ function initDemoMap() {
   return map
 }
 
-// demo map
-var map = initDemoMap();
+function generateMap(currents) {
+  // demo map
+  var map = initDemoMap();
 
-// load data (u, v grids) from somewhere (e.g. https://github.com/danwild/wind-js-server)
+  // load data (u, v grids) from somewhere (e.g. https://github.com/danwild/wind-js-server)
 
-$.getJSON("static/test_data/currents.json", function (data) {
+
   var velocityLayer = L.velocityLayer({
     displayValues: true,
     displayOptions: {
@@ -33,10 +34,11 @@ $.getJSON("static/test_data/currents.json", function (data) {
       position: "bottomleft",
       emptyString: "No currents data"
     },
-    data: data,
-    maxVelocity: Math.max(Math.max(data[0].data), Math.max(data[1].data)),
-    minVelocity: Math.min(Math.min(data[0].data), Math.min(data[1].data)),
+    data: currents,
+    maxVelocity: Math.max(Math.max(currents[0].data), Math.max(currents[1].data)),
+    minVelocity: Math.min(Math.min(currents[0].data), Math.min(currents[1].data)),
   });
 
   velocityLayer.addTo(map)
-});
+}
+
