@@ -72,7 +72,7 @@ To create the Python environment using Conda:
      
        ```
        conda remove --name smartship-web --all
-       conda env create -f environment.yml --force
+       conda env create -f enviroment.yml --force
        conda activate smartship-web
        ```
 
