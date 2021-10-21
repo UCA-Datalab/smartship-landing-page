@@ -18,7 +18,7 @@ function initDemoMap() {
   return map
 }
 
-function generateMap(currents, base, best_route) {
+function generateMap(currents, base, best_route, city_start, city_end) {
   // demo map
   var map = initDemoMap();
 
@@ -41,6 +41,12 @@ function generateMap(currents, base, best_route) {
 
   L.polyline(best_route, { color: 'red', weight: 1, opacity: 0.8 }).addTo(map);
   L.polyline(base, { color: 'green', weight: 1, opacity: 1 }).addTo(map);
+
+  var init_marker = L.marker(base[0]).addTo(map)
+  var end_marker = L.marker(base[base.length - 1]).addTo(map)
+
+  init_marker.bindPopup("<b>" + city_start + "</b>").openPopup()
+  end_marker.bindPopup("<b>" + city_end + "</b>").openPopup()
 
   map.setView(best_route[Math.floor(best_route.length / 2)], 4);
 }

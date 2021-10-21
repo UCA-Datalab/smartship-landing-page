@@ -109,6 +109,6 @@
 <script src="{{url_for('static',filename='libs/currents.js')}}"></script>
 <script type="text/javascript">
     var data = {{data | tojson}}
-    generateMap(data.currents,data.base_route,data.routes[0].coords)
+    generateMap(data.currents,data.base_route,data.routes[0].coords,data.city_start,data.city_end)
 </script>
 {% endblock %}
