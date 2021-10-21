@@ -94,4 +94,7 @@
 <!-- ============================================================== -->
 {% block scripts %}
 <script src="{{url_for('static',filename='libs/currents.js')}}"></script>
+<script type="text/javascript">
+    generateMap({{ currents | tojson }})
+</script>
 {% endblock %}

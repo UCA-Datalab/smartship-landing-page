@@ -1,6 +1,5 @@
 from flask import Flask, render_template, request
 import requests
-from requests.api import options
 
 app = Flask(__name__)
 
