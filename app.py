@@ -11,18 +11,18 @@ def index():
     code = response.status_code
     if code == 200:
         city_options = {
-            f"{cities['start_city']}-{cities['start_city']}": [
-                cities["start_city"],
-                cities["start_city"],
+            f"{cities['city_start']}-{cities['city_end']}": [
+                cities["city_start"],
+                cities["city_end"],
             ]
             for cities in response.json()
         }
     else:
         city_options = {
-            "CADIZ-BOSTON": ["CADIZ", "BOSTON"],
-            "BOSTON-CADIZ": ["BOSTON", "CADIZ"],
-            "CARACAS-DAKAR": ["CARACAS", "DAKAR"],
-            "DAKAR-CARACAS": ["DAKAR", "CARACAS"],
+            "CADIZ-BOSTON1": ["CADIZ", "BOSTON"],
+            "BOSTON-CADIZ1": ["BOSTON", "CADIZ"],
+            "CARACAS-DAKAR1": ["CARACAS", "DAKAR"],
+            "DAKAR-CARACAS1": ["DAKAR", "CARACAS"],
         }
 
     return render_template("form.html", city_options=city_options)
@@ -34,4 +34,4 @@ def results():
 
 
 if __name__ == "__main__":
-    app.run(debug=True, port=5001)
+    app.run(debug=True)
