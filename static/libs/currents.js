@@ -20,7 +20,7 @@ function initDemoMap() {
   return map
 }
 
-function generateMap(currents) {
+function generateMap(currents, base, best_route) {
   // demo map
   var map = initDemoMap();
 
@@ -40,5 +40,8 @@ function generateMap(currents) {
   });
 
   velocityLayer.addTo(map)
+
+  L.polyline(best_route, { color: 'red', weight: 1, opacity: 0.8 }).addTo(map);
+  L.polyline(base, { color: 'green', weight: 1, opacity: 1 }).addTo(map);
 }
 
