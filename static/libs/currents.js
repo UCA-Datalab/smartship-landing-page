@@ -15,8 +15,6 @@ function initDemoMap() {
     layers: [Esri_DarkGreyCanvas]
   });
 
-  map.setView([36, -36], 4);
-
   return map
 }
 
@@ -43,5 +41,7 @@ function generateMap(currents, base, best_route) {
 
   L.polyline(best_route, { color: 'red', weight: 1, opacity: 0.8 }).addTo(map);
   L.polyline(base, { color: 'green', weight: 1, opacity: 1 }).addTo(map);
+
+  map.setView(best_route[Math.floor(best_route.length / 2)], 4);
 }
 
