@@ -1,0 +1,21 @@
+
+[
+  {
+    "id": 1,
+    "name": "Cádiz - Miami",
+    "departing_city": "Cádiz",
+    "arrival_city": "Miami"
+  },
+  {
+    "id": 2,
+    "name": "Vejer - Hong Kong",
+    "departing_city": "Vejer",
+    "arrival_city": "Hong Kong"
+  },
+  {
+    "id": 3,
+    "name": "Abayo - Mar del Plata",
+    "departing_city": "Abayo",
+    "arrival_city": "Mar del Plata"
+  }
+]
