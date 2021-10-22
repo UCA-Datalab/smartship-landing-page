@@ -42,12 +42,15 @@ function generateMap(currents, base, best_route, city_start, city_end) {
   L.polyline(best_route, { color: 'red', weight: 1, opacity: 0.8 }).addTo(map);
   L.polyline(base, { color: 'green', weight: 1, opacity: 1 }).addTo(map);
 
-  var init_marker = L.marker(base[0]).addTo(map)
-  var end_marker = L.marker(base[base.length - 1]).addTo(map)
+  var coord_start = base[0]
+  var coord_end = base[base.length - 1]
+
+  var init_marker = L.marker(coord_start).addTo(map)
+  var end_marker = L.marker(coord_end).addTo(map)
 
   init_marker.bindPopup("<b>" + city_start + "</b>").openPopup()
   end_marker.bindPopup("<b>" + city_end + "</b>").openPopup()
 
-  map.setView(best_route[Math.floor(best_route.length / 2)], 4);
+  map.setView([(coord_start[0] + coord_end[0]) / 2, (coord_start[1] + coord_end[1]) / 2], 4);
 }
 
