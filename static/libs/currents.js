@@ -1,5 +1,6 @@
 function initDemoMap() {
-
+  background_map = L.tileLayer('https://tile.jawg.io/9e47bb8d-efe9-44b4-86c8-e1ca9acbea38/{z}/{x}/{y}{r}.png?access-token=I6EpM0rUPAVxyVtfSFHyZJ6besx7JYPVnVr060qbSzw3g90ZfxhY09cwQYGlRC3f', {});
+  /*
   var Esri_DarkGreyCanvas = L.tileLayer(
     "http://{s}.sm.mapstack.stamen.com/" +
     "(toner-lite,$fff[difference],$fff[@23],$fff[hsl-saturation@20])/" +
@@ -10,9 +11,10 @@ function initDemoMap() {
         "NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community"
     }
   );
+  */
 
   var map = L.map("map", {
-    layers: [Esri_DarkGreyCanvas]
+    layers: [background_map]
   });
 
   return map
