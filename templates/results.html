@@ -21,6 +21,19 @@
 
 {% endblock %}
 
+{% block Header_title %}
+
+    <div class="col-md-3 mt-4 mb-4 text-center"> 
+        <button type="button" onclick="window.location.href='/'"class="btn btn-outline-info">Home</button> 
+    </div>
+
+    <div class="col-md-6 offset-md-3 mt-4 mb-4">
+        <h1 class="text-themecolor text-center">
+            Smart Shipping: AI powered weather routing
+        </h1>
+    </div>
+{% endblock %}
+
 {% block content %}
 <!-- ============================================================== -->
 <!-- Stats box -->
@@ -94,4 +107,8 @@
 <!-- ============================================================== -->
 {% block scripts %}
 <script src="{{url_for('static',filename='libs/currents.js')}}"></script>
+<script type="text/javascript">
+    var data = {{data | tojson}}
+    generateMap(data.currents,data.base_route,data.routes[0].coords,data.city_start,data.city_end)
+</script>
 {% endblock %}
