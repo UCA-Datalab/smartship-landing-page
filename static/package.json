@@ -17,6 +17,7 @@
   "homepage": "https://github.com/UCA-Datalab/Smartship-web-app#readme",
   "dependencies": {
     "leaflet": "^1.7.1",
-    "leaflet-velocity": "^2.1.0"
+    "leaflet-velocity": "^2.1.0",
+    "leaflet.heat": "git+https://github.com/Leaflet/Leaflet.heat.git"
   }
 }

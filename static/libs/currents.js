@@ -1,18 +1,6 @@
 function initDemoMap() {
   background_map = L.tileLayer('https://tile.jawg.io/9e47bb8d-efe9-44b4-86c8-e1ca9acbea38/{z}/{x}/{y}{r}.png?access-token=I6EpM0rUPAVxyVtfSFHyZJ6besx7JYPVnVr060qbSzw3g90ZfxhY09cwQYGlRC3f', {});
-  /*
-  var Esri_DarkGreyCanvas = L.tileLayer(
-    "http://{s}.sm.mapstack.stamen.com/" +
-    "(toner-lite,$fff[difference],$fff[@23],$fff[hsl-saturation@20])/" +
-    "{z}/{x}/{y}.png",
-    {
-      attribution:
-        "Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, " +
-        "NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community"
-    }
-  );
-  */
-
+  
   var map = L.map("map", {
     layers: [background_map]
   });
@@ -20,13 +8,13 @@ function initDemoMap() {
   return map
 }
 
-function generateMap(currents, base, best_route, city_start, city_end) {
+function generateMap(waves,currents, base, best_route, city_start, city_end) {
   // demo map
   var map = initDemoMap();
 
   // load data (u, v grids) from somewhere (e.g. https://github.com/danwild/wind-js-server)
 
-
+/*
   var velocityLayer = L.velocityLayer({
     displayValues: true,
     displayOptions: {
@@ -41,6 +29,36 @@ function generateMap(currents, base, best_route, city_start, city_end) {
 
   velocityLayer.addTo(map)
 
+  */
+  var waveLayer =  L.velocityLayer({
+      displayValues: true,
+      displayOptions: {
+         velocityType: "Waves",
+         displayPosition: "topright",
+         displayEmptyString: "No wave data"
+      },
+      data: waves,
+      velocityScale: 0.005,
+      maxVelocity: 1,
+      lineWidth: 5,
+      particleAge: 60,
+      colorScale: [ '#ffffff'],
+      mapType: 'waveLayer'
+  })
+  waveLayer.addTo(map)
+
+  var heat = L.heatLayer([
+    [36.419390, -17.566927, 0.2],
+    [36.460547, -32.612874, 0.3],
+    [36.586265, -53.456290, 0.4],
+    [38.204040, -61.425619, 0.5],
+    [36.658101, -68.195426, 0.7],
+    [40.787861, -68.362122, 0.8],
+    [42, -69, 20],
+    
+  ], {radius: 20, maxZoom:7}).addTo(map);
+
+  //Potting routes and markers
   L.polyline(best_route, { color: 'red', weight: 1, opacity: 0.8 }).addTo(map);
   L.polyline(base, { color: 'green', weight: 1, opacity: 1 }).addTo(map);
 
