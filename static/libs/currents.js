@@ -67,5 +67,10 @@ function generateMap(currents, base, best_route, city_start, city_end) {
 
   init_marker.openPopup()
   end_marker.openPopup()
+
+  map.on("overlayadd", function () {
+    init_marker.openPopup()
+    end_marker.openPopup()
+  })
 }
 
