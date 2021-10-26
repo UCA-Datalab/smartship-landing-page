@@ -37,7 +37,7 @@ Preloader
   height: 0;
   width: 0;
   box-sizing: border-box;
-  border: 0 solid #1976d2;
+  border: 0 solid #de8909;
   border-radius: 50%;
   -webkit-animation: loader-figure 1.15s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
   -moz-animation: loader-figure 1.15s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
@@ -56,7 +56,7 @@ Preloader
   font-size: 0.875em;
   letter-spacing: 0.1em;
   line-height: 1.5em;
-  color: #1976d2;
+  color: #de8909;
   white-space: nowrap;
   -webkit-animation: loader-label 1.15s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
   -moz-animation: loader-label 1.15s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
