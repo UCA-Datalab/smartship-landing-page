@@ -66,8 +66,6 @@ function generateMap(currents, base, best_route, city_start, city_end) {
       "#ce6e18",
       "#cc6a0f",
       "#ca6603"]
-
-
     ,
     lineWidth: 1,
     data: currents,
@@ -77,8 +75,8 @@ function generateMap(currents, base, best_route, city_start, city_end) {
   });
 
 
-  var best_r = L.polyline.antPath(best_route, { color: 'red', weight: 1.5, opacity: 0.8 });
-  var base_r = L.polyline.antPath(base, { color: 'green', weight: 1.5, opacity: 1 });
+  var best_r = L.polyline.antPath(best_route, { color: 'green', weight: 2.5, opacity: 0.8, delay: 1000 });
+  var base_r = L.polyline.antPath(base, { color: 'red', weight: 2.5, opacity: 1, delay: 1000 });
 
   var coord_start = base[0]
   var coord_end = base[base.length - 1]
