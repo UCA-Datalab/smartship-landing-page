@@ -1,4 +1,4 @@
-function generateMap(waves, currents, base, best_route, city_start, city_end) {
+function generateMap(waves, wind, currents, base, best_route, city_start, city_end) {
   var map = L.map("map");
 
   var background_map = L.tileLayer('https://api.mapbox.com/styles/v1/tr3cks/ckv6iiptd3bke15lh4ioa6lkv/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoidHIzY2tzIiwiYSI6ImNrdjZpZnp1eDB2dG4ycW9rMjlmOHY0OHIifQ.egCphR_INbD25yU6Ha4A8w', {}).addTo(map);
@@ -11,7 +11,7 @@ function generateMap(waves, currents, base, best_route, city_start, city_end) {
       position: "bottomleft",
       emptyString: "No currents data"
     },
-    colorScale: ["#f6d6be",
+    colorScale: [/*"#f6d6be",
       "#f5d2b8",
       "#f4ceb2",
       "#f3cbac",
@@ -32,7 +32,7 @@ function generateMap(waves, currents, base, best_route, city_start, city_end) {
       "#e09356",
       "#de8f50",
       "#dd8c4a",
-      "#db8844",
+      "#db8844",*/
       "#d9843f",
       "#d78039",
       "#d67d33",
@@ -45,9 +45,40 @@ function generateMap(waves, currents, base, best_route, city_start, city_end) {
     ,
     lineWidth: 1,
     data: currents,
-    velocityScale: 0.005,
+    velocityScale: 1,
     maxVelocity: Math.max(Math.max(currents[0].data), Math.max(currents[1].data)),
     minVelocity: Math.min(Math.min(currents[0].data), Math.min(currents[1].data)),
+  });
+
+  var wind_layer = L.velocityLayer({
+    displayValues: true,
+    displayOptions: {
+      velocityType: "Global Wind",
+      position: "bottomleft",
+      emptyString: "No wind data"
+    },
+    colorScale: ["#fafa6e",
+      "#d7f171",
+      "#b5e877",
+      "#95dd7d",
+      "#77d183",
+      "#5bc489",
+      "#3fb78d",
+      "#23aa8f",
+      "#009c8f",
+      "#008d8c",
+      "#007f86",
+      "#0b717e",
+      "#1c6373",
+      "#255566",
+      "#2a4858"]
+    ,
+    lineWidth: 1,
+    data: wind,
+    velocityScale: 0.03,
+    maxVelocity: Math.max(Math.max(wind[0].data), Math.max(wind[1].data)),
+    minVelocity: Math.min(Math.min(wind[0].data), Math.min(wind[1].data)),
+    particleAge: 180
   });
 
 
@@ -89,6 +120,7 @@ function generateMap(waves, currents, base, best_route, city_start, city_end) {
 
   var overlay_layers = {
     "Currents": currents_layer.addTo(map),
+    "Wind": wind_layer,
     "Routes": routes_group.addTo(map),
   }
 
