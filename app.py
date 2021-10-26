@@ -100,7 +100,10 @@ def results():
         }
         with open("static/test_data/currents.json", "r") as f:
             data["currents"] = json.loads(f.read())
-            
+
+        with open("static/test_data/wind.json", "r") as f:
+            data["wind"] = json.loads(f.read())
+
         with open("static/test_data/test_waves.json", "r") as f:
             data["waves"] = json.loads(f.read())
 
