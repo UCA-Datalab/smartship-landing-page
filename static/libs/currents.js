@@ -12,9 +12,9 @@ function generateMap(waves,currents, base, best_route, city_start, city_end) {
   // demo map
   var map = initDemoMap();
 
-  // load data (u, v grids) from somewhere (e.g. https://github.com/danwild/wind-js-server)
 
-/*
+  L.control.scale().addTo(map);
+  
   var velocityLayer = L.velocityLayer({
     displayValues: true,
     displayOptions: {
@@ -29,7 +29,7 @@ function generateMap(waves,currents, base, best_route, city_start, city_end) {
 
   velocityLayer.addTo(map)
 
-  */
+  /* WAVES LAYER
   var waveLayer =  L.velocityLayer({
       displayValues: true,
       displayOptions: {
@@ -37,7 +37,7 @@ function generateMap(waves,currents, base, best_route, city_start, city_end) {
          displayPosition: "topright",
          displayEmptyString: "No wave data"
       },
-      data: waves,
+      data: waves.vectors,
       velocityScale: 0.005,
       maxVelocity: 1,
       lineWidth: 5,
@@ -45,18 +45,10 @@ function generateMap(waves,currents, base, best_route, city_start, city_end) {
       colorScale: [ '#ffffff'],
       mapType: 'waveLayer'
   })
-  waveLayer.addTo(map)
+  waveLayer.addTo(map)*/
 
-  var heat = L.heatLayer([
-    [36.419390, -17.566927, 0.2],
-    [36.460547, -32.612874, 0.3],
-    [36.586265, -53.456290, 0.4],
-    [38.204040, -61.425619, 0.5],
-    [36.658101, -68.195426, 0.7],
-    [40.787861, -68.362122, 0.8],
-    [42, -69, 20],
-    
-  ], {radius: 20, maxZoom:7}).addTo(map);
+  //HEATMAP
+  //var heat = L.heatLayer(waves.height, {radius: 20, maxZoom:7}).addTo(map);
 
   //Potting routes and markers
   L.polyline(best_route, { color: 'red', weight: 1, opacity: 0.8 }).addTo(map);
