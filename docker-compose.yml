@@ -1,0 +1,11 @@
+
+version: '3.7'
+
+services:
+  smartship_front:
+     build: .
+     ports:
+        - 8080:5000
+     volumes:
+        - ./app:/app
+
