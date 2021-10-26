@@ -51,7 +51,28 @@
     <!-- ============================================================== -->
     <!-- Main wrapper - style you can find in pages.scss -->
     <!-- ============================================================== -->
-    <div id="main-wrapper">        
+    
+    <div id="main-wrapper"> 
+
+        <!-- ============================================================== -->
+        <!-- TOP NAVIGATION BAR -->
+        <!-- ============================================================== -->
+        {% block navbar %}
+        <nav class="navbar top-navbar navbar-expand-md navbar-light" >
+            <a class="navbar-brand text-themecolor text-center" href="/">UCA DataLab</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                <a class="nav-item nav-link active" href="/">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-item nav-link" href="#">About</a>
+                <a class="nav-item nav-link" href="#">Pricing</a>
+                </div>
+            </div>    
+        </nav>
+        {% endblock %}
+           
         <!-- ============================================================== -->
         <!-- Container fluid  -->
         <!-- ============================================================== -->
@@ -60,11 +81,11 @@
         <!-- Title front bar --->
         <!-- ============================================================== -->
         <div class="row ">
-            {% block Header_title %}
+            
             <div class=" col-md mt-4 mb-4">
                 <h1 class="text-themecolor text-center">Smart Shipping: AI powered weather routing</h3>
             </div>
-            {% endblock %} 
+             
         </div>
         <!-- ============================================================== -->
         <!-- End Title front bar -->
