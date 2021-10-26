@@ -1,15 +1,3 @@
-function initDemoMap() {
-  var map = L.map("map");
-
-  background_map = L.tileLayer('https://tile.jawg.io/9e47bb8d-efe9-44b4-86c8-e1ca9acbea38/{z}/{x}/{y}{r}.png?access-token=I6EpM0rUPAVxyVtfSFHyZJ6besx7JYPVnVr060qbSzw3g90ZfxhY09cwQYGlRC3f', {});
-  
-  var map = L.map("map", {
-    layers: [background_map]
-  });
-
-  return map
-}
-
 function generateMap(waves, currents, base, best_route, city_start, city_end) {
   var map = L.map("map");
 
