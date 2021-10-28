@@ -127,9 +127,3 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
-
-# JAVASCRIPT
-# Ignore node_modules
-static/node_modules/
-static/node_modules/leaflet/package.json
-static/node_modules/leaflet-velocity/package.json
