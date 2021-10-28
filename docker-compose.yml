@@ -1,0 +1,17 @@
+version: "3.3"
+   
+services:
+
+  nginx:
+    image: nginx:alpine
+    ports:
+      - 1300:80
+    volumes:
+      - ./nginx_conf:/etc/nginx/conf.d
+      - ./app/static:/var/www/static
+    depends_on:
+      - smartship_front
+  smartship_front:
+    build: .
+    volumes:
+      - ./app:/app
