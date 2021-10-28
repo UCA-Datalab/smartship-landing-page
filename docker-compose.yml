@@ -3,7 +3,7 @@ version: "3.3"
 services:
 
   nginx:
-    image: nginx:alpine
+    image: nginx:1.21.3-alpine
     ports:
       - 1300:80
     volumes:
