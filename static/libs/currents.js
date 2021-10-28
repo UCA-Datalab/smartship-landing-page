@@ -11,28 +11,7 @@ function generateMap(waves, wind, currents, base, best_route, city_start, city_e
       position: "bottomleft",
       emptyString: "No currents data"
     },
-    colorScale: [/*"#f6d6be",
-      "#f5d2b8",
-      "#f4ceb2",
-      "#f3cbac",
-      "#f2c7a6",
-      "#f1c3a0",
-      "#f0c09a",
-      "#efbc94",
-      "#eeb88f",
-      "#edb489",
-      "#ebb183",
-      "#eaad7d",
-      "#e9a978",
-      "#e7a672",
-      "#e6a26c",
-      "#e49e67",
-      "#e39a61",
-      "#e1975b",
-      "#e09356",
-      "#de8f50",
-      "#dd8c4a",
-      "#db8844",*/
+    colorScale: [
       "#d9843f",
       "#d78039",
       "#d67d33",
@@ -82,26 +61,30 @@ function generateMap(waves, wind, currents, base, best_route, city_start, city_e
   });
 
 
-  /* WAVES LAYER
-  var waveLayer =  L.velocityLayer({
-      displayValues: true,
-      displayOptions: {
-         velocityType: "Waves",
-         displayPosition: "topright",
-         displayEmptyString: "No wave data"
-      },
-      data: waves.vectors,
-      velocityScale: 0.005,
-      maxVelocity: 1,
-      lineWidth: 5,
-      particleAge: 60,
-      colorScale: [ '#ffffff'],
-      mapType: 'waveLayer'
+  // WAVES LAYER
+  var waveLayer = L.velocityLayer({
+    displayValues: true,
+    displayOptions: {
+      velocityType: "Waves",
+      displayPosition: "topright",
+      displayEmptyString: "No wave data"
+    },
+    data: waves.velocity,
+    velocityScale: 0.005,
+    maxVelocity: 1,
+    lineWidth: 5,
+    particleAge: 60,
+    velocityScale: 0.01,
+    colorScale: ['#ffffff'],
+    mapType: 'waveLayer',
+    maxVelocity: Math.max(Math.max(waves.velocity[0].data), Math.max(waves.velocity[1].data)),
+    minVelocity: Math.min(Math.min(waves.velocity[0].data), Math.min(waves.velocity[1].data)),
   })
-  waveLayer.addTo(map)*/
 
   //HEATMAP
-  //var heat = L.heatLayer(waves.height, {radius: 20, maxZoom:7}).addTo(map);
+  var heat = L.heatLayer(waves.height, { radius: 20, maxZoom: 7 });
+  var waves_group = L.layerGroup([heat, waveLayer])
+
 
   //Potting routes and markers
   var best_r = L.polyline.antPath(best_route, { color: 'green', weight: 2.5, opacity: 0.8, delay: 1000 });
@@ -121,12 +104,13 @@ function generateMap(waves, wind, currents, base, best_route, city_start, city_e
   var overlay_layers = {
     "Currents": currents_layer.addTo(map),
     "Wind": wind_layer,
+    "Waves": waves_group,
     "Routes": routes_group.addTo(map),
   }
 
   L.control.layers({}, overlay_layers).addTo(map);
 
-  map.setView([(coord_start[0] + coord_end[0]) / 2, (coord_start[1] + coord_end[1]) / 2], 5);
+  map.setView([(coord_start[0] + coord_end[0]) / 2, (coord_start[1] + coord_end[1]) / 2], 4.2);
 
   init_marker.openPopup()
   end_marker.openPopup()

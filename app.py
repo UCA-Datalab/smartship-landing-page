@@ -104,7 +104,7 @@ def results():
         with open("static/test_data/wind.json", "r") as f:
             data["wind"] = json.loads(f.read())
 
-        with open("static/test_data/test_waves.json", "r") as f:
+        with open("static/test_data/waves.json", "r") as f:
             data["waves"] = json.loads(f.read())
 
     return render_template("results.html", data=data)
