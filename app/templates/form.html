@@ -1,0 +1,243 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+
+
+<div class="mt-3 row justify-content-md-center">
+
+  <div class="col-lg-8">
+    <div class="card">
+
+      <div class="card-body">
+        <form action="/results">
+          <div class="form-body">
+            <h3 class="card-title text-center">Choose your route parameters</h3>
+            <hr>
+            <!--/row-->
+
+            <!--    BOAT SELECTOR    -->
+            <div class="row justify-content-md-cente">
+              <div class="col-md-6">
+                <div class="form-group text-center">
+                  <label class="control-label">Available boats</label>
+                  <select id="boatSelector" name="boat" class="form-control custom-select" required>
+                    <option value="" hidden> Boat model </option>
+                  </select>
+                  <small class="form-control-feedback"> Select the boat model </small>
+                </div>
+              </div>
+
+              <!--    ROUTE SELECTOR    -->
+              <div class="col-md-6">
+                <div class="form-group text-center">
+                  <label class="control-label">Available shipping routes</label>
+                  <select id="routeSelector" name="route" class="form-control custom-select" required>
+                    <option value="" hidden> Route </option>
+                    {% for opt in city_options %}
+                    <option value={{opt}}>{{opt}}</option>
+                    {% endfor %}
+                  </select>
+                  <small class="form-control-feedback"> Select the desired route to optimize </small>
+                </div>
+              </div>
+              <!--/span-->
+              <!--    DATE SELECTOR    -->
+              <div class="col-md-4"></div> <!-- bad practise -->
+              <div class="col-md-4">
+                <div class="form-group text-center">
+                  <label class="control-label">Date of Departure</label>
+                  <input id="departing-datepicker" name="date" type="date" class="form-control"
+                    placeholder="dd/mm/yyyy" required>
+                </div>
+              </div>
+              <!--/span-->
+            </div>
+          </div>
+
+          <div class="mt-3 row justify-content-around">
+            <div class="col-lg-4">
+
+              <!-- BOAT PROPERTIES CARD -->
+              <div hidden id="boatProperties" class="card">
+                <h3 class="card-title text-center">Boat</h3>
+                <img class="card-img-top img-responsive" src="static/images/boats/1920px-USNS_Sioux_(T-ATF-171).jpg"
+                  alt="Card image cap">
+
+                <div class="card-header">
+                  <h4 class="m-b-0 text-center">Card Title</h4>
+                </div>
+                <div class="card-body">
+                  <a class="card-text"></a>
+                  <br>
+                  <a class="card-text"></a>
+                  <br>
+                  <a class="card-text"></a>
+                  <br>
+                  <a class="card-text"></a>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4">
+
+              <!-- ROUTE PROPERTIES CARD -->
+              <div hidden id="routeProperties" class="card">
+                <h3 class="text-center">Route</h3>
+                <img class="card-img-top img-responsive" src="static/images/FlowerDottedMap.jpg" alt="Card image cap">
+                <div class="card-header">
+                  <h4 class="m-b-0 text-center">Card Title</h4>
+                </div>
+                <div class="card-body">
+                  <a class="card-text"></a>
+                  <br>
+                  <a class="card-text"></a>
+                  <br>
+                  <a class="card-text"></a>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+      </div>
+
+
+      <div class="form-actions ">
+        <div class="col text-center ">
+          <button type="submit" class="btn btn-lg btn-info"> <i class="fa"></i> Optimize </button>
+        </div>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="mt-3 row justify-content-md-center">
+
+  <div class="col-lg-4">
+
+    <!-- BOAT PROPERTIES CARD -->
+    <div hidden id="boatProperties" class="card">
+      <h3 class="text-center">Selected Boat</h4>
+        <img class="card-img-top img-responsive" src="static/images/boats/1920px-USNS_Sioux_(T-ATF-171).jpg"
+          alt="Card image cap">
+        <div class="card-body">
+          <h4 class="card-title"></h4>
+          <a class="card-text"></a>
+          <br>
+          <a class="card-text"></a>
+          <br>
+          <a class="card-text"></a>
+          <br>
+          <a class="card-text"></a>
+        </div>
+    </div>
+  </div>
+  <div class="col-lg-4">
+
+    <!-- ROUTE PROPERTIES CARD -->
+    <div hidden id="routeProperties" class="card">
+      <h3 class="text-center">Selected Route</h4>
+        <div class="card-body">
+          <h4 class="card-title"></h4>
+          <a class="card-text"></a>
+          <br>
+          <a class="card-text"></a>
+          <br>
+          <a class="card-text"></a>
+
+        </div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+
+
+
+
+
+
+{% endblock %}
+
+{% block scripts %}
+
+<script>
+  $(document).ready(function () {
+
+    // Reading initial local JSON files
+    var boatJSON;
+    var routesJSON = {{city_options | tojson}};
+
+    $(function () {
+      $.getJSON("static/test_data/boats.json", function (data) {
+        boatJSON = data;
+        for (let i = 0; i < data.length; ++i) {
+          $("#boatSelector").append("<option value=\"" + i + "\">" + data[i]['model'] + "</option>");
+        }
+      }).fail(function () {
+        console.log("An error loading the JSON file has occurred.");
+      });
+
+    });
+
+
+
+    // Show boat properties
+    $(function () {
+      $("#boatSelector").change(function () {
+        let selectedBoat = $(this).find(":selected").attr("value");
+        $("#boatProperties").fadeOut("fast").promise().done(function () {
+          if ($("#boatProperties").attr("hidden") == "hidden") {
+            $("#boatProperties").fadeIn("slow")
+            $("#boatProperties").attr("hidden", false);
+          }
+
+          let div_list = $("#boatProperties").find("div");
+
+          $("#boatProperties h4").text(boatJSON[selectedBoat]['model']);
+          $("#boatProperties img").eq(0).attr("src", "/static/" + boatJSON[selectedBoat]['image']);
+
+          let a_list = $("#boatProperties div").find("a");
+          a_list[0].text = "Country: " + boatJSON[selectedBoat]['country'];
+          a_list[1].text = "Displacement: " + boatJSON[selectedBoat]['displacement'] + " t";
+          a_list[2].text = "Length: " + boatJSON[selectedBoat]['length'] + " m";
+          a_list[3].text = "Speed: " + boatJSON[selectedBoat]['speed'] + " knt/h";
+          $("#boatProperties").fadeIn("slow")
+
+        });
+      });
+    });
+
+    //Show Route properties
+    $(function () {
+      $("#routeSelector").change(function () {
+        let selectedRoute = $(this).find(":selected").attr("value");
+        console.log(selectedRoute)
+        $("#routeProperties").fadeOut("fast").promise().done(function () {
+          if ($("#routeProperties").attr("hidden") == "hidden") {
+            $("#routeProperties").fadeIn("slow")
+            $("#routeProperties").attr("hidden", false);
+          }
+
+          let div_list = $("#routeProperties").find("div");
+
+          $("#routeProperties h4").text(selectedRoute);
+
+          let a_list = $("#routeProperties div").find("a");
+          a_list[0].text = "Distance: 25.000 miles";
+          a_list[1].text = "Departure city: " + routesJSON[selectedRoute][0];
+          a_list[2].text = "Arrival city: " + routesJSON[selectedRoute][1];
+        
+          $("#routeProperties").fadeIn("slow")
+
+        });
+      });
+    });
+
+  });
+</script>
+{% endblock %}
