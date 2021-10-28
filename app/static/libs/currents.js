@@ -1,4 +1,4 @@
-function generateMap(waves, currents, base, best_route, city_start, city_end) {
+function generateMap(waves, wind, currents, base, best_route, city_start, city_end) {
   var map = L.map("map");
 
   var background_map = L.tileLayer('https://api.mapbox.com/styles/v1/tr3cks/ckv6iiptd3bke15lh4ioa6lkv/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoidHIzY2tzIiwiYSI6ImNrdjZpZnp1eDB2dG4ycW9rMjlmOHY0OHIifQ.egCphR_INbD25yU6Ha4A8w', {}).addTo(map);
@@ -11,28 +11,7 @@ function generateMap(waves, currents, base, best_route, city_start, city_end) {
       position: "bottomleft",
       emptyString: "No currents data"
     },
-    colorScale: ["#f6d6be",
-      "#f5d2b8",
-      "#f4ceb2",
-      "#f3cbac",
-      "#f2c7a6",
-      "#f1c3a0",
-      "#f0c09a",
-      "#efbc94",
-      "#eeb88f",
-      "#edb489",
-      "#ebb183",
-      "#eaad7d",
-      "#e9a978",
-      "#e7a672",
-      "#e6a26c",
-      "#e49e67",
-      "#e39a61",
-      "#e1975b",
-      "#e09356",
-      "#de8f50",
-      "#dd8c4a",
-      "#db8844",
+    colorScale: [
       "#d9843f",
       "#d78039",
       "#d67d33",
@@ -45,32 +24,67 @@ function generateMap(waves, currents, base, best_route, city_start, city_end) {
     ,
     lineWidth: 1,
     data: currents,
-    velocityScale: 0.005,
+    velocityScale: 1,
     maxVelocity: Math.max(Math.max(currents[0].data), Math.max(currents[1].data)),
     minVelocity: Math.min(Math.min(currents[0].data), Math.min(currents[1].data)),
   });
 
+  var wind_layer = L.velocityLayer({
+    displayValues: true,
+    displayOptions: {
+      velocityType: "Global Wind",
+      position: "bottomleft",
+      emptyString: "No wind data"
+    },
+    colorScale: ["#fafa6e",
+      "#d7f171",
+      "#b5e877",
+      "#95dd7d",
+      "#77d183",
+      "#5bc489",
+      "#3fb78d",
+      "#23aa8f",
+      "#009c8f",
+      "#008d8c",
+      "#007f86",
+      "#0b717e",
+      "#1c6373",
+      "#255566",
+      "#2a4858"]
+    ,
+    lineWidth: 1,
+    data: wind,
+    velocityScale: 0.03,
+    maxVelocity: Math.max(Math.max(wind[0].data), Math.max(wind[1].data)),
+    minVelocity: Math.min(Math.min(wind[0].data), Math.min(wind[1].data)),
+    particleAge: 180
+  });
 
-  /* WAVES LAYER
-  var waveLayer =  L.velocityLayer({
-      displayValues: true,
-      displayOptions: {
-         velocityType: "Waves",
-         displayPosition: "topright",
-         displayEmptyString: "No wave data"
-      },
-      data: waves.vectors,
-      velocityScale: 0.005,
-      maxVelocity: 1,
-      lineWidth: 5,
-      particleAge: 60,
-      colorScale: [ '#ffffff'],
-      mapType: 'waveLayer'
+
+  // WAVES LAYER
+  var waveLayer = L.velocityLayer({
+    displayValues: true,
+    displayOptions: {
+      velocityType: "Waves",
+      displayPosition: "topright",
+      displayEmptyString: "No wave data"
+    },
+    data: waves.velocity,
+    velocityScale: 0.005,
+    maxVelocity: 1,
+    lineWidth: 5,
+    particleAge: 60,
+    velocityScale: 0.01,
+    colorScale: ['#ffffff'],
+    mapType: 'waveLayer',
+    maxVelocity: Math.max(Math.max(waves.velocity[0].data), Math.max(waves.velocity[1].data)),
+    minVelocity: Math.min(Math.min(waves.velocity[0].data), Math.min(waves.velocity[1].data)),
   })
-  waveLayer.addTo(map)*/
 
   //HEATMAP
-  //var heat = L.heatLayer(waves.height, {radius: 20, maxZoom:7}).addTo(map);
+  var heat = L.heatLayer(waves.height, { radius: 35, maxZoom: 8 });
+  var waves_group = L.layerGroup([heat, waveLayer])
+
 
   //Potting routes and markers
   var best_r = L.polyline.antPath(best_route, { color: 'green', weight: 2.5, opacity: 0.8, delay: 1000 });
@@ -89,12 +103,14 @@ function generateMap(waves, currents, base, best_route, city_start, city_end) {
 
   var overlay_layers = {
     "Currents": currents_layer.addTo(map),
+    "Wind": wind_layer,
+    "Waves": waves_group,
     "Routes": routes_group.addTo(map),
   }
 
   L.control.layers({}, overlay_layers).addTo(map);
 
-  map.setView([(coord_start[0] + coord_end[0]) / 2, (coord_start[1] + coord_end[1]) / 2], 5);
+  map.setView([(coord_start[0] + coord_end[0]) / 2, (coord_start[1] + coord_end[1]) / 2], 4.2);
 
   init_marker.openPopup()
   end_marker.openPopup()
