@@ -84,7 +84,7 @@ function generateMap(waves, wind, currents, base, best_route, city_start, city_e
   })
 
   //HEATMAP
-  var heat = L.heatLayer(waves.height, { radius: 30, maxZoom: 8, scaleRadius: false });
+  var heat = L.heatLayer(waves.height, { radius: 30, maxZoom: 6, scaleRadius: true });
   var waves_group = L.layerGroup([heat, waveLayer])
 
 
