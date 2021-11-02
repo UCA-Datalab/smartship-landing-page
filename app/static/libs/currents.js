@@ -83,8 +83,37 @@ function generateMap(waves, wind, currents, base, best_route, city_start, city_e
     minVelocity: Math.min(Math.min(waves.velocity[0].data), Math.min(waves.velocity[1].data)),
   })
 
-  //HEATMAP
-  var heat = L.heatLayer(waves.height, { radius: 30, maxZoom: 6, scaleRadius: true });
+  // ==== HEATMAP ==== 
+  var heat_gradient = { 1: "red", .8: "yellow", .7: "lime", .6: "cyan", .4: "blue" }
+  var heat = L.heatLayer(waves.height, { radius: 30, maxZoom: 8, scaleRadius: false, blur: 35, gradient: heat_gradient });
+
+  // LEGEND
+  var heat_legend = L.control({ position: 'bottomright' });
+  heat_legend.onAdd = function (map) {
+
+    var div = L.DomUtil.create('div', 'info legend');
+    div.innerHTML += '<b>Waves height (m)</b><br style="margin:10px 0">'
+
+    for (let k in heat_gradient) {
+
+      div.innerHTML += '<i style="background:' + heat_gradient[k] + '"></i> ' + k * 100 + "%" + '<br>';
+    }
+    return div;
+  };
+
+  map.on('overlayadd', function (eventLayer) {
+    // Switch to the Population legend...
+    if (eventLayer.name === 'Waves')
+      heat_legend.addTo(this);
+  });
+
+  map.on('overlayremove', function (eventLayer) {
+    // Switch to the Population legend...
+    if (eventLayer.name === 'Waves')
+      this.removeControl(heat_legend);
+  });
+
+
   var waves_group = L.layerGroup([heat, waveLayer])
 
 
@@ -113,7 +142,8 @@ function generateMap(waves, wind, currents, base, best_route, city_start, city_e
   L.control.layers({}, overlay_layers).addTo(map);
 
   map.setView([(coord_start[0] + coord_end[0]) / 2, (coord_start[1] + coord_end[1]) / 2], 4.2);
-  map.options.minZoom = 2;
+  map.options.minZoom = 3;
+  map.options.maxZoom = 6;
   map.setMaxBounds(bounds);
 
   init_marker.openPopup()
@@ -129,4 +159,3 @@ function generateMap(waves, wind, currents, base, best_route, city_start, city_e
     map.panInsideBounds(bounds, { animate: false });
   });
 }
-
