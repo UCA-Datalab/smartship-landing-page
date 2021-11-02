@@ -72,11 +72,10 @@ function generateMap(waves, wind, currents, base, best_route, city_start, city_e
       displayEmptyString: "No wave data"
     },
     data: waves.velocity,
-    velocityScale: 0.005,
     maxVelocity: 1,
-    lineWidth: 5,
+    lineWidth: 6,
     particleAge: 60,
-    velocityScale: 0.01,
+    velocityScale: 0.005,
     colorScale: ['#ffffff'],
     mapType: 'waveLayer',
     maxVelocity: Math.max(Math.max(waves.velocity[0].data), Math.max(waves.velocity[1].data)),
@@ -85,7 +84,7 @@ function generateMap(waves, wind, currents, base, best_route, city_start, city_e
 
   // ==== HEATMAP ==== 
   var heat_gradient = { 1: "red", .8: "yellow", .7: "lime", .6: "cyan", .4: "blue" }
-  var heat = L.heatLayer(waves.height, { radius: 30, maxZoom: 8, scaleRadius: false, blur: 35, gradient: heat_gradient });
+  var heat = L.heatLayer(waves.height, { radius: 30, maxZoom: 6, scaleRadius: false, blur: 35, gradient: heat_gradient });
 
   // LEGEND
   var heat_legend = L.control({ position: 'bottomright' });
@@ -95,8 +94,7 @@ function generateMap(waves, wind, currents, base, best_route, city_start, city_e
     div.innerHTML += '<b>Waves height (m)</b><br style="margin:10px 0">'
 
     for (let k in heat_gradient) {
-
-      div.innerHTML += '<i style="background:' + heat_gradient[k] + '"></i> ' + k * 100 + "%" + '<br>';
+      div.innerHTML += '<i style="background:' + heat_gradient[k] + '"></i> ' + Math.floor(k * (waves.max_height - waves.min_height) + waves.min_height) + '<br>';
     }
     return div;
   };
