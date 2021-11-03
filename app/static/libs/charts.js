@@ -1,15 +1,17 @@
-function generateCharts(cumulative_best_fuel, cumulative_base_fuel) {
+function generateCharts(cumulative_best_fuel, cumulative_base_fuel, days_labels) {
+    console.log(days_labels)
+    console.log(cumulative_base_fuel)
     new Chart(document.getElementById("line-chart"), {
         type: 'line',
         data: {
-            labels: cumulative_base_fuel.x,
+            labels: days_labels,
             datasets: [{
-                data: cumulative_base_fuel.y,
+                data: cumulative_base_fuel,
                 label: "Base route",
                 borderColor: "#3e95cd",
                 fill: false
             }, {
-                data: cumulative_best_fuel.y,
+                data: cumulative_best_fuel,
                 label: "Optimize route",
                 borderColor: "#8e5ea2",
                 fill: false
@@ -20,6 +22,12 @@ function generateCharts(cumulative_best_fuel, cumulative_base_fuel) {
             title: {
                 display: true,
                 text: 'Fuel consumption between waypoints'
+            },
+            scales: {
+                xAxes: [{
+                    type: 'time',
+                    distribution: 'linear'
+                }]
             }
         }
     });
