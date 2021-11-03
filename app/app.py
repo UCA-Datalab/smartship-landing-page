@@ -164,20 +164,18 @@ def results():
 
     consumption_color = "#32CD32" if consumption_improvement > 0 else "#DC143C"
 
-    days_best = [timestamps.split(" ")[0] for timestamps in best_route["timestamps"]]
+    # ====== SELECT CONSUMPTION BY DAY ======
+    days = np.unique(best_route["timestamps"] + data["base_timestamps"]).tolist()
 
     cumsum_best = np.cumsum(best_route["fuel_step"]).tolist()
-    cumulative_best_fuel = {
-        "x": list(set(days_best)),
-        "y": [cumsum_best[days_best.index(d)] for d in set(days_best)],
-    }
+    cumulative_best_fuel = [
+        {"t": t, "y": y} for t, y in zip(best_route["timestamps"], cumsum_best)
+    ]
 
-    days_base = [timestamps.split(" ")[0] for timestamps in data["base_timestamps"]]
     cumsum_base = np.cumsum(data["base_fuel_step"]).tolist()
-    cumulative_base_fuel = {
-        "x": list(set(days_best)),
-        "y": [cumsum_base[days_base.index(d)] for d in set(days_best)],
-    }
+    cumulative_base_fuel = [
+        {"t": t, "y": y} for t, y in zip(data["base_timestamps"], cumsum_base)
+    ]
 
     return render_template(
         "results.html",
@@ -189,6 +187,7 @@ def results():
         consumption_color=consumption_color,
         cumulative_best_fuel=cumulative_best_fuel,
         cumulative_base_fuel=cumulative_base_fuel,
+        days_labels=days,
     )
 
 
