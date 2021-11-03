@@ -148,12 +148,14 @@ def results():
 
     best_route = data["routes"][0]
 
-    time_end_optimized = best_route["timestamps"][-1]
-    optimized_enlapsed_time = dt.datetime.strptime(
-        time_end_optimized
-    ) - dt.datetime.strptime(data["time_start"])
+    # Take end-time and remove microseconds
+    time_end_optimized = best_route["timestamps"][-1].split(".")[0]
 
-    money_saved = (data["base_fuel_total"] - best_route["fuel_total"]) * FUEL_PRICE
+    optimized_enlapsed_time = dt.datetime.strptime(
+        time_end_optimized, "%Y-%m-%d %H:%M:%S"
+    ) - dt.datetime.strptime(data["time_start"], "%Y-%m-%d %H:%M:%S")
+
+    money_saved = int((data["base_fuel_total"] - best_route["fuel_total"]) * FUEL_PRICE)
 
     consumption_improvement = (
         1 - (best_route["fuel_total"] / data["base_fuel_total"])
@@ -165,7 +167,7 @@ def results():
     }
     cumulative_base_fuel = {
         "x": data["base_timestamps"],
-        "y": np.cumsum(best_route["base_fuel_step"]).tolist(),
+        "y": np.cumsum(data["base_fuel_step"]).tolist(),
     }
 
     return render_template(
@@ -173,7 +175,7 @@ def results():
         data=data,
         optimized_enlapsed_time=str(optimized_enlapsed_time),
         money_saved=f"{money_saved} €",
-        consumption_improvement=f"{consumption_improvement} %",
+        consumption_improvement=f"{round(consumption_improvement,2)} %",
         cumulative_best_fuel=cumulative_best_fuel,
         cumulative_base_fuel=cumulative_base_fuel,
     )
