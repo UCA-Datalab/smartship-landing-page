@@ -21,7 +21,8 @@
 <script src="{{url_for('static',filename='node_modules/leaflet-ant-path/dist/leaflet-ant-path.js')}}"></script>
 
 <!--Charts js-->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.bundle.min.js"></script>
 
 
 <link href="{{url_for('static',filename='css/results.css')}}" rel="stylesheet">
@@ -121,7 +122,7 @@
 <script type="text/javascript">
     var data = {{data | tojson}}
     generateMap(data.waves, data.wind, data.currents,data.base_route,data.routes[0].coords,data.city_start,data.city_end)
-    generateCharts({{cumulative_best_fuel| tojson}},{{cumulative_base_fuel| tojson}})
+    generateCharts({{cumulative_best_fuel | tojson}},{{cumulative_base_fuel | tojson}},{{ days_labels | tojson}})
 </script>
 
 <script src="{{url_for('static',filename='libs/charts.js')}}"> </script>
