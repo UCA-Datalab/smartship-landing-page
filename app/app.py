@@ -15,7 +15,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    response = requests.get("http://zappa.uca.es:5001/api/available_routes/")
+    response = requests.get("http://zappa.uca.es:5001/api/available_routes")
     code = response.status_code
     if code == 200:
         city_options = {
