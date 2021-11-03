@@ -20,6 +20,9 @@
 <!--leaflet-ant-path-->
 <script src="{{url_for('static',filename='node_modules/leaflet-ant-path/dist/leaflet-ant-path.js')}}"></script>
 
+<!--Charts js-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+
 
 <link href="{{url_for('static',filename='css/results.css')}}" rel="stylesheet">
 
@@ -30,7 +33,7 @@
 <!-- ============================================================== -->
 <!-- Stats box -->
 <!-- ============================================================== -->
-<div class="row d-flex ">
+<div class="row d-flex justify-content-md-center"">
 
 
     <div class="col-md-4">
@@ -81,13 +84,28 @@
     <!-- Place for THE MAP -->
     <!-- ============================================================== -->
 
-    <div class="col-md-12">
+    <div class="col-md-12 mb-4">
         <div class="d-flex justify-content-center">
             <div id="map"
                 class="leaflet-container leaflet-touch leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom map-style">
             </div>
         </div>
     </div>
+
+    <div class="col-md-5">
+        <div class="d-flex justify-content-center">
+            <canvas id="doughnut-chart" width="800" height="450"></canvas>
+        </div>
+    </div>
+
+    <div class="col-md-5">
+        <div class="d-flex justify-content-center">
+            <canvas id="line-chart" width="800" height="450"></canvas>
+        </div>
+    </div>
+
+    
+
 
 </div>
 {% endblock %}
@@ -103,4 +121,6 @@
     var data = {{data | tojson}}
     generateMap(data.waves, data.wind, data.currents,data.base_route,data.routes[0].coords,data.city_start,data.city_end)
 </script>
+
+<script src="{{url_for('static',filename='libs/charts.js')}}"> </script>
 {% endblock %}
