@@ -2,6 +2,10 @@ from flask import Flask, render_template, request
 import requests
 import json
 import datetime as dt
+import numpy as np
+
+# Price $/mt, no estoy seguro de que esta sea la medida correcta
+FUEL_PRICE = 633.50
 
 cities = {
     "CADIZ": [36.545344, -6.279833],
@@ -75,7 +79,19 @@ def results():
                         [42, -69],
                         cities["BOSTON"],
                     ],
-                    "fuel": 15,
+                    "fuel_step": [150, 200, 250, 200, 150, 100, 50, 80],
+                    "fuel_total": 1180,
+                    "timestamps": [
+                        str(dt.datetime(2020, 12, 3)),
+                        str(dt.datetime(2020, 12, 4)),
+                        str(dt.datetime(2020, 12, 5)),
+                        str(dt.datetime(2020, 12, 6)),
+                        str(dt.datetime(2020, 12, 7)),
+                        str(dt.datetime(2020, 12, 8)),
+                        str(dt.datetime(2020, 12, 9)),
+                        str(dt.datetime(2020, 12, 10)),
+                        str(dt.datetime(2020, 12, 11)),
+                    ],
                 },
                 {
                     "coords": [
@@ -89,14 +105,37 @@ def results():
                         [42, -69],
                         cities["BOSTON"],
                     ],
-                    "fuel": 15,
+                    "fuel_step": [150, 200, 250, 200, 150, 100, 50, 80],
+                    "fuel_total": 1180,
+                    "timestamps": [
+                        str(dt.datetime(2020, 12, 3)),
+                        str(dt.datetime(2020, 12, 4)),
+                        str(dt.datetime(2020, 12, 5)),
+                        str(dt.datetime(2020, 12, 6)),
+                        str(dt.datetime(2020, 12, 7)),
+                        str(dt.datetime(2020, 12, 8)),
+                        str(dt.datetime(2020, 12, 9)),
+                        str(dt.datetime(2020, 12, 10)),
+                        str(dt.datetime(2020, 12, 11)),
+                    ],
                 },
             ],
             "base_route": [cities["CADIZ"], cities["BOSTON"]],
-            "base_fuel": 25,
+            "base_fuel_step": [200, 230, 200, 260, 170, 80, 70, 50],
+            "base_fuel_total": 1260,
             "boat": 0,
-            "time_start": dt.datetime(2020, 12, 3),
-            "time_end": dt.datetime(2020, 12, 17),
+            "time_start": str(dt.datetime(2020, 12, 3)),
+            "base_timestamps": [
+                str(dt.datetime(2020, 12, 3)),
+                str(dt.datetime(2020, 12, 5)),
+                str(dt.datetime(2020, 12, 6)),
+                str(dt.datetime(2020, 12, 7)),
+                str(dt.datetime(2020, 12, 8)),
+                str(dt.datetime(2020, 12, 10)),
+                str(dt.datetime(2020, 12, 11)),
+                str(dt.datetime(2020, 12, 12)),
+                str(dt.datetime(2020, 12, 14)),
+            ],
         }
         with open("static/test_data/currents.json", "r") as f:
             data["currents"] = json.loads(f.read())
@@ -107,7 +146,37 @@ def results():
         with open("static/test_data/waves.json", "r") as f:
             data["waves"] = json.loads(f.read())
 
-    return render_template("results.html", data=data)
+    best_route = data["routes"][0]
+
+    time_end_optimized = best_route["timestamps"][-1]
+    optimized_enlapsed_time = dt.datetime.strptime(
+        time_end_optimized
+    ) - dt.datetime.strptime(data["time_start"])
+
+    money_saved = (data["base_fuel_total"] - best_route["fuel_total"]) * FUEL_PRICE
+
+    consumption_improvement = (
+        1 - (best_route["fuel_total"] / data["base_fuel_total"])
+    ) * 100
+
+    cumulative_best_fuel = {
+        "x": best_route["timestamps"],
+        "y": np.cumsum(best_route["fuel_step"]).tolist(),
+    }
+    cumulative_base_fuel = {
+        "x": data["base_timestamps"],
+        "y": np.cumsum(best_route["base_fuel_step"]).tolist(),
+    }
+
+    return render_template(
+        "results.html",
+        data=data,
+        optimized_enlapsed_time=str(optimized_enlapsed_time),
+        money_saved=f"{money_saved} €",
+        consumption_improvement=f"{consumption_improvement} %",
+        cumulative_best_fuel=cumulative_best_fuel,
+        cumulative_base_fuel=cumulative_base_fuel,
+    )
 
 
 if __name__ == "__main__":
