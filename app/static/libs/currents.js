@@ -1,7 +1,9 @@
 function generateMap(waves, wind, currents, base, best_route, city_start, city_end) {
   var map = L.map("map");
-
-  var background_map = L.tileLayer('https://api.mapbox.com/styles/v1/tr3cks/ckv6iiptd3bke15lh4ioa6lkv/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoidHIzY2tzIiwiYSI6ImNrdjZpZnp1eDB2dG4ycW9rMjlmOHY0OHIifQ.egCphR_INbD25yU6Ha4A8w', {}).addTo(map);
+  var background_map = L.tileLayer(
+    'https://api.mapbox.com/styles/v1/tr3cks/ckv6iiptd3bke15lh4ioa6lkv/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoidHIzY2tzIiwiYSI6ImNrdjZpZnp1eDB2dG4ycW9rMjlmOHY0OHIifQ.egCphR_INbD25yU6Ha4A8w',
+    {}
+  ).addTo(map);
   //var background_map = L.tileLayer('https://tile.jawg.io/9e47bb8d-efe9-44b4-86c8-e1ca9acbea38/{z}/{x}/{y}{r}.png?access-token=I6EpM0rUPAVxyVtfSFHyZJ6besx7JYPVnVr060qbSzw3g90ZfxhY09cwQYGlRC3f', {}).addTo(map);
 
   var currents_layer = L.velocityLayer({
@@ -70,25 +72,52 @@ function generateMap(waves, wind, currents, base, best_route, city_start, city_e
       displayEmptyString: "No wave data"
     },
     data: waves.velocity,
-    velocityScale: 0.005,
     maxVelocity: 1,
-    lineWidth: 5,
+    lineWidth: 6,
     particleAge: 60,
-    velocityScale: 0.01,
+    velocityScale: 0.005,
     colorScale: ['#ffffff'],
     mapType: 'waveLayer',
     maxVelocity: Math.max(Math.max(waves.velocity[0].data), Math.max(waves.velocity[1].data)),
     minVelocity: Math.min(Math.min(waves.velocity[0].data), Math.min(waves.velocity[1].data)),
   })
 
-  //HEATMAP
-  var heat = L.heatLayer(waves.height, { radius: 30, maxZoom:8, scaleRadius:false });
+  // ==== HEATMAP ==== 
+  var heat_gradient = { 1: "red", .8: "yellow", .7: "lime", .6: "cyan", .4: "blue" }
+  var heat = L.heatLayer(waves.height, { radius: 30, maxZoom: 6, scaleRadius: false, blur: 35, gradient: heat_gradient });
+
+  // LEGEND
+  var heat_legend = L.control({ position: 'bottomright' });
+  heat_legend.onAdd = function (map) {
+
+    var div = L.DomUtil.create('div', 'info legend');
+    div.innerHTML += '<b>Waves height (m)</b><br style="margin:10px 0">'
+
+    for (let k in heat_gradient) {
+      div.innerHTML += '<i style="background:' + heat_gradient[k] + '"></i> ' + Math.floor(k * (waves.max_height - waves.min_height) + waves.min_height) + '<br>';
+    }
+    return div;
+  };
+
+  map.on('overlayadd', function (eventLayer) {
+    // Switch to the Population legend...
+    if (eventLayer.name === 'Waves')
+      heat_legend.addTo(this);
+  });
+
+  map.on('overlayremove', function (eventLayer) {
+    // Switch to the Population legend...
+    if (eventLayer.name === 'Waves')
+      this.removeControl(heat_legend);
+  });
+
+
   var waves_group = L.layerGroup([heat, waveLayer])
 
 
   //Potting routes and markers
-  var best_r = L.polyline.antPath(best_route, { color: '#00ab41', weight: 1.7, opacity: 0.8, delay: 500, dashArray: [3,40]  });
-  var base_r = L.polyline.antPath(base, { color: '#cc4902', weight: 1.7, opacity: 1, delay: 500, dashArray: [2,40] });
+  var best_r = L.polyline.antPath(best_route, { color: '#00ab41', weight: 1.7, opacity: 0.8, delay: 500, dashArray: [3, 40] });
+  var base_r = L.polyline.antPath(base, { color: '#cc4902', weight: 1.7, opacity: 1, delay: 500, dashArray: [2, 40] });
 
   var coord_start = base[0]
   var coord_end = base[base.length - 1]
@@ -111,6 +140,9 @@ function generateMap(waves, wind, currents, base, best_route, city_start, city_e
   L.control.layers({}, overlay_layers).addTo(map);
 
   map.setView([(coord_start[0] + coord_end[0]) / 2, (coord_start[1] + coord_end[1]) / 2], 4.2);
+  map.options.minZoom = 3;
+  map.options.maxZoom = 6;
+  map.setMaxBounds(bounds);
 
   init_marker.openPopup()
   end_marker.openPopup()
@@ -119,5 +151,9 @@ function generateMap(waves, wind, currents, base, best_route, city_start, city_e
     init_marker.openPopup()
     end_marker.openPopup()
   })
-}
 
+  var bounds = new L.LatLngBounds(new L.LatLng(-89.98155760646617, -180), new L.LatLng(89.99346179538875, 180));
+  map.on('drag', function () {
+    map.panInsideBounds(bounds, { animate: false });
+  });
+}
