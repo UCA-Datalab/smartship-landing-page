@@ -6,6 +6,7 @@ services:
     image: nginx:1.21.3-alpine
     ports:
       - 443:443
+      - 80:80
     volumes:
       - ./nginx_conf:/etc/nginx/conf.d
       - ./app/static:/var/www/static
