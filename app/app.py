@@ -15,7 +15,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    response = requests.get("http://zappa.uca.es:5001/api/available_routes/dummy")
+    response = requests.get("http://zappa.uca.es:5001/api/available_routes/")
     code = response.status_code
     if code == 200:
         city_options = {
@@ -43,7 +43,7 @@ def results():
     time_start = request.args.get("date", type=str)
 
     response = requests.get(
-        "http://zappa.uca.es:5001/api/route/dummy",
+        "http://zappa.uca.es:5001/api/route",
         params={
             "boat": boat,
             "city_start": city_start,

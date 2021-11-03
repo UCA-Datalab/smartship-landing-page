@@ -10,7 +10,6 @@ services:
     volumes:
       - ./nginx_conf:/etc/nginx/conf.d
       - ./app/static:/var/www/static
-      - ./certs/:/certs
       - ./data/certbot/conf:/etc/letsencrypt
       - ./data/certbot/www:/var/www/certbot
     depends_on:
