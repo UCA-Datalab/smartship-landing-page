@@ -156,18 +156,27 @@ def results():
     ) - dt.datetime.strptime(data["time_start"], "%Y-%m-%d %H:%M:%S")
 
     money_saved = int((data["base_fuel_total"] - best_route["fuel_total"]) * FUEL_PRICE)
+    money_color = "#32CD32" if money_saved > 0 else "#DC143C"
 
     consumption_improvement = (
         1 - (best_route["fuel_total"] / data["base_fuel_total"])
     ) * 100
 
+    consumption_color = "#32CD32" if consumption_improvement > 0 else "#DC143C"
+
+    days_best = [timestamps.split(" ")[0] for timestamps in best_route["timestamps"]]
+
+    cumsum_best = np.cumsum(best_route["fuel_step"]).tolist()
     cumulative_best_fuel = {
-        "x": best_route["timestamps"],
-        "y": np.cumsum(best_route["fuel_step"]).tolist(),
+        "x": list(set(days_best)),
+        "y": [cumsum_best[days_best.index(d)] for d in set(days_best)],
     }
+
+    days_base = [timestamps.split(" ")[0] for timestamps in data["base_timestamps"]]
+    cumsum_base = np.cumsum(data["base_fuel_step"]).tolist()
     cumulative_base_fuel = {
-        "x": data["base_timestamps"],
-        "y": np.cumsum(data["base_fuel_step"]).tolist(),
+        "x": list(set(days_best)),
+        "y": [cumsum_base[days_base.index(d)] for d in set(days_best)],
     }
 
     return render_template(
@@ -175,7 +184,9 @@ def results():
         data=data,
         optimized_enlapsed_time=str(optimized_enlapsed_time),
         money_saved=f"{money_saved} €",
+        money_color=money_color,
         consumption_improvement=f"{round(consumption_improvement,2)} %",
+        consumption_color=consumption_color,
         cumulative_best_fuel=cumulative_best_fuel,
         cumulative_base_fuel=cumulative_base_fuel,
     )
