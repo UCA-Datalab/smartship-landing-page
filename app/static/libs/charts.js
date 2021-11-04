@@ -1,6 +1,4 @@
 function generateCharts(cumulative_best_fuel, cumulative_base_fuel, days_labels) {
-    console.log(days_labels)
-    console.log(cumulative_base_fuel)
     new Chart(document.getElementById("line-chart"), {
         type: 'line',
         data: {
