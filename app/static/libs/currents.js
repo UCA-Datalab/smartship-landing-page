@@ -1,10 +1,29 @@
-function generateMap(waves, wind, currents, base, best_route, city_start, city_end) {
+function generateMap(waves, wind, currents, base, best_route, city_start, city_end, geo_json_string) {
   var map = L.map("map");
-  var background_map = L.tileLayer(
-    'https://api.mapbox.com/styles/v1/tr3cks/ckv6iiptd3bke15lh4ioa6lkv/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoidHIzY2tzIiwiYSI6ImNrdjZpZnp1eDB2dG4ycW9rMjlmOHY0OHIifQ.egCphR_INbD25yU6Ha4A8w',
-    {}
+  document.getElementById("map").style.background = "#a0c7ee";
+
+  map.createPane('continents');
+  map.getPane('continents').style.zIndex = 650;
+  map.getPane('continents').style.pointerEvents = 'none';
+
+  map.createPane('countries');
+  map.getPane('countries').style.zIndex = 675;
+  map.getPane('countries').style.pointerEvents = 'none';
+
+  map.createPane('wind');
+  map.getPane('wind').style.zIndex = 700;
+  map.getPane('wind').style.pointerEvents = 'none';
+
+  map.createPane('routes');
+  map.getPane('routes').style.zIndex = 725;
+  map.getPane('routes').style.pointerEvents = 'none';
+
+  L.tileLayer(
+    'https://api.mapbox.com/styles/v1/tr3cks/ckvlgrqmt23nb14pihew0rvoa/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoidHIzY2tzIiwiYSI6ImNrdjZpZnp1eDB2dG4ycW9rMjlmOHY0OHIifQ.egCphR_INbD25yU6Ha4A8w',
+    { pane: 'countries' }
   ).addTo(map);
-  //var background_map = L.tileLayer('https://tile.jawg.io/9e47bb8d-efe9-44b4-86c8-e1ca9acbea38/{z}/{x}/{y}{r}.png?access-token=I6EpM0rUPAVxyVtfSFHyZJ6besx7JYPVnVr060qbSzw3g90ZfxhY09cwQYGlRC3f', {}).addTo(map);
+
+  L.geoJSON(geo_json_string, { pane: 'continents', style: { fillColor: "#c5def6", fillOpacity: 1, opacity: 0 } }).addTo(map);
 
   var currents_layer = L.velocityLayer({
     displayValues: true,
@@ -59,7 +78,8 @@ function generateMap(waves, wind, currents, base, best_route, city_start, city_e
     velocityScale: 0.03,
     maxVelocity: Math.max(Math.max(wind[0].data), Math.max(wind[1].data)),
     minVelocity: Math.min(Math.min(wind[0].data), Math.min(wind[1].data)),
-    particleAge: 180
+    particleAge: 180,
+    paneName: "wind"
   });
 
 
@@ -136,19 +156,18 @@ function generateMap(waves, wind, currents, base, best_route, city_start, city_e
       this.removeControl(heat_legend);
   });
 
-
   var waves_group = L.layerGroup([heat, waveLayer])
 
 
   //Potting routes and markers
-  var best_r = L.polyline.antPath(best_route, { color: '#00ab41', weight: 1.7, opacity: 0.8, delay: 500, dashArray: [3, 40] });
-  var base_r = L.polyline.antPath(base, { color: '#cc4902', weight: 1.7, opacity: 1, delay: 500, dashArray: [2, 40] });
+  var best_r = L.polyline.antPath(best_route, { color: '#00ab41', weight: 1.7, opacity: 0.8, delay: 500, dashArray: [3, 40], pane: 'routes' });
+  var base_r = L.polyline.antPath(base, { color: '#cc4902', weight: 1.7, opacity: 1, delay: 500, dashArray: [2, 40], pane: 'routes' });
 
   var coord_start = base[0]
   var coord_end = base[base.length - 1]
 
-  var init_marker = L.marker(coord_start)
-  var end_marker = L.marker(coord_end)
+  var init_marker = L.marker(coord_start, { pane: 'routes' })
+  var end_marker = L.marker(coord_end, { pane: 'routes' })
 
   init_marker.bindPopup("<b>" + city_start + "</b>", { closeOnClick: false, autoClose: false })
   end_marker.bindPopup("<b>" + city_end + "</b>", { closeOnClick: false, autoClose: false })
@@ -159,7 +178,7 @@ function generateMap(waves, wind, currents, base, best_route, city_start, city_e
     "Currents": currents_layer.addTo(map),
     "Wind": wind_layer,
     "Waves": waves_group,
-    "Routes": routes_group.addTo(map),
+    "Routes": routes_group.addTo(map)
   }
 
   L.control.layers({}, overlay_layers).addTo(map);
