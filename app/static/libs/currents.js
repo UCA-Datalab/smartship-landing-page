@@ -84,7 +84,32 @@ function generateMap(waves, wind, currents, base, best_route, city_start, city_e
 
   // ==== HEATMAP ==== 
   var heat_gradient = { 1: "red", .8: "yellow", .7: "lime", .6: "cyan", .4: "blue" }
-  var heat = L.heatLayer(waves.height, { radius: 30, maxZoom: 6, scaleRadius: false, blur: 35, gradient: heat_gradient });
+
+  var cfg = {
+    // radius should be small ONLY if scaleRadius is true (or small radius is intended)
+    // if scaleRadius is false it will be the constant radius used in pixels
+    "radius": 6,
+    "maxOpacity": 1,
+    "maxOpacity": 0.5,
+    // scales the radius based on map zoom
+    "scaleRadius": true,
+    // if set to false the heatmap uses the global maximum for colorization
+    // if activated: uses the data maximum within the current map boundaries
+    //   (there will always be a red spot with useLocalExtremas true)
+    "useLocalExtrema": false,
+    // which field name in your data represents the latitude - default "lat"
+    latField: 'lat',
+    // which field name in your data represents the longitude - default "lng"
+    lngField: 'lon',
+    // which field name in your data represents the data value - default "value"
+    valueField: 'height',
+    blur: 1,
+    gradient: heat_gradient
+  };
+
+
+  var heat = new HeatmapOverlay(cfg);
+  heat.setData(waves.height)
 
   // LEGEND
   var heat_legend = L.control({ position: 'bottomright' });
