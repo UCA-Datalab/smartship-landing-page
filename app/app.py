@@ -3,6 +3,7 @@ import requests
 import json
 import datetime as dt
 import numpy as np
+import math
 
 # Price $/mt, no estoy seguro de que esta sea la medida correcta
 FUEL_PRICE = 633.50
@@ -165,17 +166,50 @@ def results():
     consumption_color = "#32CD32" if consumption_improvement > 0 else "#DC143C"
 
     # ====== SELECT CONSUMPTION BY DAY ======
-    days = np.unique(best_route["timestamps"] + data["base_timestamps"]).tolist()
+    base_index = (
+        list(
+            range(
+                0,
+                len(data["base_timestamps"]),
+                math.ceil(len(data["base_timestamps"]) / 20),
+            )
+        )
+        + [-1]
+    )
+    base_timestamps = np.array(data["base_timestamps"])[base_index]
 
-    cumsum_best = np.cumsum(best_route["fuel_step"]).tolist()
+    best_index = (
+        list(
+            range(
+                0,
+                len(best_route["timestamps"]),
+                math.ceil(len(best_route["timestamps"]) / 20),
+            )
+        )
+        + [-1]
+    )
+    best_timestamps = np.array(best_route["timestamps"])[best_index]
+
+    days = np.sort(
+        np.unique(np.concatenate([best_timestamps, base_timestamps]))
+    ).tolist()
+
+    cumsum_best = np.cumsum(best_route["fuel_step"])[best_index].tolist()
     cumulative_best_fuel = [
-        {"t": t, "y": y} for t, y in zip(best_route["timestamps"], cumsum_best)
+        {"x": t, "y": y} for t, y in zip(best_timestamps, cumsum_best)
     ]
 
-    cumsum_base = np.cumsum(data["base_fuel_step"]).tolist()
+    cumsum_base = np.cumsum(data["base_fuel_step"])[base_index].tolist()
     cumulative_base_fuel = [
-        {"t": t, "y": y} for t, y in zip(data["base_timestamps"], cumsum_base)
+        {"x": t, "y": y} for t, y in zip(base_timestamps, cumsum_base)
     ]
+
+    data_dict = []
+    for lat, lon, h in data["waves"]["height"]:
+        if h > 0:
+            data_dict.append({"lat": lat, "lon": lon, "height": h})
+
+    data["waves"]["height"] = {"max": 8, "data": data_dict}
 
     return render_template(
         "results.html",
