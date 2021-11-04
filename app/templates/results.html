@@ -26,6 +26,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.bundle.min.js"></script>
 
 
+
 <link href="{{url_for('static',filename='css/results.css')}}" rel="stylesheet">
 
 {% endblock %}
@@ -122,7 +123,7 @@
 <script src="{{url_for('static',filename='libs/charts.js')}}"></script>
 <script type="text/javascript">
     var data = {{data | tojson}}
-    generateMap(data.waves, data.wind, data.currents,data.base_route,data.routes[0].coords,data.city_start,data.city_end)
+    generateMap(data.waves, data.wind, data.currents,data.base_route,data.routes[0].coords,data.city_start,data.city_end,{{ geo_json_string | tojson}})
     generateCharts({{cumulative_best_fuel | tojson}},{{cumulative_base_fuel | tojson}},{{ days_labels | tojson}})
 </script>
 
