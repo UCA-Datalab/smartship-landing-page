@@ -159,12 +159,17 @@ function generateMap(waves, wind, currents, base, best_route, city_start, city_e
     return div;
   };
 
-  L.control.layers({}, overlay_layers).addTo(map);
+  map.on('overlayadd', function (eventLayer) {
+    // Switch to the Population legend...
+    if (eventLayer.name === 'Waves')
+      heat_legend.addTo(this);
+  });
 
-  map.setView([(coord_start[0] + coord_end[0]) / 2, (coord_start[1] + coord_end[1]) / 2], 4.2);
-  map.options.minZoom = 3;
-  map.options.maxZoom = 6;
-  map.setMaxBounds(bounds);
+  map.on('overlayremove', function (eventLayer) {
+    // Switch to the Population legend...
+    if (eventLayer.name === 'Waves')
+      this.removeControl(heat_legend);
+  });
 
   var waves_group = L.layerGroup([heat, waveLayer])
 
@@ -204,14 +209,10 @@ function generateMap(waves, wind, currents, base, best_route, city_start, city_e
   map.on("overlayadd", function () {
     init_marker.openPopup()
     end_marker.openPopup()
+  })
 
-    map.on("overlayadd", function () {
-      init_marker.openPopup()
-      end_marker.openPopup()
-    })
-
-    var bounds = new L.LatLngBounds(new L.LatLng(-89.98155760646617, -180), new L.LatLng(89.99346179538875, 180));
-    map.on('drag', function () {
-      map.panInsideBounds(bounds, { animate: false });
-    });
-  }
+  var bounds = new L.LatLngBounds(new L.LatLng(-89.98155760646617, -180), new L.LatLng(89.99346179538875, 180));
+  map.on('drag', function () {
+    map.panInsideBounds(bounds, { animate: false });
+  });
+}
