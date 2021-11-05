@@ -1,0 +1,218 @@
+function generateMap(waves, wind, currents, base, best_route, city_start, city_end, geo_json_string) {
+  var map = L.map("map");
+  document.getElementById("map").style.background = "#a0c7ee";
+
+  map.createPane('continents');
+  map.getPane('continents').style.zIndex = 650;
+  map.getPane('continents').style.pointerEvents = 'none';
+
+  map.createPane('countries');
+  map.getPane('countries').style.zIndex = 675;
+  map.getPane('countries').style.pointerEvents = 'none';
+
+  map.createPane('wind');
+  map.getPane('wind').style.zIndex = 700;
+  map.getPane('wind').style.pointerEvents = 'none';
+
+  map.createPane('routes');
+  map.getPane('routes').style.zIndex = 725;
+  map.getPane('routes').style.pointerEvents = 'none';
+
+  L.tileLayer(
+    'https://api.mapbox.com/styles/v1/tr3cks/ckvlgrqmt23nb14pihew0rvoa/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoidHIzY2tzIiwiYSI6ImNrdjZpZnp1eDB2dG4ycW9rMjlmOHY0OHIifQ.egCphR_INbD25yU6Ha4A8w',
+    { pane: 'countries' }
+  ).addTo(map);
+
+  L.geoJSON(geo_json_string, { pane: 'continents', style: { fillColor: "#c5def6", fillOpacity: 1, opacity: 0 } }).addTo(map);
+
+  var currents_layer = L.velocityLayer({
+    displayValues: true,
+    displayOptions: {
+      velocityType: "Global Currents",
+      position: "bottomleft",
+      emptyString: "No currents data"
+    },
+    colorScale: [
+      "#d9843f",
+      "#d78039",
+      "#d67d33",
+      "#d4792d",
+      "#d27526",
+      "#d0711f",
+      "#ce6e18",
+      "#cc6a0f",
+      "#ca6603"]
+    ,
+    lineWidth: 1,
+    data: currents,
+    velocityScale: 1,
+    maxVelocity: Math.max(Math.max(currents[0].data), Math.max(currents[1].data)),
+    minVelocity: Math.min(Math.min(currents[0].data), Math.min(currents[1].data)),
+  });
+
+  var wind_layer = L.velocityLayer({
+    displayValues: true,
+    displayOptions: {
+      velocityType: "Global Wind",
+      position: "bottomleft",
+      emptyString: "No wind data"
+    },
+    colorScale: ["#fafa6e",
+      "#d7f171",
+      "#b5e877",
+      "#95dd7d",
+      "#77d183",
+      "#5bc489",
+      "#3fb78d",
+      "#23aa8f",
+      "#009c8f",
+      "#008d8c",
+      "#007f86",
+      "#0b717e",
+      "#1c6373",
+      "#255566",
+      "#2a4858"]
+    ,
+    lineWidth: 1,
+    data: wind,
+    velocityScale: 0.03,
+    maxVelocity: Math.max(Math.max(wind[0].data), Math.max(wind[1].data)),
+    minVelocity: Math.min(Math.min(wind[0].data), Math.min(wind[1].data)),
+    particleAge: 180,
+    paneName: "wind"
+  });
+
+
+  // WAVES LAYER
+  var waveLayer = L.velocityLayer({
+    displayValues: true,
+    displayOptions: {
+      velocityType: "Waves",
+      displayPosition: "topright",
+      displayEmptyString: "No wave data"
+    },
+    data: waves.velocity,
+    maxVelocity: 1,
+    lineWidth: 6,
+    particleAge: 60,
+    velocityScale: 0.005,
+    colorScale: ['#ffffff'],
+    mapType: 'waveLayer',
+    maxVelocity: Math.max(Math.max(waves.velocity[0].data), Math.max(waves.velocity[1].data)),
+    minVelocity: Math.min(Math.min(waves.velocity[0].data), Math.min(waves.velocity[1].data)),
+  })
+
+  // ==== HEATMAP ==== 
+  var heat_gradient = { 1: "#FF0000", .8: "#FFFF00", .7: "#00FF00", .6: "#00FFFF", .4: "#0000FF" }
+
+  var cfg = {
+    // radius should be small ONLY if scaleRadius is true (or small radius is intended)
+    // if scaleRadius is false it will be the constant radius used in pixels
+    "radius": 6,
+    //"maxOpacity": 1,
+    //"maxOpacity": 0.5,
+    //"opacity": 0.6,
+    // scales the radius based on map zoom
+    "scaleRadius": true,
+    // if set to false the heatmap uses the global maximum for colorization
+    // if activated: uses the data maximum within the current map boundaries
+    //   (there will always be a red spot with useLocalExtremas true)
+    "useLocalExtrema": false,
+    // which field name in your data represents the latitude - default "lat"
+    latField: 'lat',
+    // which field name in your data represents the longitude - default "lng"
+    lngField: 'lon',
+    // which field name in your data represents the data value - default "value"
+    valueField: 'height',
+    blur: 1,
+    gradient: heat_gradient
+  };
+
+
+  var heat = new HeatmapOverlay(cfg);
+  heat.setData(waves.height)
+
+  // LEGEND
+  var heat_legend = L.control({ position: 'bottomright' });
+  heat_legend.onAdd = function (map) {
+    var div = L.DomUtil.create('div', 'info legend');
+    div.innerHTML += '<b>Waves height (m)</b>';
+    div.innerHTML += '<div class="nums"><i>0</i><i>' + waves.height.max + '</i></div>'
+    var canvas = L.DomUtil.create('canvas');
+
+    var ctx = canvas.getContext('2d');
+    var gradient = ctx.createLinearGradient(20, 0, 220, 0);
+
+    for (let k in heat_gradient) {
+      console.log(heat_gradient[k])
+      gradient.addColorStop(k, heat_gradient[k]);
+    }
+
+    ctx.fillStyle = gradient;
+    ctx.globalAlpha = 0.9;
+    ctx.fillRect(0, 0, 300, 20);
+
+
+    div.appendChild(canvas)
+    console.log(div.innerHTML)
+    console.log(canvas)
+    return div;
+  };
+
+  map.on('overlayadd', function (eventLayer) {
+    // Switch to the Population legend...
+    if (eventLayer.name === 'Waves')
+      heat_legend.addTo(this);
+  });
+
+  map.on('overlayremove', function (eventLayer) {
+    // Switch to the Population legend...
+    if (eventLayer.name === 'Waves')
+      this.removeControl(heat_legend);
+  });
+
+  var waves_group = L.layerGroup([heat, waveLayer])
+
+
+  //Potting routes and markers
+  var best_r = L.polyline.antPath(best_route, { color: '#00ab41', weight: 1.7, opacity: 0.8, delay: 500, dashArray: [3, 40], pane: 'routes' });
+  var base_r = L.polyline.antPath(base, { color: '#cc4902', weight: 1.7, opacity: 1, delay: 500, dashArray: [2, 40], pane: 'routes' });
+
+  var coord_start = base[0]
+  var coord_end = base[base.length - 1]
+
+  var init_marker = L.marker(coord_start, { pane: 'routes' })
+  var end_marker = L.marker(coord_end, { pane: 'routes' })
+
+  init_marker.bindPopup("<b>" + city_start + "</b>", { closeOnClick: false, autoClose: false })
+  end_marker.bindPopup("<b>" + city_end + "</b>", { closeOnClick: false, autoClose: false })
+
+  var routes_group = L.layerGroup([best_r, base_r, init_marker, end_marker])
+
+  var overlay_layers = {
+    "Currents": currents_layer.addTo(map),
+    "Wind": wind_layer,
+    "Waves": waves_group,
+    "Routes": routes_group.addTo(map)
+  }
+
+  L.control.layers({}, overlay_layers).addTo(map);
+
+  map.setView([(coord_start[0] + coord_end[0]) / 2, (coord_start[1] + coord_end[1]) / 2], 4.2);
+  map.options.minZoom = 3;
+  map.options.maxZoom = 6;
+  map.setMaxBounds(bounds);
+
+  init_marker.openPopup()
+  end_marker.openPopup()
+
+  map.on("overlayadd", function () {
+    init_marker.openPopup()
+    end_marker.openPopup()
+  })
+
+  var bounds = new L.LatLngBounds(new L.LatLng(-89.98155760646617, -180), new L.LatLng(89.99346179538875, 180));
+  map.on('drag', function () {
+    map.panInsideBounds(bounds, { animate: false });
+  });
+}

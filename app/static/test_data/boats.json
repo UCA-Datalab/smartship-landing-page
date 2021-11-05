@@ -1,0 +1,30 @@
+
+[
+  {
+    "id": 1,
+    "model": "Sioux (T-ATF-171)",
+    "country": "United States",
+    "displacement": 2032,
+    "length": 69,
+    "speed": 26.9,
+    "image": "images/boats/1920px-USNS_Sioux_(T-ATF-171).jpg"
+  },
+  {
+    "id": 2,
+    "model": "Juan Carlos I",
+    "country": "Spain",
+    "displacement": 26000,
+    "length": 230.82,
+    "speed": 39,
+    "image": "images/boats/1920px-08.05.11_Las_Palmas_001.JPG"
+  },
+  {
+    "id": 3,
+    "model": "Varyag",
+    "country": "Russia",
+    "displacement": 11490,
+    "length": 186.4,
+    "speed": 59,
+    "image": "images/boats/1280px-ChervonaUkraina1990b.jpg"
+  }
+]
