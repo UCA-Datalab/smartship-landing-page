@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 import requests
 import json
 import datetime as dt
@@ -231,7 +231,7 @@ def results():
 
 @app.errorhandler(404)
 def page_not_found(error):
-    return '<h3>ERROR HTTP 404, not found </h3><a href="/">Go back to main page</a> '
+     return redirect("/")
 
 @app.errorhandler(500)
 def page_not_found(error):
