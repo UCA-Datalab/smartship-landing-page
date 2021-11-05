@@ -103,14 +103,15 @@ function generateMap(waves, wind, currents, base, best_route, city_start, city_e
   })
 
   // ==== HEATMAP ==== 
-  var heat_gradient = { 1: "red", .8: "yellow", .7: "lime", .6: "cyan", .4: "blue" }
+  var heat_gradient = { 1: "#FF0000", .8: "#FFFF00", .7: "#00FF00", .6: "#00FFFF", .4: "#0000FF" }
 
   var cfg = {
     // radius should be small ONLY if scaleRadius is true (or small radius is intended)
     // if scaleRadius is false it will be the constant radius used in pixels
     "radius": 6,
-    "maxOpacity": 1,
-    "maxOpacity": 0.5,
+    //"maxOpacity": 1,
+    //"maxOpacity": 0.5,
+    //"opacity": 0.6,
     // scales the radius based on map zoom
     "scaleRadius": true,
     // if set to false the heatmap uses the global maximum for colorization
@@ -134,13 +135,27 @@ function generateMap(waves, wind, currents, base, best_route, city_start, city_e
   // LEGEND
   var heat_legend = L.control({ position: 'bottomright' });
   heat_legend.onAdd = function (map) {
-
     var div = L.DomUtil.create('div', 'info legend');
-    div.innerHTML += '<b>Waves height (m)</b><br style="margin:10px 0">'
+    div.innerHTML += '<b>Waves height (m)</b>';
+    div.innerHTML += '<div class="nums"><i>0</i><i>' + waves.height.max + '</i></div>'
+    var canvas = L.DomUtil.create('canvas');
+
+    var ctx = canvas.getContext('2d');
+    var gradient = ctx.createLinearGradient(20, 0, 220, 0);
 
     for (let k in heat_gradient) {
-      div.innerHTML += '<i style="background:' + heat_gradient[k] + '"></i> ' + Math.floor(k * (waves.max_height - waves.min_height) + waves.min_height) + '<br>';
+      console.log(heat_gradient[k])
+      gradient.addColorStop(k, heat_gradient[k]);
     }
+
+    ctx.fillStyle = gradient;
+    ctx.globalAlpha = 0.9;
+    ctx.fillRect(0, 0, 300, 20);
+
+
+    div.appendChild(canvas)
+    console.log(div.innerHTML)
+    console.log(canvas)
     return div;
   };
 
