@@ -229,6 +229,23 @@ def results():
         geo_json_string=geo_json_string,
     )
 
+@app.errorhandler(404)
+def page_not_found(error):
+    return '<h3>ERROR HTTP 404, not found </h3><a href="/">Go back to main page</a> '
+
+@app.errorhandler(500)
+def page_not_found(error):
+    return '<h3>ERROR HTTP 500, internal server error</h3> <a href="/">Go back to main page</a>'
+
+@app.errorhandler(502)
+def page_not_found(error):
+    return '<h3>ERROR HTTP 502, internal server error</h3> <a href="/">Go back to main page</a>'
+    
+    
+
+    
+    
+
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0")
