@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,18 +16,15 @@
     {% block title %}
     <title>SmartShipping</title>
     {% endblock %}
-    
+
     <!-- Bootstrap Core CSS -->
-    <link href="{{url_for('static',filename='plugins/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet"> 
+    <link href="{{url_for('static',filename='plugins/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="{{url_for('static',filename='css/style.css')}}" rel="stylesheet">
     <!-- Dashboard Page CSS -->
     <link href="{{url_for('static',filename='css/dashboard.css')}}" rel="stylesheet">
     <!-- You can change the theme colors from here -->
-    <link href="{{url_for('static',filename='css/colors/default-dark.css')}}" id="theme" rel="stylesheet">
-
-     {% block header %}
-     {% endblock %}
+    <link href="{{url_for('static',filename='css/colors/default-dark.css')}}" id="theme" rel="stylesheet"> {% block header %} {% endblock %}
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -51,49 +47,46 @@
     <!-- ============================================================== -->
     <!-- Main wrapper - style you can find in pages.scss -->
     <!-- ============================================================== -->
-    
-    <div id="main-wrapper"> 
+
+    <div id="main-wrapper">
 
         <!-- ============================================================== -->
         <!-- TOP NAVIGATION BAR -->
         <!-- ============================================================== -->
         {% block navbar %}
-        <nav class="navbar top-navbar navbar-expand-md navbar-light" >
+        <nav class="navbar top-navbar navbar-expand-md navbar-light">
             <a class="navbar-brand text-center" style="color: #de8909;font-weight: bold;" href="/">UCA DataLab</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                <a class="nav-item nav-link active" href="/">Home <span class="sr-only">(current)</span></a>
-                <a class="nav-item nav-link" href="#">About</a>
-                <a class="nav-item nav-link" href="#">Pricing</a>
+                    <a class="nav-item nav-link active" href="/">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-item nav-link" href="#">About</a>
                 </div>
-            </div>    
+            </div>
         </nav>
         {% endblock %}
-           
+
         <!-- ============================================================== -->
         <!-- Container fluid  -->
         <!-- ============================================================== -->
         <div class="container-fluid">
-        <!-- ============================================================== -->
-        <!-- Title front bar --->
-        <!-- ============================================================== -->
-        <div class="row ">
-            
-            <div class=" col-md mt-4 mb-4">
-                <h1 class="text-themecolor text-center">Smart Shipping: AI powered weather routing</h3>
+            <!-- ============================================================== -->
+            <!-- Title front bar --->
+            <!-- ============================================================== -->
+            <div class="row ">
+
+                <div class=" col-md mt-4 mb-4">
+                    <h1 class="text-themecolor text-center">Smart Shipping: AI powered weather routing</h3>
+                </div>
+
             </div>
-             
-        </div>
-        <!-- ============================================================== -->
-        <!-- End Title front bar -->
-        <!-- ============================================================== -->
-        {% block content %}
-            
-        {% endblock %}        
-            
+            <!-- ============================================================== -->
+            <!-- End Title front bar -->
+            <!-- ============================================================== -->
+            {% block content %} {% endblock %}
+
         </div>
         <!-- ============================================================== -->
         <!-- End Container fluid  -->
@@ -109,7 +102,7 @@
     <!-- ============================================================== -->
     <!-- End Wrapper -->
     <!-- ============================================================== -->
-   
+
 
     <!--JQuery Core JavaScript-->
     <script src="{{url_for('static',filename='plugins/jquery/jquery.min.js')}}"></script>
@@ -123,12 +116,10 @@
     <!-- ============================================================== -->
     <!-- Place for extra scripts -->
     <!-- ============================================================== -->
-    {% block scripts %}
-            
-    {% endblock %}  
-   
-    
-    
+    {% block scripts %} {% endblock %}
+
+
+
 </body>
 
 </html>
