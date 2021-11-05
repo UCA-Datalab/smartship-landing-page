@@ -211,6 +211,10 @@ def results():
 
     data["waves"]["height"] = {"max": 8, "data": data_dict}
 
+    # LOAD MASK
+    with open("static/libs/oceans_2.json", "r") as f:
+        geo_json_string = json.loads(f.read())
+
     return render_template(
         "results.html",
         data=data,
@@ -222,6 +226,7 @@ def results():
         cumulative_best_fuel=cumulative_best_fuel,
         cumulative_base_fuel=cumulative_base_fuel,
         days_labels=days,
+        geo_json_string=geo_json_string,
     )
 
 
