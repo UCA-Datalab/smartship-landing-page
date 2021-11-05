@@ -76,6 +76,18 @@
                   <a class="card-text"></a>
                   <br>
                   <a class="card-text"></a>
+                  <br>
+                  <a class="card-text"></a>
+                  <br>
+                  <a class="card-text"></a>
+                  <br>
+                  <a class="card-text"></a>
+                  <br>
+                  <a class="card-text"></a>
+                  <br>
+                  <a class="card-text"></a>
+                  <br>
+                  <a class="card-text"></a>
                 </div>
               </div>
             </div>
@@ -114,44 +126,6 @@
 </div>
 </div>
 
-<div class="mt-3 row justify-content-md-center">
-
-  <div class="col-lg-4">
-
-    <!-- BOAT PROPERTIES CARD -->
-    <div hidden id="boatProperties" class="card">
-      <h3 class="text-center">Selected Boat</h4>
-        <img class="card-img-top img-responsive" src="static/images/boats/1920px-USNS_Sioux_(T-ATF-171).jpg"
-          alt="Card image cap">
-        <div class="card-body">
-          <h4 class="card-title"></h4>
-          <a class="card-text"></a>
-          <br>
-          <a class="card-text"></a>
-          <br>
-          <a class="card-text"></a>
-          <br>
-          <a class="card-text"></a>
-        </div>
-    </div>
-  </div>
-  <div class="col-lg-4">
-
-    <!-- ROUTE PROPERTIES CARD -->
-    <div hidden id="routeProperties" class="card">
-      <h3 class="text-center">Selected Route</h4>
-        <div class="card-body">
-          <h4 class="card-title"></h4>
-          <a class="card-text"></a>
-          <br>
-          <a class="card-text"></a>
-          <br>
-          <a class="card-text"></a>
-
-        </div>
-    </div>
-  </div>
-</div>
 
 </div>
 
@@ -176,7 +150,7 @@
       $.getJSON("static/test_data/boats.json", function (data) {
         boatJSON = data;
         for (let i = 0; i < data.length; ++i) {
-          $("#boatSelector").append("<option value=\"" + i + "\">" + data[i]['model'] + "</option>");
+          $("#boatSelector").append("<option value=\"" + i + "\">" + data[i]['name'] + "</option>");
         }
       }).fail(function () {
         console.log("An error loading the JSON file has occurred.");
@@ -198,16 +172,21 @@
 
           let div_list = $("#boatProperties").find("div");
 
-          $("#boatProperties h4").text(boatJSON[selectedBoat]['model']);
+          $("#boatProperties h4").text(boatJSON[selectedBoat]['name']);
           $("#boatProperties img").eq(0).attr("src", "/static/" + boatJSON[selectedBoat]['image']);
 
           let a_list = $("#boatProperties div").find("a");
-          a_list[0].text = "Country: " + boatJSON[selectedBoat]['country'];
-          a_list[1].text = "Displacement: " + boatJSON[selectedBoat]['displacement'] + " t";
-          a_list[2].text = "Length: " + boatJSON[selectedBoat]['length'] + " m";
-          a_list[3].text = "Speed: " + boatJSON[selectedBoat]['speed'] + " knt/h";
-          $("#boatProperties").fadeIn("slow")
-
+          a_list[0].text = "IMO: " + boatJSON[selectedBoat]['IMO'];
+          a_list[1].text = "Vessel Type: " + boatJSON[selectedBoat]['vessel_type'];
+          a_list[2].text = "Flag: " + boatJSON[selectedBoat]['flag'];
+          a_list[3].text = "Gross Tonnage: " + boatJSON[selectedBoat]['gross_tons'];
+          a_list[4].text = "Length: " + boatJSON[selectedBoat]['length'] + " m";
+          a_list[5].text = "Beam: " + boatJSON[selectedBoat]['beam'] + " m";
+          a_list[6].text = "Speed: " + boatJSON[selectedBoat]['speed'] + " knt/h";
+          a_list[7].text = "Year: " + boatJSON[selectedBoat]['year'] ;
+          a_list[8].text = "Engine Power: " + boatJSON[selectedBoat]['engine_power'] + " kw";
+          a_list[0].text = "Fuel type: " + boatJSON[selectedBoat]['fuel_type'] + a_list[6];
+          $("#boatProperties").fadeIn("slow");
         });
       });
     });
