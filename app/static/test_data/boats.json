@@ -2,29 +2,50 @@
 [
   {
     "id": 1,
-    "model": "Sioux (T-ATF-171)",
-    "country": "United States",
-    "displacement": 2032,
-    "length": 69,
-    "speed": 26.9,
-    "image": "images/boats/1920px-USNS_Sioux_(T-ATF-171).jpg"
+    "name": "STOLT BOBCAT",
+    "IMO" : 9511167,
+    "vessel_type" : "Tanker",
+    "flag": "Liberia [LR]",
+    "gross_tons": 13526,
+    "length": 155,
+    "beam": 24.8,
+    "speed": 15.4,
+    "year": 2009,
+    "engine_power" : 7980,
+    "fuel_type" : "MARINE DIESEL",
+    "image": "images/boats/STOLT_BOBCAT.jpg"
   },
   {
-    "id": 2,
-    "model": "Juan Carlos I",
-    "country": "Spain",
-    "displacement": 26000,
-    "length": 230.82,
-    "speed": 39,
-    "image": "images/boats/1920px-08.05.11_Las_Palmas_001.JPG"
+
+    "id": 2, 
+    "name": "ALLIANCE FAIRFAX",
+    "IMO" : 9303546,
+    "vessel_type" : "Cargo",
+    "flag": "USA [US]",
+    "gross_tons": 59705,
+    "length": 199,
+    "beam": 32.2,
+    "speed": 19.5,
+    "year": 2005,
+    "engine_power" : 13548,
+    "fuel_type" : "MARINE DIESEL",
+    "image": "images/boats/ALLIANCE_FAIRFAX.jpg"
+
   },
   {
-    "id": 3,
-    "model": "Varyag",
-    "country": "Russia",
-    "displacement": 11490,
-    "length": 186.4,
-    "speed": 59,
-    "image": "images/boats/1280px-ChervonaUkraina1990b.jpg"
+    "id": 2, 
+    "name": "FLEX AURORA",
+    "IMO" : 9857365,
+    "vessel_type" : "Tanker",
+    "flag": "Marshall Island [MH]",
+    "gross_tons": 112000,
+    "length": 297,
+    "beam": 46,
+    "speed": 17.8,
+    "year": 2020,
+    "engine_power" : 19248,
+    "fuel_type" : "MARINE DIESEL",
+    "image": "images/boats/FLEX_AURORA.jpg"
+
   }
 ]
