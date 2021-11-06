@@ -67,10 +67,10 @@ Preloader
   0% {
     height: 0;
     width: 0;
-    background-color: #1976d2;
+    background-color: rgb(125, 179, 85);
   }
   29% {
-    background-color: #1976d2;
+    background-color: rgb(125, 179, 85);
   }
   30% {
     height: 2em;
@@ -91,10 +91,10 @@ Preloader
   0% {
     height: 0;
     width: 0;
-    background-color: #1976d2;
+    background-color: rgb(125, 179, 85);
   }
   29% {
-    background-color: #1976d2;
+    background-color: rgb(125, 179, 85);
   }
   30% {
     height: 2em;
@@ -115,10 +115,10 @@ Preloader
   0% {
     height: 0;
     width: 0;
-    background-color: #1976d2;
+    background-color: rgb(125, 179, 85);
   }
   29% {
-    background-color: #1976d2;
+    background-color: rgb(125, 179, 85);
   }
   30% {
     height: 2em;
