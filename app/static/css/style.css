@@ -62,11 +62,20 @@ Global Styles
   outline: none; }
 
 body {
-  background: #fff;
+  /*background: #fff;*/
+
+  background-image: url("/static/images/fondoPagina@4x.png") !important;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center center;
+  background-attachment: fixed;
+
   font-family: "Montserrat", sans-serif;
   margin: 0;
   overflow-x: hidden;
-  color: #67757c;
+  color: #67757c; 
   font-weight: 300; }
 
 html {
@@ -717,8 +726,8 @@ Layouts
 .card-outline-info,
 .card-outline-warning,
 .card-outline-success,
-.card-outline-primary {
-  background: #ffffff; }
+/*.card-outline-primary {
+  background: #ffffff; }*/
 
 .card-fullscreen {
   position: fixed;
