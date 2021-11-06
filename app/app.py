@@ -157,13 +157,13 @@ def results():
     ) - dt.datetime.strptime(data["time_start"], "%Y-%m-%d %H:%M:%S")
 
     money_saved = int((data["base_fuel_total"] - best_route["fuel_total"]) * FUEL_PRICE)
-    money_color = "#32CD32" if money_saved > 0 else "#DC143C"
+    money_color = "rgb(125,179,85)" if money_saved > 0 else "#DC143C"
 
     consumption_improvement = (
         1 - (best_route["fuel_total"] / data["base_fuel_total"])
     ) * 100
 
-    consumption_color = "#32CD32" if consumption_improvement > 0 else "#DC143C"
+    consumption_color = "rgb(125,179,85)" if consumption_improvement > 0 else "#DC143C"
 
     # ====== SELECT CONSUMPTION BY DAY ======
     base_index = (
