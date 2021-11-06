@@ -170,7 +170,7 @@ def results():
         list(
             range(
                 0,
-                len(data["base_timestamps"]),
+                len(data["base_timestamps"])-1,
                 math.ceil(len(data["base_timestamps"]) / 20),
             )
         )
@@ -182,7 +182,7 @@ def results():
         list(
             range(
                 0,
-                len(best_route["timestamps"]),
+                len(best_route["timestamps"])-1,
                 math.ceil(len(best_route["timestamps"]) / 20),
             )
         )
@@ -227,6 +227,7 @@ def results():
         cumulative_base_fuel=cumulative_base_fuel,
         days_labels=days,
         geo_json_string=geo_json_string,
+        days_best_labels=best_timestamps.tolist(),
     )
 
 @app.errorhandler(404)

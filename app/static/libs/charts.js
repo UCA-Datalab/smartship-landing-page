@@ -1,4 +1,4 @@
-function generateCharts(cumulative_best_fuel, cumulative_base_fuel, days_labels, waves_step, waves_height_step, currents_step, wind_step) {
+function generateCharts(cumulative_best_fuel, cumulative_base_fuel, days_labels, best_days_labels, waves_step, currents_step, wind_step) {
     new Chart(document.getElementById("line-chart-2"), {
         type: 'line',
         data: {
@@ -33,14 +33,9 @@ function generateCharts(cumulative_best_fuel, cumulative_base_fuel, days_labels,
     new Chart(document.getElementById("line-chart-1"), {
         type: 'line',
         data: {
-            labels: days_labels,
+            labels: best_days_labels,
             datasets: [{
                 data: waves_step,
-                label: "Waves",
-                borderColor: "#2d4287",
-                fill: false
-            }, {
-                data: waves_height_step,
                 label: "Waves height",
                 borderColor: "#384f97",
                 fill: false
