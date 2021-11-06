@@ -1,5 +1,5 @@
-function generateCharts(cumulative_best_fuel, cumulative_base_fuel, days_labels) {
-    new Chart(document.getElementById("line-chart"), {
+function generateCharts(cumulative_best_fuel, cumulative_base_fuel, days_labels, waves_step, waves_height_step, currents_step, wind_step) {
+    new Chart(document.getElementById("line-chart-2"), {
         type: 'line',
         data: {
             labels: days_labels,
@@ -30,22 +30,45 @@ function generateCharts(cumulative_best_fuel, cumulative_base_fuel, days_labels)
         }
     });
 
-    new Chart(document.getElementById("doughnut-chart"), {
-        type: 'doughnut',
+    new Chart(document.getElementById("line-chart-1"), {
+        type: 'line',
         data: {
-            labels: ["Spain", "United States", "Portugal", "France"],
-            datasets: [
-                {
-                    label: "Miles",
-                    backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9"],
-                    data: [2478, 5267, 734, 784]
-                }
+            labels: days_labels,
+            datasets: [{
+                data: waves_step,
+                label: "Waves",
+                borderColor: "#2d4287",
+                fill: false
+            }, {
+                data: waves_height_step,
+                label: "Waves height",
+                borderColor: "#384f97",
+                fill: false
+            },
+            {
+                data: currents_step,
+                label: "Currents",
+                borderColor: "#82bed1",
+                fill: false
+            },
+            {
+                data: wind_step,
+                label: "Wind",
+                borderColor: "#85b24a",
+                fill: false
+            }
             ]
         },
         options: {
             title: {
                 display: true,
-                text: 'Miles in territorial waters'
+                text: 'Oceanographic data between waypoints'
+            },
+            scales: {
+                xAxes: [{
+                    type: 'time',
+                    distribution: 'linear'
+                }]
             }
         }
     });
