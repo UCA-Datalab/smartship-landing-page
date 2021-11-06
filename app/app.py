@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 import requests
 import json
 import datetime as dt
@@ -228,6 +228,23 @@ def results():
         days_labels=days,
         geo_json_string=geo_json_string,
     )
+
+@app.errorhandler(404)
+def page_not_found(error):
+     return redirect("/")
+
+@app.errorhandler(500)
+def page_not_found(error):
+    return '<h3>ERROR HTTP 500, internal server error</h3> <a href="/">Go back to main page</a>'
+
+@app.errorhandler(502)
+def page_not_found(error):
+    return '<h3>ERROR HTTP 502, internal server error</h3> <a href="/">Go back to main page</a>'
+    
+    
+
+    
+    
 
 
 if __name__ == "__main__":
