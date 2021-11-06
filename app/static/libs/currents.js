@@ -175,7 +175,7 @@ function generateMap(waves, wind, currents, base, best_route, city_start, city_e
 
 
   //Potting routes and markers
-  var best_r = L.polyline.antPath(best_route, { color: '#00ab41', weight: 1.7, opacity: 0.8, delay: 500, dashArray: [3, 40], pane: 'routes' });
+  var best_r = L.polyline.antPath(best_route, { color: '#2D4287', weight: 2.1, opacity: 0.8, delay: 500, dashArray: [3, 40], pane: 'routes' });
   var base_r = L.polyline.antPath(base, { color: '#cc4902', weight: 1.7, opacity: 1, delay: 500, dashArray: [2, 40], pane: 'routes' });
 
   var coord_start = base[0]
