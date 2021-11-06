@@ -1,0 +1,12 @@
+body {
+    background-image: url("/static/images/fondo2@4x.png") !important;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+}
+.card{
+    background-color:transparent!important;
+}

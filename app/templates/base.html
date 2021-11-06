@@ -14,16 +14,18 @@
     -->
 
     {% block title %}
-    <title>SmartShipping</title>
+    <title>SmartShipping</title> 
     {% endblock %}
 
     <!-- Bootstrap Core CSS -->
     <link href="{{url_for('static',filename='plugins/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="{{url_for('static',filename='css/style.css')}}" rel="stylesheet">
+    <!-- Base CSS -->
+    <link href="{{url_for('static',filename='css/base.css')}}" rel="stylesheet">
     <!-- Dashboard Page CSS -->
     <link href="{{url_for('static',filename='css/dashboard.css')}}" rel="stylesheet">
-    <!-- You can change the theme colors from here -->
+    <!-- You can change the theme colors from here --> 
     <link href="{{url_for('static',filename='css/colors/default-dark.css')}}" id="theme" rel="stylesheet"> {% block header %} {% endblock %}
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
