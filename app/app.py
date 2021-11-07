@@ -187,7 +187,7 @@ def results():
                 len(best_route["timestamps"]),
                 math.ceil(len(best_route["timestamps"]) / 20),
             )
-        )
+        )[:-1]
         + [-1]
     )
     best_timestamps = np.array(best_route["timestamps"])[best_index]
@@ -196,6 +196,8 @@ def results():
         np.unique(np.concatenate([best_timestamps, base_timestamps]))
     ).tolist()
 
+    print(best_index)
+    print(len(np.cumsum(best_route["fuel_step"])))
     cumsum_best = np.cumsum(best_route["fuel_step"])[best_index].tolist()
     cumulative_best_fuel = [
         {"x": t, "y": y} for t, y in zip(best_timestamps, cumsum_best)
@@ -251,4 +253,4 @@ def page_not_found(error):
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0")
+    app.run(host="0.0.0.0", port='8888')
