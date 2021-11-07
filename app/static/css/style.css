@@ -1008,8 +1008,8 @@ File: scss
   padding-bottom: 60px;
   position: relative; }
 
-.container-fluid {
-  padding: 25px 25px; }
+/*.container-fluid {
+  padding: 25px 25px; }*/
 
 .card {
   margin-bottom: 30px; }
