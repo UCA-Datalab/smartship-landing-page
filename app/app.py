@@ -227,7 +227,7 @@ def results():
         consumption_color=consumption_color,
         cumulative_best_fuel=cumulative_best_fuel,
         cumulative_base_fuel=cumulative_base_fuel,
-        saved_emissions=f"{money_saved / 500.} CO2 tn",
+        saved_emissions=f"{round(money_saved / 500.,2)} CO2 tn",
         days_labels=days,
         geo_json_string=geo_json_string,
     )
@@ -244,11 +244,6 @@ def page_not_found(error):
 def page_not_found(error):
     return '<h3>ERROR HTTP 502, internal server error</h3> <a href="/">Go back to main page</a>'
     
-    
-
-    
-    
-
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port='8888')
+    app.run(host="0.0.0.0")
