@@ -196,8 +196,6 @@ def results():
         np.unique(np.concatenate([best_timestamps, base_timestamps]))
     ).tolist()
 
-    print(best_index)
-    print(len(np.cumsum(best_route["fuel_step"])))
     cumsum_best = np.cumsum(best_route["fuel_step"])[best_index].tolist()
     cumulative_best_fuel = [
         {"x": t, "y": y} for t, y in zip(best_timestamps, cumsum_best)
