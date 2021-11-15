@@ -167,10 +167,12 @@ def results():
     consumption_color = "rgb(125,179,85)" if consumption_improvement > 0 else "#DC143C"
 
     # ====== SELECT CONSUMPTION BY DAY ======
+    # ====== SELECT CONSUMPTION BY DAY ======
+    base_index = (
         list(
             range(
                 0,
-                len(data["base_timestamps"])-1,
+                len(data["base_timestamps"]),
                 math.ceil(len(data["base_timestamps"]) / 20),
             )
         )
@@ -178,16 +180,31 @@ def results():
     )
     base_timestamps = np.array(data["base_timestamps"])[base_index]
 
+    best_index = (
+        list(
             range(
                 0,
-                len(best_route["timestamps"])-1,
+                len(best_route["timestamps"]),
                 math.ceil(len(best_route["timestamps"]) / 20),
             )
-        )
+        )[:-1]
         + [-1]
     )
     best_timestamps = np.array(best_route["timestamps"])[best_index]
 
+    days = np.sort(
+        np.unique(np.concatenate([best_timestamps, base_timestamps]))
+    ).tolist()
+
+    cumsum_best = np.cumsum(best_route["fuel_step"])[best_index].tolist()
+    cumulative_best_fuel = [
+        {"x": t, "y": y} for t, y in zip(best_timestamps, cumsum_best)
+    ]
+
+    cumsum_base = np.cumsum(data["base_fuel_step"])[base_index].tolist()
+    cumulative_base_fuel = [
+        {"x": t, "y": y} for t, y in zip(base_timestamps, cumsum_base)
+    ]
     data_dict = []
     for lat, lon, h in data["waves"]["height"]:
         if h > 0:
