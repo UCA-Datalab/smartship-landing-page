@@ -163,10 +163,10 @@ def results():
         1 - (best_route["fuel_total"] / data["base_fuel_total"])
     ) * 100
 
-    saved_emissions = (best_route["fuel_total"] - data["base_fuel_total"])*3
 
     consumption_color = "rgb(125,179,85)" if consumption_improvement > 0 else "#DC143C"
 
+    # ====== SELECT CONSUMPTION BY DAY ======
     # ====== SELECT CONSUMPTION BY DAY ======
     base_index = (
         list(
@@ -205,7 +205,6 @@ def results():
     cumulative_base_fuel = [
         {"x": t, "y": y} for t, y in zip(base_timestamps, cumsum_base)
     ]
-
     data_dict = []
     for lat, lon, h in data["waves"]["height"]:
         if h > 0:
@@ -225,11 +224,9 @@ def results():
         money_color=money_color,
         consumption_improvement=f"{round(consumption_improvement,2)} %",
         consumption_color=consumption_color,
-        cumulative_best_fuel=cumulative_best_fuel,
-        cumulative_base_fuel=cumulative_base_fuel,
-        saved_emissions=f"{round(money_saved / 500.,2)} CO2 tn",
-        days_labels=days,
+        saved_emissions=f"{money_saved / 500. * 3} CO2 tn",
         geo_json_string=geo_json_string,
+        days_best_labels=best_timestamps.tolist(),
     )
 
 @app.errorhandler(404)

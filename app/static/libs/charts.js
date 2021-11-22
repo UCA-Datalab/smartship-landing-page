@@ -1,25 +1,22 @@
-function generateCharts(cumulative_best_fuel, cumulative_base_fuel, days_labels) {
-    new Chart(document.getElementById("line-chart"), {
+function generateCharts(best_days_labels, waves_step, currents_step, wind_step) {
+    new Chart(document.getElementById("line-chart-1"), {
         type: 'line',
         data: {
-            labels: days_labels,
+            labels: best_days_labels,
             datasets: [{
-                data: cumulative_base_fuel,
-                label: "Base route",
-                borderColor: "#3e95cd",
-                fill: false
-            }, {
-                data: cumulative_best_fuel,
-                label: "Optimize route",
-                borderColor: "#8e5ea2",
+                data: waves_step,
+                borderColor: "#384f97",
                 fill: false
             }
             ]
         },
         options: {
             title: {
-                display: true,
-                text: 'Fuel consumption between waypoints'
+                display: false,
+                text: 'Waves Height'
+            },
+            legend: {
+                display: false
             },
             scales: {
                 xAxes: [{
@@ -30,22 +27,60 @@ function generateCharts(cumulative_best_fuel, cumulative_base_fuel, days_labels)
         }
     });
 
-    new Chart(document.getElementById("doughnut-chart"), {
-        type: 'doughnut',
+    new Chart(document.getElementById("line-chart-2"), {
+        type: 'line',
         data: {
-            labels: ["Spain", "United States", "Portugal", "France"],
+            labels: best_days_labels,
             datasets: [
                 {
-                    label: "Miles",
-                    backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9"],
-                    data: [2478, 5267, 734, 784]
+                    data: currents_step,
+                    borderColor: "#82bed1",
+                    fill: false
                 }
             ]
         },
         options: {
             title: {
-                display: true,
-                text: 'Miles in territorial waters'
+                display: false,
+                text: 'Currents'
+            },
+            legend: {
+                display: false
+            },
+            scales: {
+                xAxes: [{
+                    type: 'time',
+                    distribution: 'linear'
+                }]
+            }
+        }
+    });
+
+    new Chart(document.getElementById("line-chart-3"), {
+        type: 'line',
+        data: {
+            labels: best_days_labels,
+            datasets: [
+                {
+                    data: wind_step,
+                    borderColor: "#85b24a",
+                    fill: false
+                }
+            ]
+        },
+        options: {
+            title: {
+                display: false,
+                text: 'Wind'
+            },
+            legend: {
+                display: false
+            },
+            scales: {
+                xAxes: [{
+                    type: 'time',
+                    distribution: 'linear'
+                }]
             }
         }
     });

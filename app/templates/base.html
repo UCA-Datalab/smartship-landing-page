@@ -58,16 +58,20 @@
         <!-- ============================================================== -->
         {% block navbar %}
         <nav class="navbar top-navbar navbar-expand-md navbar-light">
-            <a class="navbar-brand text-center" style="color: rgb(125,179,85);font-weight: bold;" href="/">UCA
-                DataLab</a>
+
+            <a class="navbar-brand" href="/">
+                <img src="{{url_for('static',filename='images/sslogo@4x.png')}}" class = "ml-3 mr-3" width="140" height="80" alt="">
+              </a>
+
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
                 aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                    <a class="nav-item nav-link active" href="/">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-item nav-link active" style="font-size: medium;" href="/"> <p>Home</p> <span class="sr-only">(current)</span></a>
                     <a class="nav-item nav-link" href="#">About</a>
+                    <a class="nav-item nav-link" href="#">Pricing</a>
                 </div>
             </div>
         </nav>
@@ -99,7 +103,20 @@
         <!-- ============================================================== -->
         <!-- footer -->
         <!-- ============================================================== -->
-        <footer class="footer text-center h5 mt-5"> © 2021 UCA DataLab </footer>
+        <footer class="footer text-center h5 mt-5"> 
+            <a class="navbar-brand" href="http://datalab.uca.es/">
+            <img src="{{url_for('static',filename='images/logo.png')}}" height="65" alt="">
+          </a>
+
+          <a class="navbar-brand ml-5" href="#">
+            <img src="{{url_for('static',filename='images/arbol-komorebi.png')}}" height="65" alt="">
+          </a>
+
+          <a class="navbar-brand" href="https://komorebi.ai/">
+            <img src="{{url_for('static',filename='images/logo_komorebi-2.png')}}" height="65" alt="">
+          </a>
+          
+        </footer>
         <!-- ============================================================== -->
         <!-- End footer -->
         <!-- ============================================================== -->

@@ -111,18 +111,26 @@
     </div>
 </div>
 
-<div class="col-md-5">
-    <div class="d-flex justify-content-center">
-        <canvas id="doughnut-chart" width="800" height="450"></canvas>
+<div class="col-md-4 mt-2">
+    <div class=" justify-content-center">
+        <h4 class="text-center">Waves Height</h4>
+        <canvas id="line-chart-1" width="800" height="450"></canvas>
     </div>
 </div>
 
-<div class="col-md-5">
-    <div class="d-flex justify-content-center">
-        <canvas id="line-chart" width="800" height="450"></canvas>
+<div class="col-md-4 mt-2">
+    <div class=" justify-content-center">
+        <h4 class="text-center">Currents</h4>
+        <canvas id="line-chart-2" width="800" height="450"></canvas>
     </div>
 </div>
 
+<div class="col-md-4 mt-2">
+    <div class=" justify-content-center">
+        <h4 class="text-center">Wind</h4>
+        <canvas id="line-chart-3" width="800" height="450"></canvas>
+    </div>
+</div>
 
 
 
@@ -138,9 +146,9 @@
 <script src="{{url_for('static',filename='libs/currents.js')}}"></script>
 <script src="{{url_for('static',filename='libs/charts.js')}}"></script>
 <script type="text/javascript">
-    var data = {{ data | tojson}}
-    generateMap(data.waves, data.wind, data.currents, data.base_route, data.routes[0].coords, data.city_start, data.city_end, {{ geo_json_string | tojson}})
-    generateCharts({{ cumulative_best_fuel | tojson}}, {{ cumulative_base_fuel | tojson}}, {{ days_labels | tojson}})
+    var data = {{data | tojson}}
+    generateMap(data.waves, data.wind, data.currents,data.base_route,data.routes[0].coords,data.city_start,data.city_end,{{ geo_json_string | tojson}})
+    generateCharts({{ days_best_labels | tojson}}, data.routes[0].waves,data.routes[0].currents,data.routes[0].wind)
 </script>
 
 <script src="{{url_for('static',filename='libs/charts.js')}}"> </script>
