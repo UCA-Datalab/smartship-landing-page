@@ -294,6 +294,5 @@ def page_not_found(error):
 def page_not_found(error):
     return '<h3>ERROR HTTP 502, internal server error</h3> <a href="/">Go back to main page</a>'
 
-
 if __name__ == "__main__":
     app.run(host="0.0.0.0")
