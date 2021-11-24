@@ -1,4 +1,12 @@
-from flask import Flask, render_template, request, redirect, url_for, make_response, json
+from flask import (
+    Flask,
+    render_template,
+    request,
+    redirect,
+    url_for,
+    make_response,
+    json,
+)
 import gzip
 import requests
 import datetime as dt
@@ -41,7 +49,6 @@ def index():
     return render_template("form.html", city_options=city_options)
 
 
-
 @app.route("/ocean", methods=["GET", "POST"])
 def ocean():
 
@@ -57,7 +64,7 @@ def ocean():
     code = response.status_code
 
     data = dict()
-    
+
     if code == 200:
 
         data = response.json()
@@ -65,7 +72,7 @@ def ocean():
     else:
         print(response)
         print(response.status_code)
-        
+
         with open("static/test_data/wind.json", "r") as f:
             data["wind"] = json.loads(f.read())
 
@@ -74,8 +81,8 @@ def ocean():
 
         with open("static/test_data/waves.json", "r") as f:
             data["waves"] = json.loads(f.read())
-    
-    #fortmat waves heights so leaflet-heatmap con read it
+
+    # fortmat waves heights so leaflet-heatmap con read it
     data_dict = []
     for lat, lon, h in data["waves"]["height"]:
         if h > 0:
@@ -86,12 +93,11 @@ def ocean():
     with open("static/libs/coastlines10.json", "r") as f:
         data["mask"] = json.loads(f.read())
 
-    #compress the data before sendinf it
-    content = gzip.compress(json.dumps(data).encode('utf8'),1)
+    # compress the data before sendinf it
+    content = gzip.compress(json.dumps(data).encode("utf8"), 1)
     response = make_response(content)
-    response.headers['Content-length'] = len(content)
-    response.headers['Content-Encoding'] = 'gzip'
-
+    response.headers["Content-length"] = len(content)
+    response.headers["Content-Encoding"] = "gzip"
 
     return response
 
@@ -105,7 +111,7 @@ def results():
     response = requests.get(
         "http://zappa.uca.es:5001/api/route",
         params={
-            "boat": boat,
+            "boat": 0, #boat  # Siempre va a seleccionar el mismo barco
             "city_start": city_start,
             "city_end": city_end,
             "time_start": time_start,
@@ -217,7 +223,7 @@ def results():
     consumption_improvement = (
         1 - (best_route["fuel_total"] / data["base_fuel_total"])
     ) * 100
-    consumption_improvement = round(consumption_improvement,3)
+    consumption_improvement = round(consumption_improvement, 3)
 
     consumption_color = "rgb(125,179,85)" if consumption_improvement > 0 else "#DC143C"
 
@@ -273,22 +279,20 @@ def results():
         days_best_labels=best_timestamps.tolist(),
     )
 
+
 @app.errorhandler(404)
 def page_not_found(error):
-     return redirect("/")
+    return redirect("/")
+
 
 @app.errorhandler(500)
 def page_not_found(error):
     return '<h3>ERROR HTTP 500, internal server error</h3> <a href="/">Go back to main page</a>'
 
+
 @app.errorhandler(502)
 def page_not_found(error):
     return '<h3>ERROR HTTP 502, internal server error</h3> <a href="/">Go back to main page</a>'
-    
-    
-
-    
-    
 
 
 if __name__ == "__main__":
