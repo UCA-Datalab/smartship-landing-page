@@ -105,8 +105,14 @@
 
 <div class="col-md-12 mb-4">
     <div class="d-flex justify-content-center">
-        <div id="map"
-            class="leaflet-container leaflet-touch leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom map-style">
+        <div id="map" 
+            class="map-style">
+
+            <div id ="map_preloader" class="loader">
+                <div class="loader__figure"></div>
+                <p class="loader__label">UCA Datalab</p>
+            </div>
+
         </div>
     </div>
 </div>
@@ -146,9 +152,28 @@
 <script src="{{url_for('static',filename='libs/currents.js')}}"></script>
 <script src="{{url_for('static',filename='libs/charts.js')}}"></script>
 <script type="text/javascript">
-    var data = {{data | tojson}}
-    generateMap(data.waves, data.wind, data.currents,data.base_route,data.routes[0].coords,data.city_start,data.city_end,{{ geo_json_string | tojson}})
-    generateCharts({{ days_best_labels | tojson}}, data.routes[0].waves,data.routes[0].currents,data.routes[0].wind)
+
+
+
+
+    var routes_data = {{data | tojson}}
+    var time_start = "{{ data.time_start }}"
+
+
+    fetch('ocean?' + new URLSearchParams({
+        date: 'time_start',
+    }))
+    .then((resp) => resp.json())
+    .then(function(data) {
+        console.log('request succeeded with JSON response', data)
+        generateMap(data.waves, data.wind, data.currents,routes_data.base_route,routes_data.routes[0].coords,routes_data.city_start,routes_data.city_end, data.mask)
+ 
+    }).catch(function(error) {
+        console.log('request failed', error)
+    })
+
+
+    generateCharts({{ days_best_labels | tojson}}, routes_data.routes[0].waves,routes_data.routes[0].currents,routes_data.routes[0].wind)
 </script>
 
 <script src="{{url_for('static',filename='libs/charts.js')}}"> </script>

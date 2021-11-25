@@ -1,6 +1,14 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import (
+    Flask,
+    render_template,
+    request,
+    redirect,
+    url_for,
+    make_response,
+    json,
+)
+import gzip
 import requests
-import json
 import datetime as dt
 import numpy as np
 import math
@@ -41,6 +49,59 @@ def index():
     return render_template("form.html", city_options=city_options)
 
 
+@app.route("/ocean", methods=["GET", "POST"])
+def ocean():
+
+    time_start = request.args.get("date", type=str).split(" ")[0]
+
+    response = requests.get(
+        "http://zappa.uca.es:5001/api/ocean",
+        params={
+            "time_start": time_start,
+        },
+    )
+
+    code = response.status_code
+
+    data = dict()
+
+    if code == 200:
+
+        data = response.json()
+
+    else:
+        print(response)
+        print(response.status_code)
+
+        with open("static/test_data/wind.json", "r") as f:
+            data["wind"] = json.loads(f.read())
+
+        with open("static/test_data/currents.json", "r") as f:
+            data["currents"] = json.loads(f.read())
+
+        with open("static/test_data/waves.json", "r") as f:
+            data["waves"] = json.loads(f.read())
+
+    # fortmat waves heights so leaflet-heatmap con read it
+    data_dict = []
+    for lat, lon, h in data["waves"]["height"]:
+        if h > 0:
+            data_dict.append({"lat": lat, "lon": lon, "height": h})
+
+    data["waves"]["height"] = {"max": 8, "data": data_dict}
+
+    with open("static/libs/coastlines10.json", "r") as f:
+        data["mask"] = json.loads(f.read())
+
+    # compress the data before sendinf it
+    content = gzip.compress(json.dumps(data).encode("utf8"), 1)
+    response = make_response(content)
+    response.headers["Content-length"] = len(content)
+    response.headers["Content-Encoding"] = "gzip"
+
+    return response
+
+
 @app.route("/results", methods=["GET", "POST"])
 def results():
     boat = request.args.get("boat", type=int)
@@ -50,7 +111,7 @@ def results():
     response = requests.get(
         "http://zappa.uca.es:5001/api/route",
         params={
-            "boat": boat,
+            "boat": 0, #boat  # Siempre va a seleccionar el mismo barco
             "city_start": city_start,
             "city_end": city_end,
             "time_start": time_start,
@@ -162,7 +223,7 @@ def results():
     consumption_improvement = (
         1 - (best_route["fuel_total"] / data["base_fuel_total"])
     ) * 100
-
+    consumption_improvement = round(consumption_improvement, 3)
 
     consumption_color = "rgb(125,179,85)" if consumption_improvement > 0 else "#DC143C"
 
@@ -205,16 +266,6 @@ def results():
     cumulative_base_fuel = [
         {"x": t, "y": y} for t, y in zip(base_timestamps, cumsum_base)
     ]
-    data_dict = []
-    for lat, lon, h in data["waves"]["height"]:
-        if h > 0:
-            data_dict.append({"lat": lat, "lon": lon, "height": h})
-
-    data["waves"]["height"] = {"max": 8, "data": data_dict}
-
-    # LOAD MASK
-    with open("static/libs/oceans_2.json", "r") as f:
-        geo_json_string = json.loads(f.read())
 
     return render_template(
         "results.html",
@@ -222,25 +273,26 @@ def results():
         optimized_enlapsed_time=str(optimized_enlapsed_time),
         money_saved=f"{money_saved} €",
         money_color=money_color,
-        consumption_improvement=f"{round(consumption_improvement,2)} %",
+        consumption_improvement=consumption_improvement,
         consumption_color=consumption_color,
         saved_emissions=f"{money_saved / 500. * 3} CO2 tn",
-        geo_json_string=geo_json_string,
         days_best_labels=best_timestamps.tolist(),
     )
 
+
 @app.errorhandler(404)
 def page_not_found(error):
-     return redirect("/")
+    return redirect("/")
+
 
 @app.errorhandler(500)
 def page_not_found(error):
     return '<h3>ERROR HTTP 500, internal server error</h3> <a href="/">Go back to main page</a>'
 
+
 @app.errorhandler(502)
 def page_not_found(error):
     return '<h3>ERROR HTTP 502, internal server error</h3> <a href="/">Go back to main page</a>'
-    
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0")

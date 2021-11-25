@@ -1,4 +1,8 @@
 function generateMap(waves, wind, currents, base, best_route, city_start, city_end, geo_json_string) {
+
+  $("#map").addClass("leaflet-container leaflet-touch leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom");
+  $('#map_preloader').hide("slow");
+
   var map = L.map("map");
   document.getElementById("map").style.background = "#a0c7ee";
 
