@@ -26,6 +26,7 @@
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script> -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.bundle.min.js"></script>
 
+<script src="{{url_for('static',filename='libs/leaflet-timeline-slider.min.js')}}"></script>
 
 
 <link href="{{url_for('static',filename='css/results.css')}}" rel="stylesheet">
@@ -90,8 +91,8 @@
                 <div class="m-r-20 align-self-center"><img src="{{url_for('static',filename='images/icon/time.png')}}"
                         width="46" height="46" alt="Income" /></div>
                 <div class="align-self-center">
-                    <h6 class="text-muted m-t-10 m-b-0">Enlapsed time</h6>
-                    <h2 class="m-t-0"><b> {{optimized_enlapsed_time}} </b></h2>
+                    <h6 class="text-muted m-t-10 m-b-0">Elapsed time</h6>
+                    <h2 class="m-t-0"><b> {{optimized_elapsed_time}} </b></h2>
                 </div>
             </div>
         </div>
@@ -152,26 +153,37 @@
 <script src="{{url_for('static',filename='libs/currents.js')}}"></script>
 <script src="{{url_for('static',filename='libs/charts.js')}}"></script>
 <script type="text/javascript">
-
-
-
-
     var routes_data = {{data | tojson}}
     var time_start = "{{ data.time_start }}"
+    var time_end = "{{ data.time_end }}"
 
 
     fetch('ocean?' + new URLSearchParams({
-        date: 'time_start',
+        time_start: time_start,
+        time_end: time_end,
     }))
     .then((resp) => resp.json())
     .then(function(data) {
         console.log('request succeeded with JSON response', data)
-        generateMap(data.waves, data.wind, data.currents,routes_data.base_route,routes_data.routes[0].coords,routes_data.city_start,routes_data.city_end, data.mask)
+
+        generateMap(
+            data.waves, 
+            data.wind, 
+            data.currents,
+            routes_data.routes[0].waves,
+            routes_data.routes[0].wind,
+            routes_data.routes[0].currents,
+            routes_data.base.coords,
+            routes_data.routes[0].coords,
+            routes_data.city_start,
+            routes_data.city_end, 
+            data.mask,
+            routes_data.routes[0].timestamps
+        )
  
     }).catch(function(error) {
         console.log('request failed', error)
     })
-
 
     generateCharts({{ days_best_labels | tojson}}, routes_data.routes[0].waves,routes_data.routes[0].currents,routes_data.routes[0].wind)
 </script>

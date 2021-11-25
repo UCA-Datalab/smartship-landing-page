@@ -1,33 +1,18 @@
-function generateMap(waves, wind, currents, base, best_route, city_start, city_end, geo_json_string) {
+function insert_data(label, value, map, waves, wind, currents, waves_step, wind_step, currents_step, base, best_route, city_start, city_end, time_stamps) {
+  var best_route_valid = [];
+  var index = 0;
+  time_stamps.forEach(e => {
+    var dt = new Date(e);
+    var curr_day = new Date(label);
+    if (dt.getFullYear() == curr_day.getFullYear() && dt.getMonth() == curr_day.getMonth() && dt.getDate() == curr_day.getDate())
+      best_route_valid.push(best_route[index])
+    index++;
+  });
 
-  $("#map").addClass("leaflet-container leaflet-touch leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom");
-  $('#map_preloader').hide("slow");
+  waves = waves[value]
+  wind = wind[value]
+  currents = currents[value]
 
-  var map = L.map("map");
-  document.getElementById("map").style.background = "#a0c7ee";
-
-  map.createPane('continents');
-  map.getPane('continents').style.zIndex = 650;
-  map.getPane('continents').style.pointerEvents = 'none';
-
-  map.createPane('countries');
-  map.getPane('countries').style.zIndex = 675;
-  map.getPane('countries').style.pointerEvents = 'none';
-
-  map.createPane('wind');
-  map.getPane('wind').style.zIndex = 700;
-  map.getPane('wind').style.pointerEvents = 'none';
-
-  map.createPane('routes');
-  map.getPane('routes').style.zIndex = 725;
-  map.getPane('routes').style.pointerEvents = 'none';
-
-  L.tileLayer(
-    'https://api.mapbox.com/styles/v1/tr3cks/ckvlgrqmt23nb14pihew0rvoa/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoidHIzY2tzIiwiYSI6ImNrdjZpZnp1eDB2dG4ycW9rMjlmOHY0OHIifQ.egCphR_INbD25yU6Ha4A8w',
-    { pane: 'countries' }
-  ).addTo(map);
-
-  L.geoJSON(geo_json_string, { pane: 'continents', style: { fillColor: "#c5def6", fillOpacity: 1, opacity: 0 } }).addTo(map);
 
   var currents_layer = L.velocityLayer({
     displayValues: true,
@@ -178,9 +163,58 @@ function generateMap(waves, wind, currents, base, best_route, city_start, city_e
   var waves_group = L.layerGroup([heat, waveLayer])
 
 
-  //Potting routes and markers
-  var best_r = L.polyline.antPath(best_route, { color: '#2D4287', weight: 2.1, opacity: 0.8, delay: 500, dashArray: [3, 40], pane: 'routes' });
+  //Plotting routes and markers
+  var best_r = L.polyline.antPath(best_route_valid, { color: '#2D4287', weight: 2.1, opacity: 0.8, delay: 500, dashArray: [3, 40], pane: 'routes' });
   var base_r = L.polyline.antPath(base, { color: '#cc4902', weight: 1.7, opacity: 1, delay: 500, dashArray: [2, 40], pane: 'routes' });
+
+
+  var base_r_array = []
+  base.forEach(latLng => {
+    base_r_array.push(
+      L.circleMarker(
+        latLng,
+        {
+          color: '#cc4902',
+          radius: '3',
+          fillOpacity: true,
+          pane: 'routes'
+        }
+      )
+    );
+  });
+
+  base_r_array.unshift(base_r)
+
+  var index = 0;
+  var best_r_array = []
+  best_route_valid.forEach(latLng => {
+    var marker = L.circleMarker(
+      latLng,
+      {
+        color: '#2D4287',
+        radius: '3',
+        fillOpacity: true,
+        pane: 'routes'
+      }
+    ).bindPopup("<b> Waves: " + waves_step[index].toFixed(2) + "</b> <br> <b>Currents: " + currents_step[index].toFixed(2) + "</b> <br> <b>Wind: " + wind_step[index].toFixed(2) + "</b>")
+
+    marker.on('mouseover', function (e) {
+      this.openPopup();
+    });
+
+    marker.on('mouseout', function (e) {
+      this.closePopup();
+    });
+
+
+    best_r_array.push(marker);
+
+    index++;
+  });
+
+  best_r_array.push(best_r)
+
+  var routes_group_array = base_r_array.concat(best_r_array)
 
   var coord_start = base[0]
   var coord_end = base[base.length - 1]
@@ -191,7 +225,9 @@ function generateMap(waves, wind, currents, base, best_route, city_start, city_e
   init_marker.bindPopup("<b>" + city_start + "</b>", { closeOnClick: false, autoClose: false })
   end_marker.bindPopup("<b>" + city_end + "</b>", { closeOnClick: false, autoClose: false })
 
-  var routes_group = L.layerGroup([best_r, base_r, init_marker, end_marker])
+  routes_group_array.push(init_marker)
+  routes_group_array.push(end_marker)
+  var routes_group = L.layerGroup(routes_group_array)
 
   var overlay_layers = {
     "Currents": currents_layer.addTo(map),
@@ -201,6 +237,66 @@ function generateMap(waves, wind, currents, base, best_route, city_start, city_e
   }
 
   L.control.layers({}, overlay_layers).addTo(map);
+}
+
+function generateMap(waves, wind, currents, waves_step, wind_step, currents_step, base, best_route, city_start, city_end, geo_json_string, time_stamps) {
+  console.log(time_stamps)
+  $("#map").addClass("leaflet-container leaflet-touch leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom");
+  $('#map_preloader').hide("slow");
+
+  var map = L.map("map");
+  document.getElementById("map").style.background = "#a0c7ee";
+
+  map.createPane('continents');
+  map.getPane('continents').style.zIndex = 650;
+  map.getPane('continents').style.pointerEvents = 'none';
+
+  map.createPane('countries');
+  map.getPane('countries').style.zIndex = 675;
+  map.getPane('countries').style.pointerEvents = 'none';
+
+  map.createPane('wind');
+  map.getPane('wind').style.zIndex = 700;
+  map.getPane('wind').style.pointerEvents = 'none';
+
+  map.createPane('routes');
+  map.getPane('routes').style.zIndex = 725;
+  map.getPane('routes').style.pointerEvents = 'none';
+
+  L.tileLayer(
+    'https://api.mapbox.com/styles/v1/tr3cks/ckvlgrqmt23nb14pihew0rvoa/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoidHIzY2tzIiwiYSI6ImNrdjZpZnp1eDB2dG4ycW9rMjlmOHY0OHIifQ.egCphR_INbD25yU6Ha4A8w',
+    { pane: 'countries' }
+  ).addTo(map);
+
+  L.geoJSON(geo_json_string, { pane: 'continents', style: { fillColor: "#c5def6", fillOpacity: 1, opacity: 0 } }).addTo(map);
+
+  var days = [];
+  time_stamps.forEach((t) => {
+    var dt = new Date(t); days.push(dt.getFullYear() + "/" + dt.getMonth() + "/" + dt.getDate());
+  })
+
+  function onlyUnique(value, index, self) {
+    return self.indexOf(value) === index;
+  }
+  var unique_days = days.filter(onlyUnique)
+
+  L.control.timelineSlider({
+    timelineItems: unique_days,
+    extraChangeMapParams: {
+      waves: waves,
+      wind: wind,
+      currents: currents,
+      waves_step: waves_step,
+      wind_step: wind_step,
+      currents_step: currents_step,
+      base: base,
+      best_route: best_route,
+      city_start: city_start,
+      city_end: city_end,
+      time_stamps: time_stamps
+    },
+    changeMap: insert_data
+  }).addTo(map);
 
   map.setView([(coord_start[0] + coord_end[0]) / 2, (coord_start[1] + coord_end[1]) / 2], 4.2);
   map.options.minZoom = 3;
