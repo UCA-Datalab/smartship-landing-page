@@ -1,33 +1,72 @@
-function generateMap(waves, wind, currents, base, best_route, city_start, city_end, geo_json_string) {
+var overlay_layers = null;
+var first_time = true;
+var control_layer = null;
 
-  $("#map").addClass("leaflet-container leaflet-touch leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom");
-  $('#map_preloader').hide("slow");
+L.Control.Layers.include({
+  getOverlays: function () {
+    // create hash to hold all layers
+    var control, layers;
+    layers = {};
+    control = this;
 
-  var map = L.map("map");
-  document.getElementById("map").style.background = "#a0c7ee";
+    // loop thru all layers in control
+    control._layers.forEach(function (obj) {
+      var layerName;
 
-  map.createPane('continents');
-  map.getPane('continents').style.zIndex = 650;
-  map.getPane('continents').style.pointerEvents = 'none';
+      // check if layer is an overlay
+      if (obj.overlay) {
+        // get name of overlay
+        layerName = obj.name;
+        // store whether it's present on the map or not
+        return layers[layerName] = control._map.hasLayer(obj.layer);
+      }
+    });
 
-  map.createPane('countries');
-  map.getPane('countries').style.zIndex = 675;
-  map.getPane('countries').style.pointerEvents = 'none';
+    return layers;
+  }
+});
 
-  map.createPane('wind');
-  map.getPane('wind').style.zIndex = 700;
-  map.getPane('wind').style.pointerEvents = 'none';
 
-  map.createPane('routes');
-  map.getPane('routes').style.zIndex = 725;
-  map.getPane('routes').style.pointerEvents = 'none';
+function insert_data(parameters) {
+  label = parameters.label;
+  value = parameters.value;
+  map = parameters.map;
+  waves = parameters.waves;
+  wind = parameters.wind;
+  currents = parameters.currents;
+  waves_step = parameters.waves_step;
+  wind_step = parameters.wind_step;
+  currents_step = parameters.currents_step;
+  base_route = parameters.base;
+  best_route = parameters.best_route;
+  city_start = parameters.city_start;
+  city_end = parameters.city_end;
+  time_stamps_best = parameters.time_stamps_best;
+  time_stamps_base = parameters.time_stamps_base;
 
-  L.tileLayer(
-    'https://api.mapbox.com/styles/v1/tr3cks/ckvlgrqmt23nb14pihew0rvoa/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoidHIzY2tzIiwiYSI6ImNrdjZpZnp1eDB2dG4ycW9rMjlmOHY0OHIifQ.egCphR_INbD25yU6Ha4A8w',
-    { pane: 'countries' }
-  ).addTo(map);
+  var best_route_valid = [];
+  var index = 0;
+  time_stamps_best.forEach(e => {
+    var dt = new Date(e);
+    var curr_day = new Date(label);
+    if (dt.getFullYear() <= curr_day.getFullYear() && dt.getMonth() <= curr_day.getMonth() && dt.getDate() <= curr_day.getDate())
+      best_route_valid.push(best_route[index])
+    index++;
+  });
 
-  L.geoJSON(geo_json_string, { pane: 'continents', style: { fillColor: "#c5def6", fillOpacity: 1, opacity: 0 } }).addTo(map);
+  var base_route_valid = [];
+  var index = 0;
+  time_stamps_base.forEach(e => {
+    var dt = new Date(e);
+    var curr_day = new Date(label);
+    if (dt.getFullYear() <= curr_day.getFullYear() && dt.getMonth() <= curr_day.getMonth() && dt.getDate() <= curr_day.getDate())
+      base_route_valid.push(base_route[index])
+    index++;
+  });
+
+  waves = waves[value - 1]
+  wind = wind[value - 1]
+  currents = currents[value - 1]
 
   var currents_layer = L.velocityLayer({
     displayValues: true,
@@ -137,83 +176,229 @@ function generateMap(waves, wind, currents, base, best_route, city_start, city_e
   heat.setData(waves.height)
 
   // LEGEND
-  var heat_legend = L.control({ position: 'bottomright' });
-  heat_legend.onAdd = function (map) {
-    var div = L.DomUtil.create('div', 'info legend');
-    div.innerHTML += '<b>Waves height (m)</b>';
-    div.innerHTML += '<div class="nums"><i>0</i><i>' + waves.height.max + '</i></div>'
-    var canvas = L.DomUtil.create('canvas');
+  if (first_time) {
+    var heat_legend = L.control({ position: 'bottomright' });
+    heat_legend.onAdd = function (map) {
+      var div = L.DomUtil.create('div', 'info legend');
+      div.innerHTML += '<b>Waves height (m)</b>';
+      div.innerHTML += '<div class="nums"><i>0</i><i>' + waves.height.max + '</i></div>'
+      var canvas = L.DomUtil.create('canvas');
 
-    var ctx = canvas.getContext('2d');
-    var gradient = ctx.createLinearGradient(20, 0, 220, 0);
+      var ctx = canvas.getContext('2d');
+      var gradient = ctx.createLinearGradient(20, 0, 220, 0);
 
-    for (let k in heat_gradient) {
-      console.log(heat_gradient[k])
-      gradient.addColorStop(k, heat_gradient[k]);
-    }
+      for (let k in heat_gradient) {
+        gradient.addColorStop(k, heat_gradient[k]);
+      }
 
-    ctx.fillStyle = gradient;
-    ctx.globalAlpha = 0.9;
-    ctx.fillRect(0, 0, 300, 20);
+      ctx.fillStyle = gradient;
+      ctx.globalAlpha = 0.9;
+      ctx.fillRect(0, 0, 300, 20);
 
 
-    div.appendChild(canvas)
-    console.log(div.innerHTML)
-    console.log(canvas)
-    return div;
-  };
+      div.appendChild(canvas)
+      return div;
+    };
 
-  map.on('overlayadd', function (eventLayer) {
-    // Switch to the Population legend...
-    if (eventLayer.name === 'Waves')
-      heat_legend.addTo(this);
-  });
+    map.on('overlayadd', function (eventLayer) {
+      // Switch to the Population legend...
+      if (eventLayer.name === 'Waves')
+        heat_legend.addTo(this);
+    });
 
-  map.on('overlayremove', function (eventLayer) {
-    // Switch to the Population legend...
-    if (eventLayer.name === 'Waves')
-      this.removeControl(heat_legend);
-  });
+    map.on('overlayremove', function (eventLayer) {
+      // Switch to the Population legend...
+      if (eventLayer.name === 'Waves')
+        this.removeControl(heat_legend);
+    });
+  }
 
   var waves_group = L.layerGroup([heat, waveLayer])
 
 
-  //Potting routes and markers
-  var best_r = L.polyline.antPath(best_route, { color: '#2D4287', weight: 2.1, opacity: 0.8, delay: 500, dashArray: [3, 40], pane: 'routes' });
-  var base_r = L.polyline.antPath(base, { color: '#cc4902', weight: 1.7, opacity: 1, delay: 500, dashArray: [2, 40], pane: 'routes' });
+  //Plotting routes and markers
+  var best_r = L.polyline.antPath(best_route_valid, { color: '#2D4287', weight: 2.1, opacity: 0.8, delay: 500, dashArray: [3, 40], pane: 'routes' });
+  var base_r = L.polyline.antPath(base_route_valid, { color: '#cc4902', weight: 1.7, opacity: 1, delay: 500, dashArray: [2, 40], pane: 'routes' });
 
-  var coord_start = base[0]
-  var coord_end = base[base.length - 1]
+
+  var base_r_array = [L.circleMarker(
+    base_route_valid.at(-1),
+    {
+      color: '#cc4902',
+      radius: '3',
+      fillOpacity: true,
+      pane: 'routes'
+    }
+  )];
+  /*
+  base_route.forEach(latLng => {
+    base_r_array.push(
+      L.circleMarker(
+        latLng,
+        {
+          color: '#cc4902',
+          radius: '3',
+          fillOpacity: true,
+          pane: 'routes'
+        }
+      )
+    );
+  });*/
+
+  base_r_array.unshift(base_r);
+
+  var index = 0;
+  var best_r_array = [];
+  best_route_valid.forEach(latLng => {
+
+    if (index > 0 && index < best_route.length - 1) {
+      var marker = L.circleMarker(
+        latLng,
+        {
+          color: '#2D4287',
+          radius: '3',
+          fillOpacity: true,
+          pane: 'routes'
+        }
+      ).bindPopup("<b> Waves: " + waves_step[index].toFixed(2) + "</b> <br> <b>Currents: " + currents_step[index].toFixed(2) + "</b> <br> <b>Wind: " + wind_step[index].toFixed(2) + "</b>")
+
+      marker.on('mouseover', function (e) {
+        this.openPopup();
+      });
+
+      marker.on('mouseout', function (e) {
+        this.closePopup();
+      });
+
+
+      best_r_array.push(marker);
+    }
+
+    index++;
+
+  });
+
+  best_r_array.push(best_r)
+
+  var routes_group_array = base_r_array.concat(best_r_array)
+
+  var coord_start = base_route[0]
+  var coord_end = base_route[base_route.length - 1]
 
   var init_marker = L.marker(coord_start, { pane: 'routes' })
   var end_marker = L.marker(coord_end, { pane: 'routes' })
 
   init_marker.bindPopup("<b>" + city_start + "</b>", { closeOnClick: false, autoClose: false })
-  end_marker.bindPopup("<b>" + city_end + "</b>", { closeOnClick: false, autoClose: false })
+  end_marker.bindPopup("<b>" + city_end + "</b>", { closeOnClick: false, autoClose: false });
 
-  var routes_group = L.layerGroup([best_r, base_r, init_marker, end_marker])
+  routes_group_array.unshift(init_marker)
+  routes_group_array.unshift(end_marker)
 
-  var overlay_layers = {
-    "Currents": currents_layer.addTo(map),
+  var routes_group = L.layerGroup(routes_group_array)
+
+  var layers_activated = null;
+  if (!first_time) {
+    layers_activated = control_layer.getOverlays();
+
+    for (var name in overlay_layers) {
+      map.removeLayer(overlay_layers[name]);
+    }
+
+    control_layer.remove(map);
+  }
+  else
+    layers_activated = { "Currents": true, "Wind": false, "Waves": false, "Routes": true };
+
+  overlay_layers = {
+    "Currents": currents_layer,
     "Wind": wind_layer,
     "Waves": waves_group,
-    "Routes": routes_group.addTo(map)
+    "Routes": routes_group
   }
 
-  L.control.layers({}, overlay_layers).addTo(map);
+  for (var key in overlay_layers) {
+    if (layers_activated[key])
+      overlay_layers[key].addTo(map);
+  }
+
+  control_layer = L.control.layers({}, overlay_layers).addTo(map);
+
+  init_marker.openPopup()
+  end_marker.openPopup()
+  map.on("overlayadd", function () {
+    console.log("hola")
+    init_marker.openPopup()
+    end_marker.openPopup()
+  })
+
+  first_time = false
+}
+
+function generateMap(waves, wind, currents, waves_step, wind_step, currents_step, base, best_route, city_start, city_end, geo_json_string, time_stamps_best, time_stamps_base, days) {
+  $("#map").addClass("leaflet-container leaflet-touch leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom");
+  $('#map_preloader').hide("slow");
+
+  var map = L.map("map");
+  document.getElementById("map").style.background = "#a0c7ee";
+
+  map.createPane('continents');
+  map.getPane('continents').style.zIndex = 650;
+  map.getPane('continents').style.pointerEvents = 'none';
+
+  map.createPane('countries');
+  map.getPane('countries').style.zIndex = 675;
+  map.getPane('countries').style.pointerEvents = 'none';
+
+  map.createPane('wind');
+  map.getPane('wind').style.zIndex = 700;
+  map.getPane('wind').style.pointerEvents = 'none';
+
+  map.createPane('routes');
+  map.getPane('routes').style.zIndex = 725;
+  map.getPane('routes').style.pointerEvents = 'none';
+
+  L.tileLayer(
+    'https://api.mapbox.com/styles/v1/tr3cks/ckvlgrqmt23nb14pihew0rvoa/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoidHIzY2tzIiwiYSI6ImNrdjZpZnp1eDB2dG4ycW9rMjlmOHY0OHIifQ.egCphR_INbD25yU6Ha4A8w',
+    { pane: 'countries' }
+  ).addTo(map);
+
+  L.geoJSON(geo_json_string, { pane: 'continents', style: { fillColor: "#c5def6", fillOpacity: 1, opacity: 0 } }).addTo(map);
+
+
+  var days_cleaned = []
+  days.forEach((e) => {
+    var dt = new Date(e);
+    days_cleaned.push(dt.getFullYear() + "-" + (dt.getMonth() + 1) + "-" + dt.getDate());
+  });
+
+  L.control.timelineSlider({
+    timelineItems: days_cleaned,
+    extraChangeMapParams: {
+      waves: waves,
+      wind: wind,
+      currents: currents,
+      waves_step: waves_step,
+      wind_step: wind_step,
+      currents_step: currents_step,
+      base: base,
+      best_route: best_route,
+      city_start: city_start,
+      city_end: city_end,
+      time_stamps_best: time_stamps_best,
+      time_stamps_base: time_stamps_base
+    },
+    changeMap: insert_data,
+    activeColor: "#85b24a",
+    inactiveColor: "#384f97"
+  }).addTo(map);
+
+  var coord_start = base[0]
+  var coord_end = base[base.length - 1]
 
   map.setView([(coord_start[0] + coord_end[0]) / 2, (coord_start[1] + coord_end[1]) / 2], 4.2);
   map.options.minZoom = 3;
   map.options.maxZoom = 6;
   map.setMaxBounds(bounds);
-
-  init_marker.openPopup()
-  end_marker.openPopup()
-
-  map.on("overlayadd", function () {
-    init_marker.openPopup()
-    end_marker.openPopup()
-  })
 
   var bounds = new L.LatLngBounds(new L.LatLng(-89.98155760646617, -180), new L.LatLng(89.99346179538875, 180));
   map.on('drag', function () {

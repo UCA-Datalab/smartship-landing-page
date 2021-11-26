@@ -1,12 +1,19 @@
-function generateCharts(best_days_labels, waves_step, currents_step, wind_step) {
+function generateCharts(best_days_labels, waves_step_best, currents_step_best, wind_step_best, waves_step_base, currents_step_base, wind_step_base) {
     new Chart(document.getElementById("line-chart-1"), {
         type: 'line',
         data: {
             labels: best_days_labels,
             datasets: [{
-                data: waves_step,
+                data: waves_step_best,
                 borderColor: "#384f97",
-                fill: false
+                fill: false,
+                label: "Optimized route"
+            },
+            {
+                data: waves_step_base,
+                borderColor: '#cc4902',
+                fill: false,
+                label: "Base route"
             }
             ]
         },
@@ -16,7 +23,7 @@ function generateCharts(best_days_labels, waves_step, currents_step, wind_step) 
                 text: 'Waves Height'
             },
             legend: {
-                display: false
+                display: true
             },
             scales: {
                 xAxes: [{
@@ -33,9 +40,16 @@ function generateCharts(best_days_labels, waves_step, currents_step, wind_step) 
             labels: best_days_labels,
             datasets: [
                 {
-                    data: currents_step,
-                    borderColor: "#82bed1",
-                    fill: false
+                    data: currents_step_best,
+                    borderColor: "#384f97",
+                    fill: false,
+                    label: "Optimized route",
+                },
+                {
+                    data: currents_step_base,
+                    borderColor: '#cc4902',
+                    fill: false,
+                    label: "Base route"
                 }
             ]
         },
@@ -45,7 +59,7 @@ function generateCharts(best_days_labels, waves_step, currents_step, wind_step) 
                 text: 'Currents'
             },
             legend: {
-                display: false
+                display: true
             },
             scales: {
                 xAxes: [{
@@ -62,9 +76,16 @@ function generateCharts(best_days_labels, waves_step, currents_step, wind_step) 
             labels: best_days_labels,
             datasets: [
                 {
-                    data: wind_step,
-                    borderColor: "#85b24a",
-                    fill: false
+                    data: wind_step_best,
+                    borderColor: "#384f97",
+                    fill: false,
+                    label: "Optimized route"
+                },
+                {
+                    data: wind_step_base,
+                    borderColor: '#cc4902',
+                    fill: false,
+                    label: "Base route"
                 }
             ]
         },
@@ -74,7 +95,7 @@ function generateCharts(best_days_labels, waves_step, currents_step, wind_step) 
                 text: 'Wind'
             },
             legend: {
-                display: false
+                display: true
             },
             scales: {
                 xAxes: [{
