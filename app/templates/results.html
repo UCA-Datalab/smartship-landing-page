@@ -178,14 +178,26 @@
             routes_data.city_start,
             routes_data.city_end, 
             data.mask,
-            routes_data.routes[0].timestamps
-        )
+            routes_data.routes[0].timestamps,
+            routes_data.base.timestamps,
+            data.days
+        );
+
+        generateCharts(
+            routes_data.routes[0].timestamps, 
+            routes_data.routes[0].waves,
+            routes_data.routes[0].currents,
+            routes_data.routes[0].wind,
+            routes_data.base.waves,
+            routes_data.base.currents,
+            routes_data.base.wind
+        );
  
     }).catch(function(error) {
         console.log('request failed', error)
     })
 
-    generateCharts({{ days_best_labels | tojson}}, routes_data.routes[0].waves,routes_data.routes[0].currents,routes_data.routes[0].wind)
+    
 </script>
 
 <script src="{{url_for('static',filename='libs/charts.js')}}"> </script>
