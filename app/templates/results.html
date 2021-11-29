@@ -165,7 +165,7 @@
     .then((resp) => resp.json())
     .then(function(data) {
         console.log('request succeeded with JSON response', data)
-
+        console.log(routes_data)
         generateMap(
             data.waves, 
             data.wind, 
@@ -180,7 +180,8 @@
             data.mask,
             routes_data.routes[0].timestamps,
             routes_data.base.timestamps,
-            data.days
+            data.days,
+            routes_data.indexing_routes
         );
 
         generateCharts(

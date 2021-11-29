@@ -26,6 +26,16 @@ L.Control.Layers.include({
   }
 });
 
+function date_between(dt, prev, next) {
+  return (
+    dt.getFullYear() > prev.getFullYear() &&
+    dt.getMonth() > prev.getMonth() &&
+    dt.getDate() > prev.getDate() &&
+    dt.getFullYear() <= next.getFullYear() &&
+    dt.getMonth() <= next.getMonth() &&
+    dt.getDate() <= next.getDate()
+  )
+}
 
 function insert_data(parameters) {
   label = parameters.label;
@@ -43,12 +53,27 @@ function insert_data(parameters) {
   city_end = parameters.city_end;
   time_stamps_best = parameters.time_stamps_best;
   time_stamps_base = parameters.time_stamps_base;
+  indexing_routes = parameters.indexing_routes
+  all_days = parameters.all_days
 
   var best_route_today = [];
   var index = 0;
+  var curr_day = new Date(label);
+
+  var prev_day;
+  if (value == 1) prev_day = new Date(time_stamps_best[0])
+  else prev_day = new Date(all_days[value - 2]);
+
+  var next_day;
+  if (value == all_days.length) next_day = new Date(time_stamps_best[-1])
+  else next_day = new Date(all_days[value]);
+
+
   time_stamps_best.forEach(e => {
     var dt = new Date(e);
-    var curr_day = new Date(label);
+    console.log(value)
+    console.log(date_between(dt, prev_day, next_day))
+
     if (dt.getFullYear() == curr_day.getFullYear() && dt.getMonth() == curr_day.getMonth() && dt.getDate() == curr_day.getDate())
       best_route_today.push(best_route[index]);
     index++;
@@ -58,7 +83,6 @@ function insert_data(parameters) {
   var index = 0;
   time_stamps_base.forEach(e => {
     var dt = new Date(e);
-    var curr_day = new Date(label);
     if (dt.getFullYear() == curr_day.getFullYear() && dt.getMonth() == curr_day.getMonth() && dt.getDate() == curr_day.getDate())
       base_route_today.push(base_route[index]);
     index++;
@@ -217,10 +241,10 @@ function insert_data(parameters) {
 
 
   //Plotting routes and markers
-  var best_poly = L.polyline.antPath(best_route, { color: '#2D4287', weight: 2.1, opacity: 0.6, delay: 500, dashArray: [3, 40], pane: 'routes' });
-  var best_poly_today = L.polyline.antPath(best_route_today, { color: '#2D4287', weight: 2.5, opacity: 1, delay: 500, dashArray: [3, 40], pane: 'routes' });
-  var base_poly = L.polyline.antPath(base_route, { color: '#cc4902', weight: 1.7, opacity: 0.6, delay: 500, dashArray: [2, 40], pane: 'routes' });
-  var base_poly_today = L.polyline.antPath(base_route_today, { color: '#cc4902', weight: 2.5, opacity: 1, delay: 500, dashArray: [2, 40], pane: 'routes' });
+  var best_poly = L.polyline.antPath(best_route, { color: '#3e59b5', weight: 1.4, opacity: 0.6, delay: 500, dashArray: [3, 40], pane: 'routes' });
+  var best_poly_today = L.polyline.antPath(best_route_today, { color: '#2D4287', weight: 3, opacity: 1, delay: 500, dashArray: [3, 40], pane: 'routes' });
+  var base_poly = L.polyline.antPath(base_route, { color: '#cc4902', weight: 1.4, opacity: 0.6, delay: 500, dashArray: [2, 40], pane: 'routes' });
+  var base_poly_today = L.polyline.antPath(base_route_today, { color: '#cc4902', weight: 3, opacity: 1, delay: 500, dashArray: [2, 40], pane: 'routes' });
 
 
   var base_r_array = [L.circleMarker(
@@ -252,9 +276,10 @@ function insert_data(parameters) {
 
   var index = 0;
   var best_r_array = [];
-  best_route.forEach(latLng => {
-
+  indexing_routes.forEach(route_index => {
     if (index > 0 && index < best_route.length - 1) {
+      latLng = best_route[route_index]
+      console.log
       var marker;
       if (best_route_today.includes(latLng))
         marker = L.circleMarker(
@@ -270,11 +295,10 @@ function insert_data(parameters) {
         marker = L.circleMarker(
           latLng,
           {
-            color: '#2D4287',
+            color: '#3e59b5',
             radius: '2',
             fillOpacity: true,
             pane: 'routes',
-            opacity: 0.6
           }
         ).bindPopup("<b> Waves: " + waves_step[index].toFixed(2) + "</b> <br> <b>Currents: " + currents_step[index].toFixed(2) + "</b> <br> <b>Wind: " + wind_step[index].toFixed(2) + "</b>")
 
@@ -352,7 +376,7 @@ function insert_data(parameters) {
   first_time = false
 }
 
-function generateMap(waves, wind, currents, waves_step, wind_step, currents_step, base, best_route, city_start, city_end, geo_json_string, time_stamps_best, time_stamps_base, days) {
+function generateMap(waves, wind, currents, waves_step, wind_step, currents_step, base, best_route, city_start, city_end, geo_json_string, time_stamps_best, time_stamps_base, days, indexing_routes) {
   $("#map").addClass("leaflet-container leaflet-touch leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom");
   $('#map_preloader').hide("slow");
 
@@ -403,7 +427,9 @@ function generateMap(waves, wind, currents, waves_step, wind_step, currents_step
       city_start: city_start,
       city_end: city_end,
       time_stamps_best: time_stamps_best,
-      time_stamps_base: time_stamps_base
+      time_stamps_base: time_stamps_base,
+      indexing_routes: indexing_routes,
+      all_days: days_cleaned
     },
     changeMap: insert_data,
     activeColor: "#85b24a",
