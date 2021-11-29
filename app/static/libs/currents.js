@@ -44,23 +44,23 @@ function insert_data(parameters) {
   time_stamps_best = parameters.time_stamps_best;
   time_stamps_base = parameters.time_stamps_base;
 
-  var best_route_valid = [];
+  var best_route_today = [];
   var index = 0;
   time_stamps_best.forEach(e => {
     var dt = new Date(e);
     var curr_day = new Date(label);
-    if (dt.getFullYear() <= curr_day.getFullYear() && dt.getMonth() <= curr_day.getMonth() && dt.getDate() <= curr_day.getDate())
-      best_route_valid.push(best_route[index])
+    if (dt.getFullYear() == curr_day.getFullYear() && dt.getMonth() == curr_day.getMonth() && dt.getDate() == curr_day.getDate())
+      best_route_today.push(best_route[index]);
     index++;
   });
 
-  var base_route_valid = [];
+  var base_route_today = [];
   var index = 0;
   time_stamps_base.forEach(e => {
     var dt = new Date(e);
     var curr_day = new Date(label);
-    if (dt.getFullYear() <= curr_day.getFullYear() && dt.getMonth() <= curr_day.getMonth() && dt.getDate() <= curr_day.getDate())
-      base_route_valid.push(base_route[index])
+    if (dt.getFullYear() == curr_day.getFullYear() && dt.getMonth() == curr_day.getMonth() && dt.getDate() == curr_day.getDate())
+      base_route_today.push(base_route[index]);
     index++;
   });
 
@@ -217,12 +217,14 @@ function insert_data(parameters) {
 
 
   //Plotting routes and markers
-  var best_r = L.polyline.antPath(best_route_valid, { color: '#2D4287', weight: 2.1, opacity: 0.8, delay: 500, dashArray: [3, 40], pane: 'routes' });
-  var base_r = L.polyline.antPath(base_route_valid, { color: '#cc4902', weight: 1.7, opacity: 1, delay: 500, dashArray: [2, 40], pane: 'routes' });
+  var best_poly = L.polyline.antPath(best_route, { color: '#2D4287', weight: 2.1, opacity: 0.6, delay: 500, dashArray: [3, 40], pane: 'routes' });
+  var best_poly_today = L.polyline.antPath(best_route_today, { color: '#2D4287', weight: 2.5, opacity: 1, delay: 500, dashArray: [3, 40], pane: 'routes' });
+  var base_poly = L.polyline.antPath(base_route, { color: '#cc4902', weight: 1.7, opacity: 0.6, delay: 500, dashArray: [2, 40], pane: 'routes' });
+  var base_poly_today = L.polyline.antPath(base_route_today, { color: '#cc4902', weight: 2.5, opacity: 1, delay: 500, dashArray: [2, 40], pane: 'routes' });
 
 
   var base_r_array = [L.circleMarker(
-    base_route_valid.at(-1),
+    base_route_today.at(-1),
     {
       color: '#cc4902',
       radius: '3',
@@ -245,22 +247,37 @@ function insert_data(parameters) {
     );
   });*/
 
-  base_r_array.unshift(base_r);
+  base_r_array.unshift(base_poly);
+  base_r_array.unshift(base_poly_today);
 
   var index = 0;
   var best_r_array = [];
-  best_route_valid.forEach(latLng => {
+  best_route.forEach(latLng => {
 
     if (index > 0 && index < best_route.length - 1) {
-      var marker = L.circleMarker(
-        latLng,
-        {
-          color: '#2D4287',
-          radius: '3',
-          fillOpacity: true,
-          pane: 'routes'
-        }
-      ).bindPopup("<b> Waves: " + waves_step[index].toFixed(2) + "</b> <br> <b>Currents: " + currents_step[index].toFixed(2) + "</b> <br> <b>Wind: " + wind_step[index].toFixed(2) + "</b>")
+      var marker;
+      if (best_route_today.includes(latLng))
+        marker = L.circleMarker(
+          latLng,
+          {
+            color: '#2D4287',
+            radius: '3',
+            fillOpacity: true,
+            pane: 'routes'
+          }
+        ).bindPopup("<b> Waves: " + waves_step[index].toFixed(2) + "</b> <br> <b>Currents: " + currents_step[index].toFixed(2) + "</b> <br> <b>Wind: " + wind_step[index].toFixed(2) + "</b>")
+      else
+        marker = L.circleMarker(
+          latLng,
+          {
+            color: '#2D4287',
+            radius: '2',
+            fillOpacity: true,
+            pane: 'routes',
+            opacity: 0.6
+          }
+        ).bindPopup("<b> Waves: " + waves_step[index].toFixed(2) + "</b> <br> <b>Currents: " + currents_step[index].toFixed(2) + "</b> <br> <b>Wind: " + wind_step[index].toFixed(2) + "</b>")
+
 
       marker.on('mouseover', function (e) {
         this.openPopup();
@@ -278,7 +295,8 @@ function insert_data(parameters) {
 
   });
 
-  best_r_array.push(best_r)
+  best_r_array.push(best_poly)
+  best_r_array.push(best_poly_today)
 
   var routes_group_array = base_r_array.concat(best_r_array)
 
