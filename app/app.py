@@ -246,7 +246,12 @@ def results():
     )
     best_timestamps = np.array(best_route["timestamps"])[best_index]
     data["indexing_routes"] = np.unique(
-        np.linspace(0, len(data["routes"][0]["coords"]) - 1, 20, dtype=int)
+        np.linspace(
+            0,
+            len(data["routes"][0]["coords"]) - 1,
+            int(len(data["routes"][0]["coords"]) / 5),
+            dtype=int,
+        )
     ).tolist()
 
     return render_template(

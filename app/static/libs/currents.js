@@ -26,97 +26,7 @@ L.Control.Layers.include({
   }
 });
 
-function date_between(dt, prev, next) {
-  return (
-    dt.getFullYear() > prev.getFullYear() &&
-    dt.getMonth() > prev.getMonth() &&
-    dt.getDate() > prev.getDate() &&
-    dt.getFullYear() <= next.getFullYear() &&
-    dt.getMonth() <= next.getMonth() &&
-    dt.getDate() <= next.getDate()
-  )
-}
-
-function insert_data(parameters) {
-  label = parameters.label;
-  value = parameters.value;
-  map = parameters.map;
-  waves = parameters.waves;
-  wind = parameters.wind;
-  currents = parameters.currents;
-  waves_step = parameters.waves_step;
-  wind_step = parameters.wind_step;
-  currents_step = parameters.currents_step;
-  base_route = parameters.base;
-  best_route = parameters.best_route;
-  city_start = parameters.city_start;
-  city_end = parameters.city_end;
-  time_stamps_best = parameters.time_stamps_best;
-  time_stamps_base = parameters.time_stamps_base;
-  indexing_routes = parameters.indexing_routes
-  all_days = parameters.all_days
-
-  var best_route_today = [];
-  var index = 0;
-  var curr_day = new Date(label);
-
-  var prev_day;
-  if (value == 1) prev_day = new Date(time_stamps_best[0])
-  else prev_day = new Date(all_days[value - 2]);
-
-  var next_day;
-  if (value == all_days.length) next_day = new Date(time_stamps_best[-1])
-  else next_day = new Date(all_days[value]);
-
-
-  time_stamps_best.forEach(e => {
-    var dt = new Date(e);
-    console.log(value)
-    console.log(date_between(dt, prev_day, next_day))
-
-    if (dt.getFullYear() == curr_day.getFullYear() && dt.getMonth() == curr_day.getMonth() && dt.getDate() == curr_day.getDate())
-      best_route_today.push(best_route[index]);
-    index++;
-  });
-
-  var base_route_today = [];
-  var index = 0;
-  time_stamps_base.forEach(e => {
-    var dt = new Date(e);
-    if (dt.getFullYear() == curr_day.getFullYear() && dt.getMonth() == curr_day.getMonth() && dt.getDate() == curr_day.getDate())
-      base_route_today.push(base_route[index]);
-    index++;
-  });
-
-  waves = waves[value - 1]
-  wind = wind[value - 1]
-  currents = currents[value - 1]
-
-  var currents_layer = L.velocityLayer({
-    displayValues: true,
-    displayOptions: {
-      velocityType: "Global Currents",
-      position: "bottomleft",
-      emptyString: "No currents data"
-    },
-    colorScale: [
-      "#d9843f",
-      "#d78039",
-      "#d67d33",
-      "#d4792d",
-      "#d27526",
-      "#d0711f",
-      "#ce6e18",
-      "#cc6a0f",
-      "#ca6603"]
-    ,
-    lineWidth: 1,
-    data: currents,
-    velocityScale: 1,
-    maxVelocity: Math.max(Math.max(currents[0].data), Math.max(currents[1].data)),
-    minVelocity: Math.min(Math.min(currents[0].data), Math.min(currents[1].data)),
-  });
-
+function prepare_wind(wind) {
   var wind_layer = L.velocityLayer({
     displayValues: true,
     displayOptions: {
@@ -149,7 +59,39 @@ function insert_data(parameters) {
     paneName: "wind"
   });
 
+  return wind_layer;
+}
 
+function prepare_currents(currents) {
+  var currents_layer = L.velocityLayer({
+    displayValues: true,
+    displayOptions: {
+      velocityType: "Global Currents",
+      position: "bottomleft",
+      emptyString: "No currents data"
+    },
+    colorScale: [
+      "#d9843f",
+      "#d78039",
+      "#d67d33",
+      "#d4792d",
+      "#d27526",
+      "#d0711f",
+      "#ce6e18",
+      "#cc6a0f",
+      "#ca6603"]
+    ,
+    lineWidth: 1,
+    data: currents,
+    velocityScale: 1,
+    maxVelocity: Math.max(Math.max(currents[0].data), Math.max(currents[1].data)),
+    minVelocity: Math.min(Math.min(currents[0].data), Math.min(currents[1].data)),
+  });
+
+  return currents_layer;
+}
+
+function prepare_waves(waves, first_time) {
   // WAVES LAYER
   var waveLayer = L.velocityLayer({
     displayValues: true,
@@ -237,101 +179,161 @@ function insert_data(parameters) {
     });
   }
 
-  var waves_group = L.layerGroup([heat, waveLayer])
+  return L.layerGroup([heat, waveLayer])
+}
+
+function date_between(dt, prev, next) {
+  return (
+    (dt.getFullYear() > prev.getFullYear() ||
+      dt.getMonth() > prev.getMonth() ||
+      dt.getDate() > prev.getDate()) &&
+    (dt.getFullYear() <= next.getFullYear() &&
+      dt.getMonth() <= next.getMonth() &&
+      dt.getDate() <= next.getDate())
+  )
+}
+
+function limit_route(route, timestamps, min_day, max_day) {
+  var route_today = [];
+  var index = 0;
+  timestamps.forEach(e => {
+    var dt = new Date(e);
+    if (date_between(dt, min_day, max_day))
+      route_today.push(route[index]);
+    index++;
+  });
+
+  return route_today;
+}
+
+function insert_data(parameters) {
+  label = parameters.label;
+  value = parameters.value;
+  map = parameters.map;
+  waves = parameters.waves;
+  wind = parameters.wind;
+  currents = parameters.currents;
+  base_data = parameters.base_data;
+  best_data = parameters.best_data;
+  city_start = parameters.city_start;
+  city_end = parameters.city_end;
+  indexing_routes = parameters.indexing_routes
+  all_days = parameters.all_days
 
 
-  //Plotting routes and markers
-  var best_poly = L.polyline.antPath(best_route, { color: '#3e59b5', weight: 1.4, opacity: 0.6, delay: 500, dashArray: [3, 40], pane: 'routes' });
+  // ===== OCEANOGRAPHIC DATA =====
+  wind_layer = prepare_wind(wind[value - 1])
+  currents_layer = prepare_currents(currents[value - 1])
+  waves_group = prepare_waves(waves[value - 1], first_time)
+
+  // ===== ROUTES =====
+  var curr_day = new Date(label);
+
+  var prev_day;
+  if (value == 1) {
+    prev_day = new Date(best_data.timestamps[0])
+    prev_day.setDate(prev_day.getDate() - 1)
+  }
+  else prev_day = new Date(all_days[value - 2]);
+
+  // Get routes of the selected day
+  var best_route_today = limit_route(best_data.coords, best_data.timestamps, prev_day, curr_day);
+  var base_route_today = limit_route(base_data.coords, base_data.timestamps, prev_day, curr_day);
+
+  // Draw routes
+  var best_poly = L.polyline.antPath(best_data.coords, { color: '#3e59b5', weight: 1.4, opacity: 0.6, delay: 500, dashArray: [3, 40], pane: 'routes' });
   var best_poly_today = L.polyline.antPath(best_route_today, { color: '#2D4287', weight: 3, opacity: 1, delay: 500, dashArray: [3, 40], pane: 'routes' });
-  var base_poly = L.polyline.antPath(base_route, { color: '#cc4902', weight: 1.4, opacity: 0.6, delay: 500, dashArray: [2, 40], pane: 'routes' });
+  var base_poly = L.polyline.antPath(base_data.coords, { color: '#cc4902', weight: 1.4, opacity: 0.6, delay: 500, dashArray: [2, 40], pane: 'routes' });
   var base_poly_today = L.polyline.antPath(base_route_today, { color: '#cc4902', weight: 3, opacity: 1, delay: 500, dashArray: [2, 40], pane: 'routes' });
 
+  // Generate markers
+  var index = 0;
+  var base_markers = [];
+  indexing_routes.forEach(route_index => {
+    if (index > 0 && index < indexing_routes.length - 1) {
+      var latLng = base_data.coords[route_index]
+      var popup_text = "<b> Waves: " + base_data.waves[route_index].toFixed(2) + "</b> <br> <b>Currents: " + base_data.currents[route_index].toFixed(2) + "</b> <br> <b>Wind: " + base_data.wind[route_index].toFixed(2) + "</b>"
 
-  var base_r_array = [L.circleMarker(
-    base_route_today.at(-1),
-    {
-      color: '#cc4902',
-      radius: '3',
-      fillOpacity: true,
-      pane: 'routes'
-    }
-  )];
-  /*
-  base_route.forEach(latLng => {
-    base_r_array.push(
-      L.circleMarker(
+      if (base_route_today.includes(latLng)) radius = 3
+      else radius = 2
+
+      var marker = L.circleMarker(
         latLng,
         {
-          color: '#cc4902',
-          radius: '3',
+          color: "#cc4902",
+          radius: radius,
           fillOpacity: true,
-          pane: 'routes'
+          pane: 'routes',
         }
-      )
-    );
-  });*/
-
-  base_r_array.unshift(base_poly);
-  base_r_array.unshift(base_poly_today);
-
-  var index = 0;
-  var best_r_array = [];
-  indexing_routes.forEach(route_index => {
-    if (index > 0 && index < best_route.length - 1) {
-      latLng = best_route[route_index]
-      console.log
-      var marker;
-      if (best_route_today.includes(latLng))
-        marker = L.circleMarker(
-          latLng,
-          {
-            color: '#2D4287',
-            radius: '3',
-            fillOpacity: true,
-            pane: 'routes'
-          }
-        ).bindPopup("<b> Waves: " + waves_step[index].toFixed(2) + "</b> <br> <b>Currents: " + currents_step[index].toFixed(2) + "</b> <br> <b>Wind: " + wind_step[index].toFixed(2) + "</b>")
-      else
-        marker = L.circleMarker(
-          latLng,
-          {
-            color: '#3e59b5',
-            radius: '2',
-            fillOpacity: true,
-            pane: 'routes',
-          }
-        ).bindPopup("<b> Waves: " + waves_step[index].toFixed(2) + "</b> <br> <b>Currents: " + currents_step[index].toFixed(2) + "</b> <br> <b>Wind: " + wind_step[index].toFixed(2) + "</b>")
-
+      ).bindPopup(popup_text, { pane: "popups" })
 
       marker.on('mouseover', function (e) {
         this.openPopup();
       });
-
       marker.on('mouseout', function (e) {
         this.closePopup();
       });
 
-
-      best_r_array.push(marker);
+      base_markers.push(marker);
     }
 
     index++;
 
   });
 
-  best_r_array.push(best_poly)
-  best_r_array.push(best_poly_today)
+  base_markers.unshift(base_poly);
+  base_markers.unshift(base_poly_today);
 
-  var routes_group_array = base_r_array.concat(best_r_array)
+  var index = 0;
+  var best_markers = [];
+  indexing_routes.forEach(route_index => {
+    if (index > 0 && index < indexing_routes.length - 1) {
+      var latLng = best_data.coords[route_index]
+      var popup_text = "<b> Waves: " + best_data.waves[route_index].toFixed(2) + "</b> <br> <b>Currents: " + best_data.currents[route_index].toFixed(2) + "</b> <br> <b>Wind: " + best_data.wind[route_index].toFixed(2) + "</b>"
 
-  var coord_start = base_route[0]
-  var coord_end = base_route[base_route.length - 1]
+      if (base_route_today.includes(latLng)) {
+        radius = 3
+        color = "#2D4287"
+      }
+      else {
+        radius = 2
+        color = "#3e59b5"
+      }
 
-  var init_marker = L.marker(coord_start, { pane: 'routes' })
-  var end_marker = L.marker(coord_end, { pane: 'routes' })
+      var marker = L.circleMarker(
+        latLng,
+        {
+          color: color,
+          radius: radius,
+          fillOpacity: true,
+          pane: 'routes',
+        }
+      ).bindPopup(popup_text, { pane: "popups" })
 
-  init_marker.bindPopup("<b>" + city_start + "</b>", { closeOnClick: false, autoClose: false })
-  end_marker.bindPopup("<b>" + city_end + "</b>", { closeOnClick: false, autoClose: false });
+      marker.on('mouseover', function (e) {
+        this.openPopup();
+      });
+      marker.on('mouseout', function (e) {
+        this.closePopup();
+      });
+
+      best_markers.push(marker);
+    }
+
+    index++;
+
+  });
+
+  best_markers.push(best_poly)
+  best_markers.push(best_poly_today)
+
+  var routes_group_array = base_markers.concat(best_markers)
+
+  var init_marker = L.marker(base_data.coords[0], { pane: 'routes' })
+  var end_marker = L.marker(base_data.coords.at(-1), { pane: 'routes' })
+
+  init_marker.bindPopup("<b>" + city_start + "</b>", { closeOnClick: false, autoClose: false, pane: "popups" })
+  end_marker.bindPopup("<b>" + city_end + "</b>", { closeOnClick: false, autoClose: false, pane: "popups" });
 
   routes_group_array.unshift(init_marker)
   routes_group_array.unshift(end_marker)
@@ -368,7 +370,6 @@ function insert_data(parameters) {
   init_marker.openPopup()
   end_marker.openPopup()
   map.on("overlayadd", function () {
-    console.log("hola")
     init_marker.openPopup()
     end_marker.openPopup()
   })
@@ -376,7 +377,7 @@ function insert_data(parameters) {
   first_time = false
 }
 
-function generateMap(waves, wind, currents, waves_step, wind_step, currents_step, base, best_route, city_start, city_end, geo_json_string, time_stamps_best, time_stamps_base, days, indexing_routes) {
+function generateMap(waves, wind, currents, base_data, best_data, city_start, city_end, geo_json_string, days, indexing_routes) {
   $("#map").addClass("leaflet-container leaflet-touch leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom");
   $('#map_preloader').hide("slow");
 
@@ -399,6 +400,10 @@ function generateMap(waves, wind, currents, waves_step, wind_step, currents_step
   map.getPane('routes').style.zIndex = 725;
   map.getPane('routes').style.pointerEvents = 'none';
 
+  map.createPane('popups');
+  map.getPane('popups').style.zIndex = 750;
+  map.getPane('popups').style.pointerEvents = 'none';
+
   L.tileLayer(
     'https://api.mapbox.com/styles/v1/tr3cks/ckvlgrqmt23nb14pihew0rvoa/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoidHIzY2tzIiwiYSI6ImNrdjZpZnp1eDB2dG4ycW9rMjlmOHY0OHIifQ.egCphR_INbD25yU6Ha4A8w',
     { pane: 'countries' }
@@ -419,15 +424,10 @@ function generateMap(waves, wind, currents, waves_step, wind_step, currents_step
       waves: waves,
       wind: wind,
       currents: currents,
-      waves_step: waves_step,
-      wind_step: wind_step,
-      currents_step: currents_step,
-      base: base,
-      best_route: best_route,
+      base_data: base_data,
+      best_data: best_data,
       city_start: city_start,
       city_end: city_end,
-      time_stamps_best: time_stamps_best,
-      time_stamps_base: time_stamps_base,
       indexing_routes: indexing_routes,
       all_days: days_cleaned
     },
@@ -436,8 +436,8 @@ function generateMap(waves, wind, currents, waves_step, wind_step, currents_step
     inactiveColor: "#384f97"
   }).addTo(map);
 
-  var coord_start = base[0]
-  var coord_end = base[base.length - 1]
+  var coord_start = base_data.coords[0]
+  var coord_end = base_data.coords.at(-1)
 
   map.setView([(coord_start[0] + coord_end[0]) / 2, (coord_start[1] + coord_end[1]) / 2], 4.2);
   map.options.minZoom = 3;
