@@ -291,7 +291,8 @@ function insert_data(parameters) {
       var latLng = best_data.coords[route_index]
       var popup_text = "<b> Waves: " + best_data.waves[route_index].toFixed(2) + "</b> <br> <b>Currents: " + best_data.currents[route_index].toFixed(2) + "</b> <br> <b>Wind: " + best_data.wind[route_index].toFixed(2) + "</b>"
 
-      if (base_route_today.includes(latLng)) {
+      var color, radius;
+      if (best_route_today.includes(latLng)) {
         radius = 3
         color = "#2D4287"
       }
