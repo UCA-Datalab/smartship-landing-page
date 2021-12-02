@@ -48,6 +48,9 @@ def index():
 
     return render_template("form.html", city_options=city_options)
 
+@app.route("/landing")
+def landing():
+    return render_template("landing.html")
 
 @app.route("/ocean", methods=["GET", "POST"])
 def ocean():
