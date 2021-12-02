@@ -1,0 +1,47 @@
+html,
+body,
+header,
+#intro {
+    height: 100%;
+}
+
+#intro {
+    background: url('/static/images/landing-image.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    opacity:0.95;
+}
+
+.view img{
+    display: initial;
+}
+
+.logo-landing{
+    opacity:1 !important;
+}
+
+
+.top-nav-collapse {
+    background-color: #384f97;
+  }
+  @media (max-width: 768px) {
+    .navbar:not(.top-nav-collapse) {
+      background-color: #384f97;
+    }
+  }
+  @media (min-width: 800px) and (max-width: 850px) {
+    .navbar:not(.top-nav-collapse) {
+      background-color: #384f97;
+    }
+  }
+
+.section-title{
+    margin-bottom: 3rem !important;
+    margin-top: 3rem !important;
+}
+
+.svg{
+    fill: #384f97
+}
