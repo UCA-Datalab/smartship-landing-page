@@ -5,7 +5,6 @@ services:
   nginx:
     image: nginx:1.21.3-alpine
     ports:
-      - 80:80
       - 443:443
     volumes:
       - ./data/nginx:/etc/nginx/conf.d
@@ -27,5 +26,15 @@ services:
 
   smartship_front:
     build: .
+    depends_on:
+      - mongo
     volumes:
       - ./app:/app
+
+  mongo:
+    image: mongo:5.0.3
+    restart: always
+    ports:
+      - 27017:27017
+    volumes:
+      - /var/lib/mongo/smartshipping/:/data/db
