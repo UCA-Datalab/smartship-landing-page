@@ -52,6 +52,14 @@ html {
   filter: invert(30%) sepia(14%) saturate(2532%) hue-rotate(188deg) brightness(97%) contrast(93%);
 }
 
+.h-80 {
+  height: 80%;
+}
+
+.round {
+  border-radius: 5px !important;
+}
+
 .name {
   color: #23387a
 }

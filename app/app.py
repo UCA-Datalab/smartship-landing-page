@@ -27,8 +27,8 @@ cities = {
 app = Flask(__name__)
 
 
-@app.route("/")
-def index():
+@app.route("/form")
+def form():
 
     query = mongo_model.get_available_routes()
     
@@ -52,8 +52,8 @@ def index():
 
     return render_template("form.html", city_options=city_options)
 
-@app.route("/landing")
-def landing():
+@app.route("/")
+def index():
     return render_template("landing.html")
 
 @app.route("/ocean", methods=["GET", "POST"])
@@ -99,7 +99,7 @@ def ocean():
             if h > 0:
                 data_dict.append({"lat": lat, "lon": lon, "height": h})
 
-        data["waves"][i]["height"] = {"max": 14, "data": data_dict}
+        data["waves"][i]["height"] = {"max": 10, "data": data_dict}
 
     with open("static/libs/coastlines10.json", "r") as f:
         data["mask"] = json.loads(f.read())
@@ -196,4 +196,4 @@ def page_not_found(error):
 
 
 if __name__ == "__main__":
-    app.run(debug=True,host="0.0.0.0")
+    app.run(host="0.0.0.0", port=5000)
