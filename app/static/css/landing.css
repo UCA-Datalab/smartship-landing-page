@@ -51,3 +51,50 @@ html {
 .filter-blue {
   filter: invert(30%) sepia(14%) saturate(2532%) hue-rotate(188deg) brightness(97%) contrast(93%);
 }
+
+.name {
+  color: #384f97
+}
+
+.work {
+  font-weight: bold;
+  font-size: 15px
+}
+
+.about span {
+  font-size: 13px
+}
+
+.v-profile {
+  color: #384f97;
+  cursor: pointer
+}
+
+.box {
+  -webkit-box-shadow: 13px 12px 5px -10px rgba(196, 194, 196, 0.72);
+  -moz-box-shadow: 13px 12px 5px -10px rgba(196, 194, 196, 0.72);
+  box-shadow: 13px 12px 5px -10px rgba(196, 194, 196, 0.72)
+}
+
+.col-md-3 {
+  margin-top: 10px
+}
+
+.team-photo {
+  position: relative;
+  top: 0;
+  left: 0;
+}
+
+.person-photo {
+  position: relative;
+  top: 0;
+  left: 0;
+}
+
+.organization-logo {
+  position: absolute;
+  bottom: 0;
+  right: 50px;
+  background: white;
+}
