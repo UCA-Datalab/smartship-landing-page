@@ -26,6 +26,10 @@ services:
 
   smartship_front:
     build: .
+    ports:
+      - 5000:5000
+    volumes:
+      - ./app:/app
     depends_on:
       - mongo
     volumes:

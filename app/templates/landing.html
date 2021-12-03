@@ -1,0 +1,395 @@
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
+    <link href="{{url_for('static',filename='css/landing.css')}}" rel="stylesheet">
+    <!-- JQuery -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
+</head>
+
+
+<!--Main Navigation-->
+<header>
+    <!--Navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
+
+        <div class="container">
+
+            <!-- Navbar brand -->
+            <a class="navbar-brand" href="#">
+                <div style="font-size: 30px;">
+                    <b style="color:#85b24a">Smart </b><b style="color:#82bed1">Shipping</b>
+                </div>
+                
+            </a>
+
+            <!-- Collapse button -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
+                aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Collapsible content -->
+            <div class="collapse navbar-collapse" id="basicExampleNav">
+
+                <!-- Links -->
+                <ul class="navbar-nav mr-auto smooth-scroll">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#intro">Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#features">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#team">Team</a>
+                    </li>
+
+                </ul>
+            </div>
+            <!-- Collapsible content -->
+
+        </div>
+
+    </nav>
+    <!--/.Navbar-->
+
+    <!--Mask-->
+    <div id="intro" class="view">
+
+        <div class="mask rgba-black-strong">
+            <div class="container-fluid d-flex align-items-center justify-content-center h-100">
+
+                <div class="row d-flex justify-content-center text-center">
+                    <div class="col-md-10">
+                        <!-- Heading 
+                        <h2 class="display-4 font-weight-bold white-text pt-5 mb-2">Travel</h2>-->
+
+                        <img src="{{url_for('static',filename='images/sslogo@4x.png')}}" alt="My Image"
+                            class="img-fluid logo-landing">
+
+                        <!-- Divider -->
+                        <hr class="hr-light">
+
+                        <!-- Description -->
+                        <h4 class="white-text my-4">Maritime route optimization tool to define a safe route and reduce
+                            fuel consumption.</h4>
+                        <button type="button" class="btn btn-outline-white">Try it!</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/.Mask-->
+</header>
+<!--Main Navigation-->
+
+<!--Main layout-->
+<main>
+    <div class="container">
+        <section id="features" class="text-center">
+            <h2 class="mb-5 font-weight-bold text-center section-title">Features</h2>
+
+            <!--Grid row-->
+            <div class="row d-flex justify-content-center mb-4">
+
+                <!--Grid column-->
+                <div class="col-md-8">
+
+                    <!-- Description -->
+                    <p class="grey-text">In the world of maritime transport, there are major challenges to be solved in
+                        the coming years.</p>
+
+                </div>
+            </div>
+
+            <!--Grid column-->
+            <div class="row">
+
+                <!--Grid column-->
+                <div class="col-md-4 mb-5">
+                    <img class = "filter-blue" src="{{url_for('static',filename='images/icon/basic_globe.svg')}}" width="60" height="60"
+                        alt="Enviromental" />
+                    <h4 class="my-4 font-weight-bold">Environmental damage</h4>
+                    <p class="grey-text">Maritime traffic produces 2.5% of the planet's total CO2. The International
+                        Maritime Organization's goal is to reduce these emissions by 40% before 2030.</p>
+                </div>
+                <!--Grid column-->
+
+                <!--Grid column-->
+                <div class="col-md-4 mb-5">
+                    <img class = "filter-blue" src="{{url_for('static',filename='images/icon/ecommerce_dollar.svg')}}" width="60" height="60"
+                        alt="Cost" />
+                    <h4 class="my-4 font-weight-bold">High cost</h4>
+                    <p class="grey-text">The price of fuel for a day's sailing is around $66000, so for long routes the
+                        price is excessive. For example, a route from Algeciras to Shanghai (36 days) costs $2.4M.</p>
+                </div>
+                <!--Grid column-->
+
+                <!--Grid column-->
+                <div class="col-md-4 mb-5">
+                    <img class = "filter-blue" src="{{url_for('static',filename='images/icon/basic_anchor.svg')}}" width="60" height="60"
+                        alt="Safety" />
+                    <h4 class="my-4 font-weight-bold">Crew safety</h4>
+                    <p class="grey-text">Throughout 2020, 195 cases of armed robbery by pirates were reported. This
+                        combined with possible weather problems, causes crews to be exposed to great dangers.</p>
+                </div>
+                <!--Grid column-->
+
+            </div>
+        </section>
+
+        <hr class="my-5">
+
+        <section id="meet">
+            <h2 class="mb-5 font-weight-bold text-center">Meet our team</h2>
+            
+            <!--Grid row-->
+            <div class="row d-flex justify-content-center mb-4">
+
+                <!--Grid column-->
+                <div class="col-md-8">
+
+                    <!-- Description -->
+                    <p class="grey-text">A large team of computer scientists, mathematicians and physicists, all specialized in computer science, has been reunited. Thanks to all of them, the development of this tool has been possible.</p>
+
+                </div>
+            </div>
+
+            <div class="container mt-3" style="margin-bottom: 3rem !important;">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="bg-white p-3 text-center rounded box">
+                            <div class="team-photo">
+                                <img class="img-responsive rounded-circle person-photo" src="{{url_for('static',filename='images/dummy-person-image.jpg')}}" width="90">
+                                <img class="img-responsive rounded-circle organization-logo" src="{{url_for('static',filename='images/logo-ucadatalab-circle.png')}}" width="40">
+                            </div>
+                            <h5 class="mt-3 name">David Gómez-Ullate</h5>
+                            <span>Strategic advisor</span>
+                            <div class="mt-4">
+                                <a class="li-ic">
+                                    <i class="fab fa-linkedin mr-4 filter-blue"> </i>
+                                </a>
+                                <a class="li-ic">
+                                    <i class="fa fa-envelope mr-4 filter-blue"> </i>
+                                </a>
+                                <a class="li-ic">
+                                    <i class="fab fa-github mr-4 filter-blue"> </i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="bg-white p-3 text-center rounded box">
+                            <div class="team-photo">
+                                <img class="img-responsive rounded-circle person-photo" src="{{url_for('static',filename='images/dummy-person-image.jpg')}}" width="90">
+                                <img class="img-responsive rounded-circle organization-logo" src="{{url_for('static',filename='images/logo-ucadatalab-circle.png')}}" width="40">
+                            </div>
+                            <h5 class="mt-3 name">Daniel Precioso</h5>
+                            <span>Modeling team</span>
+                            <div class="mt-4">
+                                <a class="li-ic">
+                                    <i class="fab fa-linkedin mr-4 filter-blue"> </i>
+                                </a>
+                                <a class="li-ic">
+                                    <i class="fa fa-envelope mr-4 filter-blue"> </i>
+                                </a>
+                                <a class="li-ic">
+                                    <i class="fab fa-github mr-4 filter-blue"> </i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="bg-white p-3 text-center rounded box">
+                            <div class="team-photo">
+                                <img class="img-responsive rounded-circle person-photo" src="{{url_for('static',filename='images/dummy-person-image.jpg')}}" width="90">
+                                <img class="img-responsive rounded-circle organization-logo" src="{{url_for('static',filename='images/logo-ucadatalab-circle.png')}}" width="40">
+                            </div>
+                            <h5 class="mt-3 name">Francisco Amor</h5>
+                            <span>Full stack developer</span>
+                            <div class="mt-4">
+                                <a class="li-ic">
+                                    <i class="fab fa-linkedin mr-4 filter-blue"> </i>
+                                </a>
+                                <a class="li-ic">
+                                    <i class="fa fa-envelope mr-4 filter-blue"> </i>
+                                </a>
+                                <a class="li-ic">
+                                    <i class="fab fa-github mr-4 filter-blue"> </i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="bg-white p-3 text-center rounded box">
+                            <div class="team-photo">
+                                <img class="img-responsive rounded-circle person-photo" src="{{url_for('static',filename='images/dummy-person-image.jpg')}}" width="90">
+                                <img class="img-responsive rounded-circle organization-logo" src="{{url_for('static',filename='images/logo-ucadatalab-circle.png')}}" width="40">
+                            </div>
+                            <h5 class="mt-3 name">Javier Jiménez</h5>
+                            <span>Full stack developer</span>
+                            <div class="mt-4">
+                                <a class="li-ic">
+                                    <i class="fab fa-linkedin mr-4 filter-blue"> </i>
+                                </a>
+                                <a class="li-ic">
+                                    <i class="fa fa-envelope mr-4 filter-blue"> </i>
+                                </a>
+                                <a class="li-ic">
+                                    <i class="fab fa-github mr-4 filter-blue"> </i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="bg-white p-3 text-center rounded box">
+                            <div class="team-photo">
+                                <img class="img-responsive rounded-circle person-photo" src="{{url_for('static',filename='images/dummy-person-image.jpg')}}" width="90">
+                                <img class="img-responsive rounded-circle organization-logo" src="{{url_for('static',filename='images/logo-ucadatalab-circle.png')}}" width="40">
+                            </div>
+                            <h5 class="mt-3 name">David Peña</h5>
+                            <span>Optimization team</span>
+                            <div class="mt-4">
+                                <a class="li-ic">
+                                    <i class="fab fa-linkedin mr-4 filter-blue"> </i>
+                                </a>
+                                <a class="li-ic">
+                                    <i class="fa fa-envelope mr-4 filter-blue"> </i>
+                                </a>
+                                <a class="li-ic">
+                                    <i class="fab fa-github mr-4 filter-blue"> </i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="bg-white p-3 text-center rounded box">
+                            <div class="team-photo">
+                                <img class="img-responsive rounded-circle person-photo" src="{{url_for('static',filename='images/dummy-person-image.jpg')}}" width="90">
+                                <img class="img-responsive rounded-circle organization-logo" src="{{url_for('static',filename='images/arbol-komorebi.png')}}" width="40">
+                            </div>
+                            <h5 class="mt-3 name">David Gordo</h5>
+                            <span>Business advisor</span>
+                            <div class="mt-4">
+                                <a class="li-ic">
+                                    <i class="fab fa-linkedin mr-4 filter-blue"> </i>
+                                </a>
+                                <a class="li-ic">
+                                    <i class="fa fa-envelope mr-4 filter-blue"> </i>
+                                </a>
+                                <a class="li-ic">
+                                    <i class="fab fa-github mr-4 filter-blue"> </i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="bg-white p-3 text-center rounded box">
+                            <div class="team-photo">
+                                <img class="img-responsive rounded-circle person-photo" src="{{url_for('static',filename='images/dummy-person-image.jpg')}}" width="90">
+                                <img class="img-responsive rounded-circle organization-logo" src="{{url_for('static',filename='images/arbol-komorebi.png')}}" width="40">
+                            </div>
+                            <h5 class="mt-3 name">Victor Gallego</h5>
+                            <span>Optimization team</span>
+                            <div class="mt-4">
+                                <a class="li-ic">
+                                    <i class="fab fa-linkedin mr-4 filter-blue"> </i>
+                                </a>
+                                <a class="li-ic">
+                                    <i class="fa fa-envelope mr-4 filter-blue"> </i>
+                                </a>
+                                <a class="li-ic">
+                                    <i class="fab fa-github mr-4 filter-blue"> </i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="bg-white p-3 text-center rounded box">
+                            <div class="team-photo">
+                                <img class="img-responsive rounded-circle person-photo" src="{{url_for('static',filename='images/dummy-person-image.jpg')}}" width="90">
+                                <img class="img-responsive rounded-circle organization-logo" src="{{url_for('static',filename='images/arbol-komorebi.png')}}" width="40">
+                            </div>
+                            <h5 class="mt-3 name">Manuel Navarro</h5>
+                            <span>Modeling team</span>
+                            <div class="mt-4">
+                                <a class="li-ic">
+                                    <i class="fab fa-linkedin mr-4 filter-blue"> </i>
+                                </a>
+                                <a class="li-ic">
+                                    <i class="fa fa-envelope mr-4 filter-blue"> </i>
+                                </a>
+                                <a class="li-ic">
+                                    <i class="fab fa-github mr-4 filter-blue"> </i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </section>
+    </div>
+
+</main>
+<!--Main layout-->
+
+<!--Footer-->
+<footer class="page-footer font-small" style="background-color: #23387a;">
+    <!--Footer Links-->
+    <div class="container mt-5 mb-4 text-center text-md-left">
+        <div class="row mt-3">
+
+            <!--First column-->
+            <div class="col-md-6 col-lg-6 col-xl-6 mb-2" style="margin-top: 3rem;">
+                <h6 class="text-uppercase font-weight-bold">
+                    <strong>Partners</strong>
+                </h6>
+                <hr class="accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 200px;background-color: #82bed1;height: 2px;border: none;">
+                <p>
+                <a href="http://datalab.uca.es/"><img class="img-responsive" src="{{url_for('static',filename='images/logo.png')}}" width="250px"></p></a>
+                <p>
+                <a href="https://komorebi.ai/"><img class="img-responsive" src="{{url_for('static',filename='images/komorebi-todo.png')}}" width="250px"></p></a>
+                
+            </div>
+            <!--/.First column-->
+
+            <!--Second column-->
+            <div class="col-md-4 col-lg-4 col-xl-4 mb-2" style="margin-top: 3rem">
+                <h6 class="text-uppercase font-weight-bold">
+                    <strong>Contact</strong>
+                </h6>
+                <hr class="accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 200px;background-color: #82bed1;height: 2px;border: none;">
+                <p><i class="fa fa-envelope mr-3"></i> info@example.com</p>
+                <p><i class="fa fa-phone mr-3"></i> + 34 234 567 88</p>
+            </div>
+            <!--/.Second column-->
+
+        </div>
+    </div>
+    <!--/.Footer Links-->
+
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3">© 2021 Copyright:
+        <a href="https://smartshipping.es"> smartshipping.es</a>
+    </div>
+    <!-- Copyright -->
+
+</footer>
+<!--Footer-->
