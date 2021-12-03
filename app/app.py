@@ -12,6 +12,7 @@ import requests
 import datetime as dt
 import numpy as np
 import math
+import mongo_model
 
 # Price $/mt, no estoy seguro de que esta sea la medida correcta
 FUEL_PRICE = 633.50
@@ -28,16 +29,18 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    response = requests.get("http://zappa.uca.es:5001/api/available_routes")
-    code = response.status_code
-    if code == 200:
+
+    query = mongo_model.get_available_routes()
+    
+
+    if len(query) > 0:
         city_options = {
-            f"{cities['city_start']}-{cities['city_end']}": [
-                cities["city_start"],
-                cities["city_end"],
-            ]
-            for cities in response.json()
-        }
+                f"{cities['city_start']}-{cities['city_end']}": [
+                    cities["city_start"],
+                    cities["city_end"],
+                ]
+                for cities in query
+            }
     else:
         city_options = {
             "CADIZ-BOSTON1": ["CADIZ", "BOSTON"],
@@ -45,6 +48,7 @@ def index():
             "CARACAS-DAKAR1": ["CARACAS", "DAKAR"],
             "DAKAR-CARACAS1": ["DAKAR", "CARACAS"],
         }
+
 
     return render_template("form.html", city_options=city_options)
 
@@ -110,108 +114,14 @@ def ocean():
 def results():
     boat = request.args.get("boat", type=int)
     city_start, city_end = request.args.get("route", type=str).split("-")
-    time_start = request.args.get("date", type=str)
-
-    response = requests.get(
-        "http://zappa.uca.es:5001/api/route",
-        params={
-            "boat": 0,  # boat  # Siempre va a seleccionar el mismo barco
-            "city_start": city_start,
-            "city_end": city_end,
-            "time_start": time_start,
-        },
+    time_start = dt.datetime.strptime(
+        request.args.get("date", type=str), "%Y-%m-%d"
     )
 
-    code = response.status_code
-
-    data = None
-
-    if code == 200:
-        data = response.json()
-    else:
-        data = {
-            "city_start": "CADIZ",
-            "city_end": "BOSTON",
-            "routes": [
-                {
-                    "coords": [
-                        cities["CADIZ"],
-                        [35.419390, -17.566927],
-                        [35.460547, -32.612874],
-                        [35.586265, -53.456290],
-                        [37.204040, -61.425619],
-                        [35.658101, -68.195426],
-                        [39.787861, -68.362122],
-                        [42, -69],
-                        cities["BOSTON"],
-                    ],
-                    "fuel_step": [150, 200, 250, 200, 150, 100, 50, 80],
-                    "fuel_total": 1180,
-                    "timestamps": [
-                        str(dt.datetime(2020, 12, 3)),
-                        str(dt.datetime(2020, 12, 4)),
-                        str(dt.datetime(2020, 12, 5)),
-                        str(dt.datetime(2020, 12, 6)),
-                        str(dt.datetime(2020, 12, 7)),
-                        str(dt.datetime(2020, 12, 8)),
-                        str(dt.datetime(2020, 12, 9)),
-                        str(dt.datetime(2020, 12, 10)),
-                        str(dt.datetime(2020, 12, 11)),
-                    ],
-                },
-                {
-                    "coords": [
-                        cities["CADIZ"],
-                        [36.419390, -17.566927],
-                        [36.460547, -32.612874],
-                        [36.586265, -53.456290],
-                        [38.204040, -61.425619],
-                        [36.658101, -68.195426],
-                        [40.787861, -68.362122],
-                        [42, -69],
-                        cities["BOSTON"],
-                    ],
-                    "fuel_step": [150, 200, 250, 200, 150, 100, 50, 80],
-                    "fuel_total": 1180,
-                    "timestamps": [
-                        str(dt.datetime(2020, 12, 3)),
-                        str(dt.datetime(2020, 12, 4)),
-                        str(dt.datetime(2020, 12, 5)),
-                        str(dt.datetime(2020, 12, 6)),
-                        str(dt.datetime(2020, 12, 7)),
-                        str(dt.datetime(2020, 12, 8)),
-                        str(dt.datetime(2020, 12, 9)),
-                        str(dt.datetime(2020, 12, 10)),
-                        str(dt.datetime(2020, 12, 11)),
-                    ],
-                },
-            ],
-            "base_route": [cities["CADIZ"], cities["BOSTON"]],
-            "base_fuel_step": [200, 230, 200, 260, 170, 80, 70, 50],
-            "base_fuel_total": 1260,
-            "boat": 0,
-            "time_start": str(dt.datetime(2020, 12, 3)),
-            "base_timestamps": [
-                str(dt.datetime(2020, 12, 3)),
-                str(dt.datetime(2020, 12, 5)),
-                str(dt.datetime(2020, 12, 6)),
-                str(dt.datetime(2020, 12, 7)),
-                str(dt.datetime(2020, 12, 8)),
-                str(dt.datetime(2020, 12, 10)),
-                str(dt.datetime(2020, 12, 11)),
-                str(dt.datetime(2020, 12, 12)),
-                str(dt.datetime(2020, 12, 14)),
-            ],
-        }
-        with open("static/test_data/currents.json", "r") as f:
-            data["currents"] = json.loads(f.read())
-
-        with open("static/test_data/wind.json", "r") as f:
-            data["wind"] = json.loads(f.read())
-
-        with open("static/test_data/waves.json", "r") as f:
-            data["waves"] = json.loads(f.read())
-
+    data = json.loads(
+        mongo_model.load_route(boat=0, city_start = city_start, city_end = city_end, time_start = time_start)
+        )
+    
     best_route = data["routes"][0]
 
     # Take end-time and remove microseconds
@@ -283,4 +193,4 @@ def page_not_found(error):
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0")
+    app.run(debug=True,host="0.0.0.0")
