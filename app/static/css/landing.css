@@ -106,3 +106,7 @@ html {
   right: 50px;
   background: white;
 }
+
+.darkgrey-text {
+  color: rgb(124, 124, 124);
+}
