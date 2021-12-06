@@ -110,3 +110,11 @@ html {
 .darkgrey-text {
   color: rgb(124, 124, 124);
 }
+
+.centered-btn {
+  transform: translateX(-50%);
+  left: 50%;
+  top: 50%;
+  position: relative;
+  margin: 0;
+}
