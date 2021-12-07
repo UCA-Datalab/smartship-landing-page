@@ -24,6 +24,8 @@ cities = {
     "CARACAS": [10.625383, -66.941741],
 }
 
+PORT_START = ['Charleston','Bahamas']
+
 app = Flask(__name__)
 
 
@@ -34,6 +36,9 @@ def form():
     
 
     if len(query) > 0:
+
+        query = [route for route in query if route['city_start'] in PORT_START]
+
         city_options = {
                 f"{cities['city_start']}-{cities['city_end']}": [
                     cities["city_start"],
@@ -120,6 +125,11 @@ def results():
     time_start = dt.datetime.strptime(
         request.args.get("date", type=str), "%Y-%m-%d"
     )
+
+    #if by any chance, the query is made with a route that should not be displayed,
+    #it redirects to the main page
+    if city_start not in PORT_START:
+        return redirect("/")
 
     data = json.loads(
         mongo_model.load_route(boat=0, city_start = city_start, city_end = city_end, time_start = time_start)
