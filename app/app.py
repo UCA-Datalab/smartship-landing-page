@@ -123,13 +123,14 @@ def ocean():
 def results():
     boat = request.args.get("boat", type=int)
     city_start, city_end = request.args.get("route", type=str).split("-")
+    date_start = request.args.get("date", type=str)
     time_start = dt.datetime.strptime(
-        request.args.get("date", type=str), "%Y-%m-%d"
+        date_start, "%Y-%m-%d"
     )
 
     #if by any chance, the query is made with a route that should not be displayed,
     #it redirects to the main page
-    if city_start not in PORT_START or time_start not in DATES:
+    if city_start not in PORT_START or date_start not in DATES:
         return redirect("/")
 
     data = json.loads(
