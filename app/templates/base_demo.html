@@ -2,7 +2,16 @@
 
 
 {% block head %}
-<link href="{{url_for('static',filename='css/base_demo.css')}}" rel="stylesheet">
+
+<!-- Dashboard Page CSS -->
+<link href="{{url_for('static',filename='css/dashboard.css')}}" rel="stylesheet">
+<!-- Custom CSS -->
+<link href="{{url_for('static',filename='css/style.css')}}" rel="stylesheet">
+ <!-- You can change the theme colors from here -->
+ <link href="{{url_for('static',filename='css/colors/default-dark.css')}}" id="theme" rel="stylesheet"> 
+
+  <!-- Custom css for base_demo.html -->
+ <link href="{{url_for('static',filename='css/base_demo.css')}}" rel="stylesheet">
 
 {% block headDemo %} {% endblock %}
 
@@ -50,6 +59,10 @@
                 <ul class="navbar-nav mr-auto smooth-scroll">
                     <li class="nav-item ">
                         <a class="nav-link" href="/">Home
+                        </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="/form">Route Selector
                         </a>
                     </li>
                 </ul>
