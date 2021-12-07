@@ -1,113 +1,24 @@
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
-    <!-- Google Fonts -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
-    <!-- Bootstrap core CSS -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Material Design Bootstrap -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
-    <link href="{{url_for('static',filename='css/landing.css')}}" rel="stylesheet">
-    <!-- JQuery -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <!-- Bootstrap tooltips -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
-    <!-- Bootstrap core JavaScript -->
-    <script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
-    <!-- MDB core JavaScript -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
+{% extends 'base.html' %}
 
-    <title>Smart Shipping</title>
-    <link rel="icon" href="{{url_for('static',filename='images/sslogo@4x.png')}}">
-</head>
+{% block navbar %}
+    <li class="nav-item">
+        <a class="nav-link" href="#features">Features</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="#data">Data</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="#optimization">Optimization</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="#demo">Demo</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="#team">Team</a>
+    </li>
+{% endblock %}
 
-
-<!--Main Navigation-->
-<header>
-    <!--Navbar-->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
-
-        <div class="container">
-
-            <!-- Navbar brand -->
-            <a class="navbar-brand" href="#">
-                <div style="font-size: 30px;">
-                    <b style="color:#85b24a">Smart </b><b style="color:#82bed1">Shipping</b>
-                </div>
-                
-            </a>
-
-            <!-- Collapse button -->
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
-                aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <!-- Collapsible content -->
-            <div class="collapse navbar-collapse" id="basicExampleNav">
-
-                <!-- Links -->
-                <ul class="navbar-nav mr-auto smooth-scroll">
-                    <li class="nav-item ">
-                        <a class="nav-link" href="#intro">Home
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#features">Features</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#data">Data</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#optimization">Optimization</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#demo">Demo</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#team">Team</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- Collapsible content -->
-
-        </div>
-
-    </nav>
-    <!--/.Navbar-->
-
-    <!--Mask-->
-    <div id="intro" class="view">
-
-        <div class="mask rgba-black-strong">
-            <div class="container-fluid d-flex align-items-center justify-content-center h-100">
-
-                <div class="row d-flex justify-content-center text-center">
-                    <div class="col-md-10">
-                        <!-- Heading 
-                        <h2 class="display-4 font-weight-bold white-text pt-5 mb-2">Travel</h2>-->
-
-                        <img src="{{url_for('static',filename='images/sslogo@4x.png')}}" alt="My Image"
-                            class="img-fluid logo-landing">
-
-                        <!-- Divider -->
-                        <hr class="hr-light">
-
-                        <!-- Description -->
-                        <h4 class="white-text my-4">Maritime route optimization tool to define a safe route and reduce
-                            fuel consumption.</h4>
-                        <button type="button" class="btn btn-outline-white">Try it!</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--/.Mask-->
-</header>
-<!--Main Navigation-->
-
+{% block content %}
 <!--Main layout-->
 <main>
     <div class="container">
@@ -194,7 +105,7 @@
                 <div class="col-lg-4 col-md-6 mb-4">
 
                     <div class="view overlay z-depth-1-half round">
-                        <img src="https://mdbootstrap.com/img/Photos/Others/images/49.jpg" class="img-fluid" alt="">
+                        <img src="{{url_for('static',filename='images/demo/wind.gif')}}" class="img-fluid" alt="">
                         <div class="mask rgba-white-slight"></div>
                     </div>
 
@@ -211,7 +122,7 @@
                 <div class="col-lg-4 col-md-6 mb-4">
 
                     <div class="view overlay z-depth-1-half round">
-                        <img src="https://mdbootstrap.com/img/Photos/Others/images/29.jpg" class="img-fluid" alt="">
+                        <img src="{{url_for('static',filename='images/demo/waves.gif')}}" class="img-fluid" alt="">
                         <div class="mask rgba-white-slight"></div>
                     </div>
 
@@ -556,47 +467,4 @@
 
 </main>
 <!--Main layout-->
-
-<!--Footer-->
-<footer class="page-footer font-small" style="background-color: #23387a;">
-    <!--Footer Links-->
-    <div class="container mt-5 mb-4 text-center text-md-left">
-        <div class="row mt-3">
-
-            <!--First column-->
-            <div class="col-md-6 col-lg-6 col-xl-6 mb-2" style="margin-top: 1rem; margin-bottom: 0rem !important;">
-                <h6 class="text-uppercase font-weight-bold">
-                    <strong>Partners</strong>
-                </h6>
-                <hr class="accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 200px;background-color: #82bed1;height: 2px;border: none;">
-                <p>
-                <a href="http://datalab.uca.es/"><img class="img-responsive" src="{{url_for('static',filename='images/logo.png')}}" width="250px"></p></a>
-                <p>
-                <a href="https://komorebi.ai/"><img class="img-responsive" src="{{url_for('static',filename='images/komorebi-todo.png')}}" width="250px"></p></a>
-                
-            </div>
-            <!--/.First column-->
-
-            <!--Second column-->
-            <div class="col-md-4 col-lg-4 col-xl-4 mb-2" style="margin-top: 1rem; margin-bottom: 0rem !important;">
-                <h6 class="text-uppercase font-weight-bold">
-                    <strong>Contact</strong>
-                </h6>
-                <hr class="accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 200px;background-color: #82bed1;height: 2px;border: none;">
-                <p><i class="fa fa-envelope mr-3"></i> info@example.com</p>
-                <p><i class="fa fa-phone mr-3"></i> + 34 234 567 88</p>
-            </div>
-            <!--/.Second column-->
-
-        </div>
-    </div>
-    <!--/.Footer Links-->
-
-    <!-- Copyright -->
-    <div class="footer-copyright text-center py-3">© 2021 Copyright:
-        <a href="https://smartshipping.es"> smartshipping.es</a>
-    </div>
-    <!-- Copyright -->
-
-</footer>
-<!--Footer-->
+{% endblock %}
