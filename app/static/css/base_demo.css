@@ -1,0 +1,15 @@
+html,
+body{
+    height: 100%;
+}
+header{
+  height: 15% !important;
+}
+
+/* CONTENIDO DE /RESULTS Y /FORM */
+.justify-content-md-center{
+    height:auto;
+}
+.navbar-color{
+    background-color: #23387a !important;
+}
