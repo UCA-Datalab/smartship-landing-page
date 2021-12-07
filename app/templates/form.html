@@ -21,8 +21,8 @@
                                 <div class="form-group text-center">
                                     <label class="control-label">Available boats</label>
                                     <select id="boatSelector" name="boat" class="form-control custom-select" required>
-                    <option value="" hidden> Boat model </option>
-                  </select>
+                                        <option value="" hidden> Boat model </option>
+                                    </select>
                                     <small class="form-control-feedback"> Select the boat model </small>
                                 </div>
                             </div>
@@ -32,11 +32,11 @@
                                 <div class="form-group text-center">
                                     <label class="control-label">Available shipping routes</label>
                                     <select id="routeSelector" name="route" class="form-control custom-select" required>
-                    <option value="" hidden> Route </option>
-                    {% for opt in city_options %}
-                    <option value={{opt}}>{{opt}}</option>
-                    {% endfor %}
-                  </select>
+                                        <option value="" hidden> Route </option>
+                                        {% for opt in city_options %}
+                                        <option value={{opt}}>{{opt}}</option>
+                                        {% endfor %}
+                                    </select>
                                     <small class="form-control-feedback"> Select the desired route to optimize </small>
                                 </div>
                             </div>
@@ -47,7 +47,11 @@
                             <div class="col-md-4">
                                 <div class="form-group text-center">
                                     <label class="control-label">Date of Departure</label>
-                                    <input id="departing-datepicker" name="date" type="date" class="form-control" placeholder="dd/mm/yyyy" required>
+                                    <select id="dateSelector" name="date" class="form-control custom-select" required>
+                                        {% for date in dates %}
+                                        <option value={{date}} hidden> {{date}} </option>
+                                        {% endfor %}
+                                    </select>
                                 </div>
                             </div>
                             <!--/span-->
@@ -94,27 +98,6 @@
                         </div>
                         <!-- EN OF BOAT PROPERTIES CARDS -->
 
-
-
-                        <!-- ROUTE PROPERTIES CARD 
-            <div class="col-lg-4">
-
-              
-              <div hidden id="routeProperties" class="card">
-                
-                <h4 class="m-b-0 text-center">Card Title</h4>
-                
-                <div class="card-body">
-                  <a class="card-text"></a>
-                  <br>
-                  <a class="card-text"></a>
-                  <br>
-                  <a class="card-text"></a>
-
-                </div>
-              </div>
-            </div> DEPRECATED-->
-
                     </div>
 
             </div>
@@ -140,7 +123,8 @@
 
 
 
-{% endblock %} {% block scripts %}
+{% endblock %} 
+{% block scripts %}
 
 <script>
     $(document).ready(function() {

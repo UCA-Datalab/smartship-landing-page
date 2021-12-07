@@ -25,6 +25,7 @@ cities = {
 }
 
 PORT_START = ['Charleston','Bahamas']
+DATES = ['2021-01-01']
 
 app = Flask(__name__)
 
@@ -55,7 +56,7 @@ def form():
         }
 
 
-    return render_template("form.html", city_options=city_options)
+    return render_template("form.html", city_options=city_options, dates = DATES)
 
 @app.route("/")
 def index():
@@ -128,7 +129,7 @@ def results():
 
     #if by any chance, the query is made with a route that should not be displayed,
     #it redirects to the main page
-    if city_start not in PORT_START:
+    if city_start not in PORT_START or time_start not in DATES:
         return redirect("/")
 
     data = json.loads(
