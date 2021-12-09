@@ -11,7 +11,7 @@
             <div class="card-body">
                 <form action="/results">
                     <div class="form-body">
-                        <h3 class="card-title text-center">Choose your route parameters</h3>
+                        <h2 class="card-title text-center">Route selector</h2>
                         <hr>
                         <!--/row-->
 
@@ -21,7 +21,7 @@
                                 <div class="form-group text-center">
                                     <label class="control-label">Available boats</label>
                                     <select id="boatSelector" name="boat" class="form-control custom-select" required>
-                                        <option value="" hidden> Boat model </option>
+                                        <option value="0"> STOLT BOBCAT </option>
                                     </select>
                                     <small class="form-control-feedback"> Select the boat model </small>
                                 </div>
@@ -49,7 +49,7 @@
                                     <label class="control-label">Date of Departure</label>
                                     <select id="dateSelector" name="date" class="form-control custom-select" required>
                                         {% for date in dates %}
-                                        <option value={{date}} hidden> {{date}} </option>
+                                        <option value={{date}}> {{date}} </option>
                                         {% endfor %}
                                     </select>
                                 </div>
@@ -63,10 +63,10 @@
                         <div class="col-lg-5">
                             <!-- BOAT PROPERTIES CARD -->
                             <div hidden id="boatProperties-title" class="card">
-                                <img class="card-img-top img-responsive" src="" alt="Card image cap">
+                                <img class="card-img-top img-responsive" src="{{url_for('static',filename='images/boats/STOLT_BOBCAT.jpg')}}" alt="Card image cap">
 
                                 <div class="card-header">
-                                    <h4 class="m-b-0 text-center">Card Title</h4>
+                                    <h4 class="m-b-0 text-center">STOLT BOBCAT</h4>
                                 </div>
                             </div>
                         </div>
@@ -124,61 +124,3 @@
 
 
 {% endblock %} 
-{% block scripts %}
-
-<script>
-    $(document).ready(function() {
-
-        // Reading initial local JSON files
-        var boatJSON;
-
-        $(function() {
-            $.getJSON("static/test_data/boats.json", function(data) {
-                boatJSON = data;
-                for (let i = 0; i < data.length; ++i) {
-                    $("#boatSelector").append("<option value=\"" + i + "\">" + data[i]['name'] + "</option>");
-                }
-            }).fail(function() {
-                console.log("An error loading the JSON file has occurred.");
-            });
-
-        });
-
-
-
-        // Show boat properties
-        $(function() {
-            $("#boatSelector").change(function() {
-                let selectedBoat = $(this).find(":selected").attr("value");
-                $("#boatProperties-body").fadeOut("fast");
-                $("#boatProperties-title").fadeOut("fast").promise().done(function() {
-                    if ($("#boatProperties-title").attr("hidden") == "hidden") {
-                        $("#boatProperties-title").fadeIn("slow");
-                        $("#boatProperties-title").attr("hidden", false);
-                        $("#boatProperties-body").fadeIn("slow");
-                        $("#boatProperties-body").attr("hidden", false);
-                    }
-
-                    $("#boatProperties-title h4").text(boatJSON[selectedBoat]['name']);
-                    $("#boatProperties-title img").eq(0).attr("src", "/static/" + boatJSON[selectedBoat]['image']);
-
-                    let a_list = $("#boatProperties-body div").find("a");
-                    a_list[0].text = "IMO: " + boatJSON[selectedBoat]['IMO'];
-                    a_list[1].text = "Vessel Type: " + boatJSON[selectedBoat]['vessel_type'];
-                    a_list[2].text = "Flag: " + boatJSON[selectedBoat]['flag'];
-                    a_list[3].text = "Gross Tonnage: " + boatJSON[selectedBoat]['gross_tons'];
-                    a_list[4].text = "Length: " + boatJSON[selectedBoat]['length'] + " m";
-                    a_list[5].text = "Beam: " + boatJSON[selectedBoat]['beam'] + " m";
-                    a_list[6].text = "Speed: " + boatJSON[selectedBoat]['speed'] + " knt/h";
-                    a_list[7].text = "Year: " + boatJSON[selectedBoat]['year'];
-                    a_list[8].text = "Engine Power: " + boatJSON[selectedBoat]['engine_power'] + " kw";
-                    a_list[9].text = "Fuel type: " + boatJSON[selectedBoat]['fuel_type'] + a_list[6];
-                    $("#boatProperties-title").fadeIn("slow");
-                    $("#boatProperties-body").fadeIn("slow");
-                });
-            });
-        });
-
-    });
-</script>
-{% endblock %}

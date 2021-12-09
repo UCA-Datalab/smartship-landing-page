@@ -7,12 +7,18 @@ from flask import (
     make_response,
     json,
 )
+from flask_mail import(
+    Mail,
+    Message,
+) 
 import gzip
 import requests
 import datetime as dt
 import numpy as np
 import math
 import mongo_model
+
+
 
 # Price $/mt, no estoy seguro de que esta sea la medida correcta
 FUEL_PRICE = 633.50
@@ -29,6 +35,26 @@ DATES = ['2021-01-01']
 
 app = Flask(__name__)
 
+#define the mail configuration parameters
+app.config['MAIL_SERVER']='smtp.gmail.com'
+app.config['MAIL_PORT'] = 465
+app.config['MAIL_USERNAME'] = 'mail@gmail.com'
+app.config['MAIL_PASSWORD'] = 'nope#'
+app.config['MAIL_USE_TLS'] = False
+app.config['MAIL_USE_SSL'] = True
+
+#Create an instance of the mail class
+mail = Mail(app)
+
+@app.route("/")
+def index():
+    return render_template("landing.html")
+
+
+@app.route("/demo_request", methods=["GET", "POST"])
+def demo_request():
+   
+   return redirect("/")
 
 @app.route("/form")
 def form():
@@ -57,10 +83,6 @@ def form():
 
 
     return render_template("form.html", city_options=city_options, dates = DATES)
-
-@app.route("/")
-def index():
-    return render_template("landing.html")
 
 @app.route("/ocean", methods=["GET", "POST"])
 def ocean():

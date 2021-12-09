@@ -62,16 +62,7 @@ Global Styles
   outline: none; }
 
 body {
-  /*background: #fff;*/
-
-  background-image: url("/static/images/fondoPagina@4x.png") !important;
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
-  background-position: center center;
-  background-attachment: fixed;
-
+  background: #fff;  
   font-family: "Montserrat", sans-serif;
   margin: 0;
   overflow-x: hidden;
