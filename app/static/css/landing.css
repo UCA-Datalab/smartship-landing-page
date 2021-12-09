@@ -3,3 +3,11 @@ section:before {
   content: "";
   display: block;
 }
+
+.icon-btn:hover{
+  color:#82bed1;
+}
+
+.icon-btn{
+  color:#23387a;
+}
