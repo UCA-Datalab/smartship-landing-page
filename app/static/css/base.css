@@ -106,8 +106,8 @@ html {
 
 .organization-logo {
     position: absolute;
-    bottom: 0;
-    right: 50px;
+    bottom: 0rem;
+    right: 5rem;
     background: white;
 }
 
