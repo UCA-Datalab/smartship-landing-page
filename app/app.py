@@ -1,11 +1,13 @@
 from flask import (
     Flask,
+    flash,
     render_template,
     request,
     redirect,
     url_for,
     make_response,
     json,
+    session,
 )
 from flask_mail import(
     Mail,
@@ -20,6 +22,24 @@ import mongo_model
 
 
 
+
+app = Flask(__name__)
+app.secret_key = "12345678987654321#"
+
+#define the mail configuration parameters
+app.config['MAIL_SERVER']='smtp.gmail.com'
+app.config['MAIL_PORT'] = 465
+app.config['MAIL_USERNAME'] = 'smartshipping.contact@gmail.com'
+app.config['MAIL_PASSWORD'] = 'smartship1234'
+app.config['MAIL_USE_TLS'] = False
+app.config['MAIL_USE_SSL'] = True
+
+#Create an instance of the mail class
+mail = Mail(app)
+
+
+
+#APP variables
 # Price $/mt, no estoy seguro de que esta sea la medida correcta
 FUEL_PRICE = 633.50
 
@@ -32,19 +52,6 @@ cities = {
 
 PORT_START = ['Charleston','Bahamas']
 DATES = ['2021-01-01']
-
-app = Flask(__name__)
-
-#define the mail configuration parameters
-app.config['MAIL_SERVER']='smtp.gmail.com'
-app.config['MAIL_PORT'] = 465
-app.config['MAIL_USERNAME'] = 'smartshipping.contact@gmail.com'
-app.config['MAIL_PASSWORD'] = 'smartship1234'
-app.config['MAIL_USE_TLS'] = False
-app.config['MAIL_USE_SSL'] = True
-
-#Create an instance of the mail class
-mail = Mail(app)
 
 @app.route("/")
 def index():
@@ -69,9 +76,9 @@ def demo_request():
             Company: {company}\n \
             Message:\n {message}"
     
-    
     mail.send(msg)
-    return "Message sent!"
+    flash("Your message was successfully sent")
+    return redirect('/')
 
 
 

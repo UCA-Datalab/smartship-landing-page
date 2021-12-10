@@ -54,7 +54,7 @@
 
     </nav>
     <!--/.Navbar-->
-
+    
     <!--Mask-->
     <div id="intro" class="view">
 
@@ -85,6 +85,20 @@
         </div>
     </div>
     <!--/.Mask-->
+
+    {% for message in get_flashed_messages() %}
+
+    <div id="SentModal" class="modal rounded-3 .bg-light" style="display: block!important;" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">               
+            <div class="modal-footer">
+                <h4 class="text-center">{{ message }} <button type="button" class="btn btn-sm btn-info" onclick="$('#SentModal').hide()" data-bs-dismiss="modal">Close</button></h4>
+            </div>
+            </div>
+        </div>
+        </div>
+          
+    {% endfor %}
 </header>
 <!--Main Navigation-->
 {% endblock %}
@@ -353,14 +367,13 @@
                         on every step of the journey.
                     </p>
                 </div>
-
                 <!--Grid column-->
-
+                
                 <!--Grid column-->
                 <div class="col-lg-12 col-md-12">
                     <!-- Form contact -->
                     <form action="/demo_request" method="POST" class="p-5 grey-text">
-
+                       
                         <!--Grid row-->
                         <div class="row">
                             <!--Grid column-->
