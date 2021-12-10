@@ -38,8 +38,8 @@ app = Flask(__name__)
 #define the mail configuration parameters
 app.config['MAIL_SERVER']='smtp.gmail.com'
 app.config['MAIL_PORT'] = 465
-app.config['MAIL_USERNAME'] = 'mail@gmail.com'
-app.config['MAIL_PASSWORD'] = 'nope#'
+app.config['MAIL_USERNAME'] = 'smartshipping.contact@gmail.com'
+app.config['MAIL_PASSWORD'] = 'smartship1234'
 app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = True
 
@@ -51,17 +51,52 @@ def index():
     return render_template("landing.html")
 
 
+
 @app.route("/demo_request", methods=["GET", "POST"])
 def demo_request():
-   
-   return redirect("/")
 
+    name = request.form['name']
+    email = request.form['mail']
+    phone = request.form['phone']
+    company = request.form['company']
+    message = request.form['msg']
+
+    msg = Message(f"Request from {name}", sender = 'smartshipping.contact@gmail.com', recipients = ['smartshipping.contact@gmail.com'])
+    msg.body = f"Demo request:\n \
+            Name:{name} \n \
+            Mail: {email}\n \
+            Phone number: {phone}\n \
+            Company: {company}\n \
+            Message:\n {message}"
+    
+    
+    mail.send(msg)
+    return "Message sent!"
+
+
+
+@app.errorhandler(404)
+def page_not_found(error):
+    return redirect("/")
+
+
+@app.errorhandler(500)
+def page_not_found(error):
+    return '<h3>ERROR HTTP 500, internal server error</h3> <a href="/">Go back to main page</a>'
+
+
+@app.errorhandler(502)
+def page_not_found(error):
+    return '<h3>ERROR HTTP 502, internal server error</h3> <a href="/">Go back to main page</a>'
+
+
+# demo ready to be deployed
+"""
 @app.route("/form")
 def form():
 
     query = mongo_model.get_available_routes()
     
-
     if len(query) > 0:
 
         query = [route for route in query if route['city_start'] in PORT_START]
@@ -213,20 +248,7 @@ def results():
         days_best_labels=best_timestamps.tolist(),
     )
 
-
-@app.errorhandler(404)
-def page_not_found(error):
-    return redirect("/")
-
-
-@app.errorhandler(500)
-def page_not_found(error):
-    return '<h3>ERROR HTTP 500, internal server error</h3> <a href="/">Go back to main page</a>'
-
-
-@app.errorhandler(502)
-def page_not_found(error):
-    return '<h3>ERROR HTTP 502, internal server error</h3> <a href="/">Go back to main page</a>'
+"""
 
 
 if __name__ == "__main__":
