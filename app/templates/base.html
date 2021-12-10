@@ -23,12 +23,14 @@
     <!-- JQuery -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Bootstrap tooltips -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
     <!-- Bootstrap core JavaScript -->
     <script type="text/javascript"
         src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <!-- MDB core JavaScript -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
 
     <title>Smart Shipping</title>
     <link rel="icon" href="{{url_for('static',filename='images/sslogo@4x.png')}}">
@@ -48,18 +50,18 @@
 <body>
 
     {% block preloader %}
-    
+
     {% endblock %}
-    
+
     {% block header %}
-   
+
     {% endblock %}
-   
-    {% block content %} 
+
+    {% block content %}
     {% endblock %}
 
 
-   
+
 
     <!-- slimscrollbar scrollbar JavaScript -->
     <script src="{{url_for('static', filename='libs/perfect-scrollbar.jquery.min.js')}}"></script>
@@ -72,8 +74,7 @@
 
 </body>
 
- <!--Footer-->
- <footer class="page-footer font-small" style="background-color: #23387a;">
+<footer class="page-footer font-small" style="background-color: #23387a;">
     <!--Footer Links-->
     <div class="container mt-5 mb-4 text-center text-md-left">
         <div class="row mt-3">
@@ -83,12 +84,17 @@
                 <h6 class="text-uppercase font-weight-bold">
                     <strong>Partners</strong>
                 </h6>
-                <hr class="accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 200px;background-color: #82bed1;height: 2px;border: none;">
+                <hr class="accent-2 mb-4 mt-0 d-inline-block mx-auto"
+                    style="width: 200px;background-color: #82bed1;height: 2px;border: none;">
                 <p>
-                <a href="http://datalab.uca.es/"><img class="img-responsive" src="{{url_for('static',filename='images/logo.png')}}" width="250px"></p></a>
+                    <a href="http://datalab.uca.es/"><img class="img-responsive"
+                            src="{{url_for('static',filename='images/logo.png')}}" width="250px">
+                </p></a>
                 <p>
-                <a href="https://komorebi.ai/"><img class="img-responsive" src="{{url_for('static',filename='images/komorebi-todo.png')}}" width="250px"></p></a>
-                
+                    <a href="https://komorebi.ai/"><img class="img-responsive"
+                            src="{{url_for('static',filename='images/komorebi-todo.png')}}" width="250px">
+                </p></a>
+
             </div>
             <!--/.First column-->
 
@@ -97,7 +103,8 @@
                 <h6 class="text-uppercase font-weight-bold">
                     <strong>Contact</strong>
                 </h6>
-                <hr class="accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 200px;background-color: #82bed1;height: 2px;border: none;">
+                <hr class="accent-2 mb-4 mt-0 d-inline-block mx-auto"
+                    style="width: 200px;background-color: #82bed1;height: 2px;border: none;">
                 <p><i class="fa fa-envelope mr-3"></i> info@example.com</p>
                 <p><i class="fa fa-phone mr-3"></i> + 34 234 567 88</p>
             </div>
