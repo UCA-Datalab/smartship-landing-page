@@ -7,12 +7,18 @@ from flask import (
     make_response,
     json,
 )
+from flask_mail import(
+    Mail,
+    Message,
+) 
 import gzip
 import requests
 import datetime as dt
 import numpy as np
 import math
 import mongo_model
+
+
 
 # Price $/mt, no estoy seguro de que esta sea la medida correcta
 FUEL_PRICE = 633.50
@@ -24,16 +30,77 @@ cities = {
     "CARACAS": [10.625383, -66.941741],
 }
 
+PORT_START = ['Charleston','Bahamas']
+DATES = ['2021-01-01']
+
 app = Flask(__name__)
 
+#define the mail configuration parameters
+app.config['MAIL_SERVER']='smtp.gmail.com'
+app.config['MAIL_PORT'] = 465
+app.config['MAIL_USERNAME'] = 'smartshipping.contact@gmail.com'
+app.config['MAIL_PASSWORD'] = 'smartship1234'
+app.config['MAIL_USE_TLS'] = False
+app.config['MAIL_USE_SSL'] = True
 
+#Create an instance of the mail class
+mail = Mail(app)
+
+@app.route("/")
+def index():
+    return render_template("landing.html")
+
+
+
+@app.route("/demo_request", methods=["GET", "POST"])
+def demo_request():
+
+    name = request.form['name']
+    email = request.form['mail']
+    phone = request.form['phone']
+    company = request.form['company']
+    message = request.form['msg']
+
+    msg = Message(f"Request from {name}", sender = 'smartshipping.contact@gmail.com', recipients = ['smartshipping.contact@gmail.com'])
+    msg.body = f"Demo request:\n \
+            Name:{name} \n \
+            Mail: {email}\n \
+            Phone number: {phone}\n \
+            Company: {company}\n \
+            Message:\n {message}"
+    
+    
+    mail.send(msg)
+    return "Message sent!"
+
+
+
+@app.errorhandler(404)
+def page_not_found(error):
+    return redirect("/")
+
+
+@app.errorhandler(500)
+def page_not_found(error):
+    return '<h3>ERROR HTTP 500, internal server error</h3> <a href="/">Go back to main page</a>'
+
+
+@app.errorhandler(502)
+def page_not_found(error):
+    return '<h3>ERROR HTTP 502, internal server error</h3> <a href="/">Go back to main page</a>'
+
+
+# demo ready to be deployed
+"""
 @app.route("/form")
 def form():
 
     query = mongo_model.get_available_routes()
     
-
     if len(query) > 0:
+
+        query = [route for route in query if route['city_start'] in PORT_START]
+
         city_options = {
                 f"{cities['city_start']}-{cities['city_end']}": [
                     cities["city_start"],
@@ -50,11 +117,7 @@ def form():
         }
 
 
-    return render_template("form.html", city_options=city_options)
-
-@app.route("/")
-def index():
-    return render_template("landing.html")
+    return render_template("form.html", city_options=city_options, dates = DATES)
 
 @app.route("/ocean", methods=["GET", "POST"])
 def ocean():
@@ -117,9 +180,15 @@ def ocean():
 def results():
     boat = request.args.get("boat", type=int)
     city_start, city_end = request.args.get("route", type=str).split("-")
+    date_start = request.args.get("date", type=str)
     time_start = dt.datetime.strptime(
-        request.args.get("date", type=str), "%Y-%m-%d"
+        date_start, "%Y-%m-%d"
     )
+
+    #if by any chance, the query is made with a route that should not be displayed,
+    #it redirects to the main page
+    if city_start not in PORT_START or date_start not in DATES:
+        return redirect("/")
 
     data = json.loads(
         mongo_model.load_route(boat=0, city_start = city_start, city_end = city_end, time_start = time_start)
@@ -179,20 +248,7 @@ def results():
         days_best_labels=best_timestamps.tolist(),
     )
 
-
-@app.errorhandler(404)
-def page_not_found(error):
-    return redirect("/")
-
-
-@app.errorhandler(500)
-def page_not_found(error):
-    return '<h3>ERROR HTTP 500, internal server error</h3> <a href="/">Go back to main page</a>'
-
-
-@app.errorhandler(502)
-def page_not_found(error):
-    return '<h3>ERROR HTTP 502, internal server error</h3> <a href="/">Go back to main page</a>'
+"""
 
 
 if __name__ == "__main__":

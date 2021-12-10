@@ -19,7 +19,7 @@ header,
 }
 
 .view img {
-    display: initial;
+    display: initial !important;
 }
 
 .logo-landing {

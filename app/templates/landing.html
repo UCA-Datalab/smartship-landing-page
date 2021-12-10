@@ -1,32 +1,6 @@
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
-    <!-- Google Fonts -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
-    <!-- Bootstrap core CSS -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Material Design Bootstrap -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
-    <link href="{{url_for('static',filename='css/landing.css')}}" rel="stylesheet">
-    <link href="{{url_for('static',filename='css/base.css')}}" rel="stylesheet">
-    <!-- JQuery -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <!-- Bootstrap tooltips -->
-    <script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
-    <!-- Bootstrap core JavaScript -->
-    <script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
-    <!-- MDB core JavaScript -->
-    <script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
+{% extends 'base.html' %}
 
-    <title>Smart Shipping</title>
-    <link rel="icon" href="{{url_for('static',filename='images/sslogo@4x.png')}}">
-</head>
-
-
+{% block header %}
 <!--Main Navigation-->
 <header>
     <!--Navbar-->
@@ -99,9 +73,12 @@
                         <hr class="hr-light">
 
                         <!-- Description -->
-                        <h4 class="white-text my-4">Maritime route optimization tool to define a safe route and reduce
+                        <h4 class="white-text my-4">Maritime route optimization tool to define a safe route and
+                            reduce
                             fuel consumption.</h4>
-                        <button type="button" class="btn btn-outline-white try-it-btn">Try it!</button>
+                        <a class="white-text" href="#demo">
+                            <button type="button" href="#demo" class="btn btn-outline-white try-it-btn">Try
+                                it!</button></a>
                     </div>
                 </div>
             </div>
@@ -110,7 +87,10 @@
     <!--/.Mask-->
 </header>
 <!--Main Navigation-->
+{% endblock %}
 
+
+{% block content %}
 <!--Main layout-->
 <main>
     <div class="container">
@@ -124,7 +104,8 @@
                 <div class="col-md-8">
 
                     <!-- Description -->
-                    <p class="darkgrey-text">In the world of maritime transport, there are major challenges to be solved
+                    <p class="darkgrey-text">In the world of maritime transport, there are major challenges to be
+                        solved
                         in
                         the coming years.</p>
 
@@ -139,7 +120,8 @@
                     <img class="filter-blue" src="{{url_for('static',filename='images/icon/basic_globe.svg')}}"
                         width="60" height="60" alt="Enviromental" />
                     <h4 class="my-4 font-weight-bold">Ecofriendly</h4>
-                    <p class="darkgrey-text">Maritime traffic produces 2.5% of the planet's total CO2. The International
+                    <p class="darkgrey-text">Maritime traffic produces 2.5% of the planet's total CO2. The
+                        International
                         Maritime Organization's goal is to reduce these emissions by 40% before 2030.</p>
                 </div>
                 <!--Grid column-->
@@ -149,9 +131,11 @@
                     <img class="filter-blue" src="{{url_for('static',filename='images/icon/ecommerce_dollar.svg')}}"
                         width="60" height="60" alt="Cost" />
                     <h4 class="my-4 font-weight-bold">Money saving</h4>
-                    <p class="darkgrey-text">The price of fuel for a day's sailing is around $66000, so for long routes
+                    <p class="darkgrey-text">The price of fuel for a day's sailing is around $66000, so for long
+                        routes
                         the
-                        price is excessive. For example, a route from Algeciras to Shanghai (36 days) costs $2.4M.</p>
+                        price is excessive. For example, a route from Algeciras to Shanghai (36 days) costs $2.4M.
+                    </p>
                 </div>
                 <!--Grid column-->
 
@@ -160,7 +144,8 @@
                     <img class="filter-blue" src="{{url_for('static',filename='images/icon/basic_anchor.svg')}}"
                         width="60" height="60" alt="Safety" />
                     <h4 class="my-4 font-weight-bold">Crew safety</h4>
-                    <p class="darkgrey-text">Throughout 2020, 195 cases of armed robbery by pirates were reported. This
+                    <p class="darkgrey-text">Throughout 2020, 195 cases of armed robbery by pirates were reported.
+                        This
                         combined with possible weather problems, causes crews to be exposed to great dangers.</p>
                 </div>
                 <!--Grid column-->
@@ -199,7 +184,7 @@
                 <div class="col-lg-4 col-md-6 mb-4">
 
                     <div class="view overlay z-depth-1-half round">
-                        <img src="https://mdbootstrap.com/img/Photos/Others/images/49.jpg" class="img-fluid" alt="">
+                        <img src="{{url_for('static',filename='images/demo/wind.gif')}}" class="img-fluid" alt="">
                         <div class="mask rgba-white-slight"></div>
                     </div>
 
@@ -216,7 +201,7 @@
                 <div class="col-lg-4 col-md-6 mb-4">
 
                     <div class="view overlay z-depth-1-half round">
-                        <img src="https://mdbootstrap.com/img/Photos/Others/images/29.jpg" class="img-fluid" alt="">
+                        <img src="{{url_for('static',filename='images/demo/waves.gif')}}" class="img-fluid" alt="">
                         <div class="mask rgba-white-slight"></div>
                     </div>
 
@@ -251,15 +236,19 @@
                     <h4 class="mb-3"><strong>Vessel consumption modeling</strong></h4>
                     <p class="darkgrey-text">
                         Give a try to our demostrator and explore the features that our weather routing system.
-                        This optimizations are pre-calculated and implemented using real maritime traffic data from AIS
+                        This optimizations are pre-calculated and implemented using real maritime traffic data from
+                        AIS
                         transponders in order to
                         compare comercial routes to our optimal solution.
                     </p>
                     <h4 class="mb-3"><strong>Bio-inspired optimization algorithms</strong></h4>
                     <p class="darkgrey-text">
-                        A* (pronounced "A-star") is a graph traversal and path search algorithm, which is often used in
-                        many fields of computer science due to its completeness, optimality, and optimal efficiency.[1]
-                        One major practical drawback is its O ( b d ) {\displaystyle O(b^{d})} O(b^d) space complexity,
+                        A* (pronounced "A-star") is a graph traversal and path search algorithm, which is often used
+                        in
+                        many fields of computer science due to its completeness, optimality, and optimal
+                        efficiency.[1]
+                        One major practical drawback is its O ( b d ) {\displaystyle O(b^{d})} O(b^d) space
+                        complexity,
                         as it stores all generated nodes in memory.
                     </p>
 
@@ -287,7 +276,7 @@
         <section id="demo">
 
             <!-- Heading -->
-            <h2 class="mb-5 font-weight-bold text-center">Trial Version</h2>
+            <h2 class="mb-5 font-weight-bold text-center">Request a demo</h2>
 
             <!--Grid row-->
             <div class="row">
@@ -350,14 +339,16 @@
                     <h4 class="mb-3"><strong>Try our demo version</strong></h4>
                     <p class="darkgrey-text">
                         Give a try to our demostrator and explore the features that our weather routing system.
-                        This optimizations are pre-calculated and implemented using real maritime traffic data from AIS
+                        This optimizations are pre-calculated and implemented using real maritime traffic data
+                        from AIS
                         transponders in order to
                         compare comercial routes to our optimal solution.
                     </p>
                     <p class="darkgrey-text">
                         In this web application you will be able to consult all the oceanographical data on a
                         interactive map of the earth.
-                        You will be also able to compare between both the real and optimal route in different time gaps
+                        You will be also able to compare between both the real and optimal route in different
+                        time gaps
                         to see how the fuel consumption is affected
                         on every step of the journey.
                     </p>
@@ -365,12 +356,87 @@
 
                 <!--Grid column-->
 
+                <!--Grid column-->
+                <div class="col-lg-12 col-md-12">
+                    <!-- Form contact -->
+                    <form action="/demo_request" method="POST" class="p-5 grey-text">
+
+                        <!--Grid row-->
+                        <div class="row">
+                            <!--Grid column-->
+                            <div class="col-md-6">
+                                <div class="md-form form-sm"> <i class="fa fa-user prefix"></i>
+                                    <input type="text" id="form_name" name="name" class="form-control form-control-sm"
+                                        required>
+                                    <label for="form_name">Your name</label>
+                                </div>
+                            </div>
+                            <!--Grid column-->
+
+                            <!--Grid column-->
+                            <div class="col-md-6">
+                                <div class="md-form form-sm"> <i class="fas fa-mobile-alt prefix"></i>
+                                    <input type="tel" id="form_phone" name="phone" class="form-control form-control-sm"
+                                        required>
+                                    <label for="form_phone">Your phone number</label>
+                                </div>
+                            </div>
+                            <!--Grid column-->
+
+                        </div>
+                        <!--Grid row-->
+
+                        <!--Grid row-->
+                        <div class="row">
+
+
+                            <!--Grid column-->
+                            <div class="col-md-6">
+                                <div class="md-form form-sm"> <i class="fa fa-envelope prefix"></i>
+                                    <input type="email" id="form_email" name="mail" class="form-control form-control-sm"
+                                        required>
+                                    <label for="form_email">Your email</label>
+                                </div>
+                            </div>
+
+                            <!--Grid column-->
+                            <div class="col-md-6">
+                                <div class="md-form form-sm"> <i class="fas fa-briefcase prefix"></i>
+                                    <input type="text" id="form_company" name="company"
+                                        class="form-control form-control-sm" required>
+                                    <label for="form_company">Your company name</label>
+                                </div>
+                            </div>
+                            <!--Grid column-->
+
+                        </div>
+                        <!--Grid row-->
+
+                        <!--Grid row-->
+                        <div class="row">
+                            <textarea class="form-control" id="form_msg" name="msg" placeholder="Message"
+                                rows="4"></textarea>
+                        </div>
+
+                        <!--Grid row-->
+                        <div class="row justify-content-md-center">
+                            <!--Grid column-->
+                            <div class="col-md-6">
+                                <button class="btn btn-primary btn-md centered-btn"
+                                    style="background-color: #23387a !important;">Request a demo <i
+                                        class="fa fa-paper-plane-o ml-1"></i></button>
+                            </div>
+                            <!--Grid column-->
+                        </div>
+                        <!--Grid row-->
+
+                    </form>
+                    <!-- Form contact -->
+                </div>
+                <!--Grid column-->
             </div>
             <!--Grid row-->
 
-            <div>
-                <a class="btn btn-primary btn-md centered-btn" style="background-color: #23387a !important;">Try it!</a>
-            </div>
 
         </section>
         <!--Section: team-->
@@ -386,7 +452,8 @@
 
                     <!-- Description -->
                     <p class="darkgrey-text">A large team of computer scientists, mathematicians and physicists, all
-                        specialized in computer science, has been reunited. Thanks to all of them, the development of
+                        specialized in computer science, has been reunited. Thanks to all of them, the development
+                        of
                         this tool has been possible.</p>
 
                 </div>
@@ -593,53 +660,4 @@
 
 </main>
 <!--Main layout-->
-
-<!--Footer-->
-<footer class="page-footer font-small" style="background-color: #23387a;">
-    <!--Footer Links-->
-    <div class="container mt-5 mb-4 text-center text-md-left">
-        <div class="row mt-3">
-
-            <!--First column-->
-            <div class="col-md-6 col-lg-6 col-xl-6 mb-2" style="margin-top: 1rem; margin-bottom: 0rem !important;">
-                <h6 class="text-uppercase font-weight-bold">
-                    <strong>Partners</strong>
-                </h6>
-                <hr class="accent-2 mb-4 mt-0 d-inline-block mx-auto"
-                    style="width: 200px;background-color: #82bed1;height: 2px;border: none;">
-                <p>
-                    <a href="http://datalab.uca.es/"><img class="img-responsive"
-                            src="{{url_for('static',filename='images/logo.png')}}" width="250px">
-                </p></a>
-                <p>
-                    <a href="https://komorebi.ai/"><img class="img-responsive"
-                            src="{{url_for('static',filename='images/komorebi-todo.png')}}" width="250px">
-                </p></a>
-
-            </div>
-            <!--/.First column-->
-
-            <!--Second column-->
-            <div class="col-md-4 col-lg-4 col-xl-4 mb-2" style="margin-top: 1rem; margin-bottom: 0rem !important;">
-                <h6 class="text-uppercase font-weight-bold">
-                    <strong>Contact</strong>
-                </h6>
-                <hr class="accent-2 mb-4 mt-0 d-inline-block mx-auto"
-                    style="width: 200px;background-color: #82bed1;height: 2px;border: none;">
-                <p><i class="fa fa-envelope mr-3"></i> info@example.com</p>
-                <p><i class="fa fa-phone mr-3"></i> + 34 234 567 88</p>
-            </div>
-            <!--/.Second column-->
-
-        </div>
-    </div>
-    <!--/.Footer Links-->
-
-    <!-- Copyright -->
-    <div class="footer-copyright text-center py-3">© 2021 Copyright:
-        <a href="https://smartshipping.es"> smartshipping.es</a>
-    </div>
-    <!-- Copyright -->
-
-</footer>
-<!--Footer-->
+{% endblock %}

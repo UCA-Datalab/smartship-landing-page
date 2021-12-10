@@ -8,26 +8,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <!-- Deprecated
-    	<link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon.png"> 
-         <link href="../assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet"> 
-    -->
 
-    {% block title %}
-    <title>SmartShipping</title>
-    {% endblock %}
-
-    <!-- Bootstrap Core CSS -->
-    <link href="{{url_for('static',filename='plugins/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
-    <!-- Custom CSS -->
-    <link href="{{url_for('static',filename='css/style.css')}}" rel="stylesheet">
     <!-- Base CSS -->
     <link href="{{url_for('static',filename='css/base.css')}}" rel="stylesheet">
-    <!-- Dashboard Page CSS -->
-    <link href="{{url_for('static',filename='css/dashboard.css')}}" rel="stylesheet">
-    <!-- You can change the theme colors from here -->
-    <link href="{{url_for('static',filename='css/colors/default-dark.css')}}" id="theme" rel="stylesheet"> {% block
-    header %} {% endblock %}
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
+    <link href="{{url_for('static',filename='css/landing.css')}}" rel="stylesheet">
+    <!-- JQuery -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
+
+    <title>Smart Shipping</title>
+    <link rel="icon" href="{{url_for('static',filename='images/sslogo@4x.png')}}">
+
+    {% block head %} {% endblock %}
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -37,100 +45,24 @@
     <![endif]-->
 </head>
 
-<body class="fix-header fix-sidebar card-no-border">
-    <!-- ============================================================== -->
-    <!-- Preloader - style you can find in spinners.css -->
-    <!-- ============================================================== -->
-    <div class="preloader">
-        <div class="loader">
-            <div class="loader__figure"></div>
-            <p class="loader__label">UCA Datalab</p>
-        </div>
-    </div>
-    <!-- ============================================================== -->
-    <!-- Main wrapper - style you can find in pages.scss -->
-    <!-- ============================================================== -->
-
-    <div id="main-wrapper">
-
-        <!-- ============================================================== -->
-        <!-- TOP NAVIGATION BAR -->
-        <!-- ============================================================== -->
-        {% block navbar %}
-        <nav class="navbar top-navbar navbar-expand-md navbar-light">
-
-            <a class="navbar-brand" href="/">
-                <img src="{{url_for('static',filename='images/sslogo@4x.png')}}" class = "ml-3 mr-3" width="140" height="80" alt="">
-              </a>
-
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav">
-                    <a class="nav-item nav-link active" style="font-size: medium;" href="/"> <p>Home</p> <span class="sr-only">(current)</span></a>
-                    <a class="nav-item nav-link" href="#">About</a>
-                    <a class="nav-item nav-link" href="#">Pricing</a>
-                </div>
-            </div>
-        </nav>
-        {% endblock %}
-
-        <!-- ============================================================== -->
-        <!-- Container fluid  -->
-        <!-- ============================================================== -->
-        <div class="container-fluid">
-            <!-- ============================================================== -->
-            <!-- Title front bar --->
-            <!-- ============================================================== -->
-            <div class="row ">
-
-                <div class=" col-md mt-4 mb-4">
-                    <h1 class="text-themecolor text-center">Smart Shipping: AI powered weather routing</h3>
-                </div>
-
-            </div>
-            <!-- ============================================================== -->
-            <!-- End Title front bar -->
-            <!-- ============================================================== -->
-            {% block content %} {% endblock %}
-
-        </div>
-        <!-- ============================================================== -->
-        <!-- End Container fluid  -->
-        <!-- ============================================================== -->
-        <!-- ============================================================== -->
-        <!-- footer -->
-        <!-- ============================================================== -->
-        <footer class="footer text-center h5 mt-5"> 
-            <a class="navbar-brand" href="http://datalab.uca.es/">
-            <img src="{{url_for('static',filename='images/logo.png')}}" height="65" alt="">
-          </a>
-
-          <a class="navbar-brand ml-5" href="#">
-            <img src="{{url_for('static',filename='images/arbol-komorebi.png')}}" height="65" alt="">
-          </a>
-
-          <a class="navbar-brand" href="https://komorebi.ai/">
-            <img src="{{url_for('static',filename='images/logo_komorebi-2.png')}}" height="65" alt="">
-          </a>
-          
-        </footer>
-        <!-- ============================================================== -->
-        <!-- End footer -->
-        <!-- ============================================================== -->
-    </div>
-    <!-- ============================================================== -->
-    <!-- End Wrapper -->
-    <!-- ============================================================== -->
 
 
-    <!--JQuery Core JavaScript-->
-    <script src="{{url_for('static',filename='plugins/jquery/jquery.min.js')}}"></script>
-    <!-- Bootstrap popper Core JavaScript -->
-    <script src="{{url_for('static',filename='plugins/bootstrap/js/popper.min.js')}}"></script>
-    <script src="{{url_for('static',filename='plugins/bootstrap/js/bootstrap.min.js')}}"></script>
+<body>
+
+    {% block preloader %}
+
+    {% endblock %}
+
+    {% block header %}
+
+    {% endblock %}
+
+    {% block content %}
+    {% endblock %}
+
+
+
+
     <!-- slimscrollbar scrollbar JavaScript -->
     <script src="{{url_for('static', filename='libs/perfect-scrollbar.jquery.min.js')}}"></script>
     <!--Custom JavaScript -->
@@ -140,8 +72,56 @@
     <!-- ============================================================== -->
     {% block scripts %} {% endblock %}
 
-
-
 </body>
+
+<footer class="page-footer font-small" style="background-color: #23387a;">
+    <!--Footer Links-->
+    <div class="container mt-5 mb-4 text-center text-md-left">
+        <div class="row mt-3">
+
+            <!--First column-->
+            <div class="col-md-6 col-lg-6 col-xl-6 mb-2" style="margin-top: 1rem; margin-bottom: 0rem !important;">
+                <h6 class="text-uppercase font-weight-bold">
+                    <strong>Partners</strong>
+                </h6>
+                <hr class="accent-2 mb-4 mt-0 d-inline-block mx-auto"
+                    style="width: 200px;background-color: #82bed1;height: 2px;border: none;">
+                <p>
+                    <a href="http://datalab.uca.es/"><img class="img-responsive"
+                            src="{{url_for('static',filename='images/logo.png')}}" width="250px">
+                </p></a>
+                <p>
+                    <a href="https://komorebi.ai/"><img class="img-responsive"
+                            src="{{url_for('static',filename='images/komorebi-todo.png')}}" width="250px">
+                </p></a>
+
+            </div>
+            <!--/.First column-->
+
+            <!--Second column-->
+            <div class="col-md-4 col-lg-4 col-xl-4 mb-2" style="margin-top: 1rem; margin-bottom: 0rem !important;">
+                <h6 class="text-uppercase font-weight-bold">
+                    <strong>Contact</strong>
+                </h6>
+                <hr class="accent-2 mb-4 mt-0 d-inline-block mx-auto"
+                    style="width: 200px;background-color: #82bed1;height: 2px;border: none;">
+                <p><i class="fa fa-envelope mr-3"></i> info@example.com</p>
+                <p><i class="fa fa-phone mr-3"></i> + 34 234 567 88</p>
+            </div>
+            <!--/.Second column-->
+
+        </div>
+    </div>
+    <!--/.Footer Links-->
+
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3">© 2021 Copyright:
+        <a href="https://smartshipping.es"> smartshipping.es</a>
+    </div>
+    <!-- Copyright -->
+
+</footer>
+<!--Footer-->
+
 
 </html>
