@@ -28,13 +28,3 @@ services:
     build: .
     volumes:
       - ./app:/app
-    depends_on:
-      - mongo
-
-  mongo:
-    image: mongo:5.0.3
-    restart: always
-    ports:
-      - 27017:27017
-    volumes:
-      - /var/lib/mongo/smartshipping/:/data/db
