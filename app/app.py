@@ -55,6 +55,7 @@ DATES = ['2021-01-01']
 
 @app.route("/")
 def index():
+    
     return render_template("landing.html")
 
 

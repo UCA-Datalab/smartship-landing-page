@@ -17,3 +17,6 @@ section:before {
     background-color: #f8f9fa !important;
     border-color: #f8f9fa !important;
 }
+.centered{
+  justify-content: center !important;
+}
