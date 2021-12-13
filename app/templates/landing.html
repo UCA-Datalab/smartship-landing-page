@@ -76,10 +76,9 @@
                         <hr class="hr-light">
 
                         <!-- Description -->
-                        <h4 class="white-text my-4">Maritime route optimization
-                            tool to define a safe route and
-                            reduce
-                            fuel consumption.</h4>
+                        <h4 class="white-text my-4">
+                            AI powered optimization for cleaner, safer and more efficient maritime transport.
+                        </h4>
                         <a class="white-text" href="#demo">
                             <button type="button" href="#demo" class="btn
                                 btn-outline-white try-it-btn">Try
@@ -147,9 +146,9 @@
                         width="60" height="60" alt="Enviromental" />
                     <h4 class="my-4 font-weight-bold">Ecofriendly</h4>
                     <p class="darkgrey-text">Maritime traffic produces 2.5% of
-                        the planet's total CO2. The
+                        the planet's total CO2 emissions. The
                         International
-                        Maritime Organization's goal is to reduce these
+                        Maritime Organization aims to reduce these
                         emissions by 40% before 2030.</p>
                 </div>
                 <!--Grid column-->
@@ -160,12 +159,10 @@
                         src="{{url_for('static',filename='images/icon/ecommerce_dollar.svg')}}"
                         width="60" height="60" alt="Cost" />
                     <h4 class="my-4 font-weight-bold">Money saving</h4>
-                    <p class="darkgrey-text">The price of fuel for a day's
-                        sailing is around $66000, so for long
-                        routes
-                        the
-                        price is excessive. For example, a route from Algeciras
-                        to Shanghai (36 days) costs $2.4M.
+                    <p class="darkgrey-text">
+                        Fuel amounts to 60% of the total operational cost of sea transport, for a total bill of €120 Billions per year. 
+                        Optimizing routes can save 3-10% of this sum at almost no extra cost.
+                        
                     </p>
                 </div>
                 <!--Grid column-->
@@ -176,11 +173,10 @@
                         src="{{url_for('static',filename='images/icon/basic_anchor.svg')}}"
                         width="60" height="60" alt="Safety" />
                     <h4 class="my-4 font-weight-bold">Crew safety</h4>
-                    <p class="darkgrey-text">Throughout 2020, 195 cases of armed
-                        robbery by pirates were reported.
-                        This
-                        combined with possible weather problems, causes crews to
-                        be exposed to great dangers.</p>
+                    <p class="darkgrey-text">
+                        Sailing under adverse weather conditions causes 48% of maritime casualties.
+                        Crew and cargo safety must be considered when planning optimal routes. 
+                        </p>
                 </div>
                 <!--Grid column-->
 
@@ -196,7 +192,14 @@
 
             <!--Grid row-->
             <div class="row">
-
+                <div class="col-lg-12 col-md-12 mb-4">
+                    <p> Oceanographic and weather conditions are constanly changing, so optimal routes will change every day.
+                        <br> 
+                        Also on a given day, the optimal route will be different for each vessel.
+                        <br>
+                        All our data are daily updated from main weather and ocean data providers.
+                    </p>
+                </div>
                 <!--Grid column-->
                 <div class="col-lg-4 col-md-12 mb-4">
 
@@ -209,10 +212,8 @@
 
                     <h4 class="my-4 font-weight-bold">Currents</h4>
                     <p class="darkgrey-text">
-                        (Global Analysis Forecast - Copernicus)<br>
-                        10 days forecast
-                        Spatial resolution: 0.08º
-                        Time resolution: 1 day
+                        Sea currents can reach 10% of a typical cargo vessel speed.
+                        Detailed real-time knowledge of sea currents can have a considerable impact on fuel consumption.
                     </p>
 
                 </div>
@@ -230,9 +231,8 @@
 
                     <h4 class="my-4 font-weight-bold">Wind</h4>
                     <p class="darkgrey-text">
-                        (NOAA Global Forecast System)<br>
-                        16 days forecast Spatial resolution: 0.25º
-                        Time resolution: 1h (days 1-5) 3h (days 6-16)
+                       Wind adds further resistance specially in container ships that have a large cross section. 
+                       Wind changes on a shorter time scale. It is essential to have freshly updated data and reliable forecasts.
                     </p>
 
                 </div>
@@ -250,9 +250,9 @@
 
                     <h4 class="my-4 font-weight-bold">Waves</h4>
                     <p class="darkgrey-text">
-                        (NOAA Wavewatch III)<br>
-                        16 days forecast Spatial resolution: 0.25º
-                        Time resolution: 1h (days 1-5) / 3h (days 6-16)
+                        We model the added resistance due to swell and waves on a given vessel.
+                        High transverse waves can be potentially dangerous.
+                        
                     </p>
 
                 </div>
@@ -278,19 +278,16 @@
                     <!--Excerpt-->
                     <h4 class="mb-3"><strong>Vessel consumption modeling</strong></h4>
                     <p class="darkgrey-text">
-                        We use precise mathematical models to accurately
-                        simulate the waves, currents and wind added resistance
-                        to
-                        propeller and vessel performance.
+                        We use advance mathematical models to accurately
+                        simulate the interaction of waves, currents and wind on a specific vessel.
+                        Our baseline models incorporate state of the art knownledge on naval engineering and hydrodynamics. 
+                        We can develop tailor made consumption models trained on real consumption data. 
                     </p>
-                    <h4 class="mb-3"><strong>Bio-inspired optimization
-                            algorithms</strong></h4>
+                    <h4 class="mb-3"><strong>Optimization algorithms</strong></h4>
                     <p class="darkgrey-text">
-                        To explore among all the possible routes we make use of
-                        state of the art evolutionary optimization algorithms.
-                        We perform simulation of thousands feasible routes and
-                        combine information of the best individuals to generate
-                        the most efficient route.
+                        We combine the most recent evolutionary optimization 
+                        algorithms and gradient descent variational methods 
+                        to find the optimal route according to user defined criteria.
                     </p>
 
                 </div>
@@ -321,44 +318,35 @@
             <!-- Heading -->
             <h2 class="mb-5 font-weight-bold text-center">Request a demo</h2>
             <!--Grid row-->
-            <div class="row">
+            <div class="row justify-content-center">
 
                 <!--Grid column-->
                 <div class="col-md-6 mb-4">
-                    <video class="video-element" controls>
-                        <source
-                            src="{{url_for('static',filename='images/demo/video.mp4')}}"
-                            type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
+                    <iframe class="video-element"
+                        src="https://www.youtube.com/embed/ceQaNbNrfRQ"  allowfullscreen webkitallowfullscreen >
+                    </iframe>
                     <!--Carousel Wrapper-->
                 </div>
                 <!--Grid column-->
 
                 <!--Grid column-->
-                <div class="col-md-6">
+                <div class="col-md-5">
 
                     <!--Excerpt-->
                     <h4 class="mb-3"><strong>Try our demo version</strong></h4>
                     <p class="darkgrey-text">
-                        Give a try to our demostrator and explore the features
+                        Try our software and explore the features
                         that our weather routing system provides.
-                        This optimizations are pre-calculated and implemented
-                        using real maritime traffic data
-                        from AIS
-                        transponders in order to
-                        compare comercial routes to our optimal solution.
+                        We currently compare real trajectories obtained 
+                        by AIS data to find out the estimated savings 
+                        that would be obtained with our optimization tools.
+                        
                     </p>
                     <p class="darkgrey-text">
-                        In this web application you will be able to consult all
-                        the oceanographical data on a
-                        interactive map of the earth.
-                        You will be also able to compare between both the real
-                        and optimal route in different
-                        time gaps
-                        to see how the fuel consumption is affected
-                        on every step of the journey.
+                        If you are interested in trying our product, please fill the form below and we will be happy to schedule a demostration. 
                     </p>
+                    <br>
+                    <br>
                 </div>
                 <!--Grid column-->
 
@@ -472,12 +460,11 @@
                 <div class="col-md-8">
 
                     <!-- Description -->
-                    <p class="darkgrey-text">A large team of computer
-                        scientists, mathematicians and physicists, all
-                        specialized in computer science, has been reunited.
-                        Thanks to all of them, the development
-                        of
-                        this tool has been possible.</p>
+                    <p class="darkgrey-text text-center">
+                        We are a team of passionate mathematicians, computer scientists, engineers and developers committed to work together and share our knowledge to build a better world. 
+                        <br>
+                        If you want to join us, the team is growing!
+                       </p>
 
                 </div>
             </div>
@@ -497,7 +484,7 @@
                                     width="40">
                             </div>
                             <h5 class="mt-3 name">David Gómez-Ullate</h5>
-                            <span class="darkgrey-text">Strategic advisor</span>
+                            <span class="darkgrey-text">Project coordinator</span>
                             <div class="mt-4 justify-content-center row">
                                 <a class="li-ic icon-btn"
                                     href="https://www.linkedin.com/in/david-g%C3%B3mez-ullate-oteiza-87a820b/">
@@ -710,7 +697,7 @@
                                     width="40">
                             </div>
                             <h5 class="mt-3 name">Alberto Torres</h5>
-                            <span class="darkgrey-text">Data management</span>
+                            <span class="darkgrey-text">Lead Data Scientist</span>
                             <div class="mt-4 justify-content-center row">
                                 <a class="li-ic icon-btn"
                                     href="https://www.linkedin.com/in/albertotb/">
