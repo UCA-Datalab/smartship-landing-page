@@ -1,18 +1,45 @@
 from flask import (
     Flask,
+    flash,
     render_template,
     request,
     redirect,
     url_for,
     make_response,
     json,
+    session,
 )
+from flask_mail import(
+    Mail,
+    Message,
+) 
 import gzip
 import requests
 import datetime as dt
 import numpy as np
 import math
+import mongo_model
 
+
+
+
+app = Flask(__name__)
+app.secret_key = "12345678987654321#"
+
+#define the mail configuration parameters
+app.config['MAIL_SERVER']='smtp.gmail.com'
+app.config['MAIL_PORT'] = 465
+app.config['MAIL_USERNAME'] = 'smartshipping.contact@gmail.com'
+app.config['MAIL_PASSWORD'] = 'smartship1234'
+app.config['MAIL_USE_TLS'] = False
+app.config['MAIL_USE_SSL'] = True
+
+#Create an instance of the mail class
+mail = Mail(app)
+
+
+
+#APP variables
 # Price $/mt, no estoy seguro de que esta sea la medida correcta
 FUEL_PRICE = 633.50
 
@@ -23,21 +50,72 @@ cities = {
     "CARACAS": [10.625383, -66.941741],
 }
 
-app = Flask(__name__)
-
+PORT_START = ['Charleston','Bahamas']
+DATES = ['2021-01-01']
 
 @app.route("/")
 def index():
-    response = requests.get("http://zappa.uca.es:5001/api/available_routes")
-    code = response.status_code
-    if code == 200:
+    
+    return render_template("landing.html")
+
+
+
+@app.route("/demo_request", methods=["GET", "POST"])
+def demo_request():
+
+    name = request.form['name']
+    email = request.form['mail']
+    phone = request.form['phone']
+    company = request.form['company']
+    message = request.form['msg']
+
+    msg = Message(f"Request from {name}", sender = 'smartshipping.contact@gmail.com', recipients = ['smartshipping.contact@gmail.com'])
+    msg.body = f"Demo request:\n \
+            Name:{name} \n \
+            Mail: {email}\n \
+            Phone number: {phone}\n \
+            Company: {company}\n \
+            Message:\n {message}"
+    
+    mail.send(msg)
+    flash("Your message was successfully sent")
+    return redirect('/')
+
+
+
+@app.errorhandler(404)
+def page_not_found(error):
+    return redirect("/")
+
+
+@app.errorhandler(500)
+def page_not_found(error):
+    return '<h3>ERROR HTTP 500, internal server error</h3> <a href="/">Go back to main page</a>'
+
+
+@app.errorhandler(502)
+def page_not_found(error):
+    return '<h3>ERROR HTTP 502, internal server error</h3> <a href="/">Go back to main page</a>'
+
+
+# demo ready to be deployed
+"""
+@app.route("/form")
+def form():
+
+    query = mongo_model.get_available_routes()
+    
+    if len(query) > 0:
+
+        query = [route for route in query if route['city_start'] in PORT_START]
+
         city_options = {
-            f"{cities['city_start']}-{cities['city_end']}": [
-                cities["city_start"],
-                cities["city_end"],
-            ]
-            for cities in response.json()
-        }
+                f"{cities['city_start']}-{cities['city_end']}": [
+                    cities["city_start"],
+                    cities["city_end"],
+                ]
+                for cities in query
+            }
     else:
         city_options = {
             "CADIZ-BOSTON1": ["CADIZ", "BOSTON"],
@@ -46,8 +124,8 @@ def index():
             "DAKAR-CARACAS1": ["DAKAR", "CARACAS"],
         }
 
-    return render_template("form.html", city_options=city_options)
 
+    return render_template("form.html", city_options=city_options, dates = DATES)
 
 @app.route("/ocean", methods=["GET", "POST"])
 def ocean():
@@ -92,7 +170,7 @@ def ocean():
             if h > 0:
                 data_dict.append({"lat": lat, "lon": lon, "height": h})
 
-        data["waves"][i]["height"] = {"max": 14, "data": data_dict}
+        data["waves"][i]["height"] = {"max": 10, "data": data_dict}
 
     with open("static/libs/coastlines10.json", "r") as f:
         data["mask"] = json.loads(f.read())
@@ -110,108 +188,20 @@ def ocean():
 def results():
     boat = request.args.get("boat", type=int)
     city_start, city_end = request.args.get("route", type=str).split("-")
-    time_start = request.args.get("date", type=str)
-
-    response = requests.get(
-        "http://zappa.uca.es:5001/api/route",
-        params={
-            "boat": 0,  # boat  # Siempre va a seleccionar el mismo barco
-            "city_start": city_start,
-            "city_end": city_end,
-            "time_start": time_start,
-        },
+    date_start = request.args.get("date", type=str)
+    time_start = dt.datetime.strptime(
+        date_start, "%Y-%m-%d"
     )
 
-    code = response.status_code
+    #if by any chance, the query is made with a route that should not be displayed,
+    #it redirects to the main page
+    if city_start not in PORT_START or date_start not in DATES:
+        return redirect("/")
 
-    data = None
-
-    if code == 200:
-        data = response.json()
-    else:
-        data = {
-            "city_start": "CADIZ",
-            "city_end": "BOSTON",
-            "routes": [
-                {
-                    "coords": [
-                        cities["CADIZ"],
-                        [35.419390, -17.566927],
-                        [35.460547, -32.612874],
-                        [35.586265, -53.456290],
-                        [37.204040, -61.425619],
-                        [35.658101, -68.195426],
-                        [39.787861, -68.362122],
-                        [42, -69],
-                        cities["BOSTON"],
-                    ],
-                    "fuel_step": [150, 200, 250, 200, 150, 100, 50, 80],
-                    "fuel_total": 1180,
-                    "timestamps": [
-                        str(dt.datetime(2020, 12, 3)),
-                        str(dt.datetime(2020, 12, 4)),
-                        str(dt.datetime(2020, 12, 5)),
-                        str(dt.datetime(2020, 12, 6)),
-                        str(dt.datetime(2020, 12, 7)),
-                        str(dt.datetime(2020, 12, 8)),
-                        str(dt.datetime(2020, 12, 9)),
-                        str(dt.datetime(2020, 12, 10)),
-                        str(dt.datetime(2020, 12, 11)),
-                    ],
-                },
-                {
-                    "coords": [
-                        cities["CADIZ"],
-                        [36.419390, -17.566927],
-                        [36.460547, -32.612874],
-                        [36.586265, -53.456290],
-                        [38.204040, -61.425619],
-                        [36.658101, -68.195426],
-                        [40.787861, -68.362122],
-                        [42, -69],
-                        cities["BOSTON"],
-                    ],
-                    "fuel_step": [150, 200, 250, 200, 150, 100, 50, 80],
-                    "fuel_total": 1180,
-                    "timestamps": [
-                        str(dt.datetime(2020, 12, 3)),
-                        str(dt.datetime(2020, 12, 4)),
-                        str(dt.datetime(2020, 12, 5)),
-                        str(dt.datetime(2020, 12, 6)),
-                        str(dt.datetime(2020, 12, 7)),
-                        str(dt.datetime(2020, 12, 8)),
-                        str(dt.datetime(2020, 12, 9)),
-                        str(dt.datetime(2020, 12, 10)),
-                        str(dt.datetime(2020, 12, 11)),
-                    ],
-                },
-            ],
-            "base_route": [cities["CADIZ"], cities["BOSTON"]],
-            "base_fuel_step": [200, 230, 200, 260, 170, 80, 70, 50],
-            "base_fuel_total": 1260,
-            "boat": 0,
-            "time_start": str(dt.datetime(2020, 12, 3)),
-            "base_timestamps": [
-                str(dt.datetime(2020, 12, 3)),
-                str(dt.datetime(2020, 12, 5)),
-                str(dt.datetime(2020, 12, 6)),
-                str(dt.datetime(2020, 12, 7)),
-                str(dt.datetime(2020, 12, 8)),
-                str(dt.datetime(2020, 12, 10)),
-                str(dt.datetime(2020, 12, 11)),
-                str(dt.datetime(2020, 12, 12)),
-                str(dt.datetime(2020, 12, 14)),
-            ],
-        }
-        with open("static/test_data/currents.json", "r") as f:
-            data["currents"] = json.loads(f.read())
-
-        with open("static/test_data/wind.json", "r") as f:
-            data["wind"] = json.loads(f.read())
-
-        with open("static/test_data/waves.json", "r") as f:
-            data["waves"] = json.loads(f.read())
-
+    data = json.loads(
+        mongo_model.load_route(boat=0, city_start = city_start, city_end = city_end, time_start = time_start)
+        )
+    
     best_route = data["routes"][0]
 
     # Take end-time and remove microseconds
@@ -266,21 +256,8 @@ def results():
         days_best_labels=best_timestamps.tolist(),
     )
 
-
-@app.errorhandler(404)
-def page_not_found(error):
-    return redirect("/")
-
-
-@app.errorhandler(500)
-def page_not_found(error):
-    return '<h3>ERROR HTTP 500, internal server error</h3> <a href="/">Go back to main page</a>'
-
-
-@app.errorhandler(502)
-def page_not_found(error):
-    return '<h3>ERROR HTTP 502, internal server error</h3> <a href="/">Go back to main page</a>'
+"""
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0")
+    app.run(host="0.0.0.0", port=5000)
