@@ -6,7 +6,6 @@ from flask import (
     redirect,
     url_for,
     make_response,
-    json,
     session,
 )
 from flask_mail import(
