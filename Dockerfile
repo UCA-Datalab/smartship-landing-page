@@ -11,4 +11,4 @@ ENV FLASK_RUN_HOST 0.0.0.0
 ENV FLASK_ENV development 
       
         
-CMD ["gunicorn", "-w", "4", "--bind", " 0.0.0.0:5000" , "wsgi:app"]
+CMD ["gunicorn", "--bind", " 0.0.0.0:5000" , "wsgi:app"]

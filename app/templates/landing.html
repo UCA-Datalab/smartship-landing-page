@@ -16,10 +16,8 @@
             </a>
 
             <!-- Collapse button -->
-            <button class="navbar-toggler" type="button" data-toggle="collapse"
-                data-target="#basicExampleNav"
-                aria-controls="basicExampleNav" aria-expanded="false"
-                aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
+                aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
@@ -67,9 +65,7 @@
                     <div class="col-md-10">
                         <!-- Heading 
                         <h2 class="display-4 font-weight-bold white-text pt-5 mb-2">Travel</h2>-->
-                        <img
-                            src="{{url_for('static',filename='images/sslogo@4x.png')}}"
-                            alt="My Image"
+                        <img src="{{url_for('static',filename='images/sslogo@4x.png')}}" alt="My Image"
                             class="img-fluid logo-landing">
 
                         <!-- Divider -->
@@ -97,12 +93,8 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-footer centered">
-                    <h4 class="text-center">{{ message }} </h4><button
-                        type="button"
-                        class="btn btn-sm btn-info" style="background-color:
-                        #23387a !important;"
-                        onclick="$('#SentModal').hide()"
-                        data-bs-dismiss="modal">Close</button>
+                    <h4 class="text-center">{{ message }} </h4><button type="button" class="btn btn-sm btn-info" style="background-color:
+                        #23387a !important;" onclick="$('#SentModal').hide()" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
@@ -141,8 +133,7 @@
 
                 <!--Grid column-->
                 <div class="col-md-4 mb-5">
-                    <img class="filter-blue"
-                        src="{{url_for('static',filename='images/icon/basic_globe.svg')}}"
+                    <img class="filter-blue" src="{{url_for('static',filename='images/icon/basic_globe.svg')}}"
                         width="60" height="60" alt="Enviromental" />
                     <h4 class="my-4 font-weight-bold">Ecofriendly</h4>
                     <p class="darkgrey-text">Maritime traffic produces 2.5% of
@@ -155,28 +146,27 @@
 
                 <!--Grid column-->
                 <div class="col-md-4 mb-5">
-                    <img class="filter-blue"
-                        src="{{url_for('static',filename='images/icon/ecommerce_dollar.svg')}}"
+                    <img class="filter-blue" src="{{url_for('static',filename='images/icon/ecommerce_dollar.svg')}}"
                         width="60" height="60" alt="Cost" />
                     <h4 class="my-4 font-weight-bold">Money saving</h4>
                     <p class="darkgrey-text">
-                        Fuel amounts to 60% of the total operational cost of sea transport, for a total bill of €120 Billions per year. 
+                        Fuel amounts to 60% of the total operational cost of sea transport, for a total bill of €120
+                        Billions per year.
                         Optimizing routes can save 3-10% of this sum at almost no extra cost.
-                        
+
                     </p>
                 </div>
                 <!--Grid column-->
 
                 <!--Grid column-->
                 <div class="col-md-4 mb-5">
-                    <img class="filter-blue"
-                        src="{{url_for('static',filename='images/icon/basic_anchor.svg')}}"
+                    <img class="filter-blue" src="{{url_for('static',filename='images/icon/basic_anchor.svg')}}"
                         width="60" height="60" alt="Safety" />
                     <h4 class="my-4 font-weight-bold">Crew safety</h4>
                     <p class="darkgrey-text">
                         Sailing under adverse weather conditions causes 48% of maritime casualties.
-                        Crew and cargo safety must be considered when planning optimal routes. 
-                        </p>
+                        Crew and cargo safety must be considered when planning optimal routes.
+                    </p>
                 </div>
                 <!--Grid column-->
 
@@ -193,8 +183,9 @@
             <!--Grid row-->
             <div class="row">
                 <div class="col-lg-12 col-md-12 mb-4">
-                    <p> Oceanographic and weather conditions are constanly changing, so optimal routes will change every day.
-                        <br> 
+                    <p> Oceanographic and weather conditions are constanly changing, so optimal routes will change every
+                        day.
+                        <br>
                         Also on a given day, the optimal route will be different for each vessel.
                         <br>
                         All our data are daily updated from main weather and ocean data providers.
@@ -204,9 +195,7 @@
                 <div class="col-lg-4 col-md-12 mb-4">
 
                     <div class="view overlay z-depth-1-half round">
-                        <img
-                            src="{{url_for('static',filename='images/demo/currents.gif')}}"
-                            class="img-fluid" alt="">
+                        <img src="{{url_for('static',filename='images/demo/currents.gif')}}" class="img-fluid" alt="">
                         <div class="mask rgba-white-slight"></div>
                     </div>
 
@@ -223,16 +212,15 @@
                 <div class="col-lg-4 col-md-6 mb-4">
 
                     <div class="view overlay z-depth-1-half round">
-                        <img
-                            src="{{url_for('static',filename='images/demo/wind.gif')}}"
-                            class="img-fluid" alt="">
+                        <img src="{{url_for('static',filename='images/demo/wind.gif')}}" class="img-fluid" alt="">
                         <div class="mask rgba-white-slight"></div>
                     </div>
 
                     <h4 class="my-4 font-weight-bold">Wind</h4>
                     <p class="darkgrey-text">
-                       Wind adds further resistance specially in container ships that have a large cross section. 
-                       Wind changes on a shorter time scale. It is essential to have freshly updated data and reliable forecasts.
+                        Wind adds further resistance specially in container ships that have a large cross section.
+                        Wind changes on a shorter time scale. It is essential to have freshly updated data and reliable
+                        forecasts.
                     </p>
 
                 </div>
@@ -242,9 +230,7 @@
                 <div class="col-lg-4 col-md-6 mb-4">
 
                     <div class="view overlay z-depth-1-half round">
-                        <img
-                            src="{{url_for('static',filename='images/demo/waves.gif')}}"
-                            class="img-fluid" alt="">
+                        <img src="{{url_for('static',filename='images/demo/waves.gif')}}" class="img-fluid" alt="">
                         <div class="mask rgba-white-slight"></div>
                     </div>
 
@@ -252,7 +238,7 @@
                     <p class="darkgrey-text">
                         We model the added resistance due to swell and waves on a given vessel.
                         High transverse waves can be potentially dangerous.
-                        
+
                     </p>
 
                 </div>
@@ -280,13 +266,14 @@
                     <p class="darkgrey-text">
                         We use advance mathematical models to accurately
                         simulate the interaction of waves, currents and wind on a specific vessel.
-                        Our baseline models incorporate state of the art knownledge on naval engineering and hydrodynamics. 
-                        We can develop tailor made consumption models trained on real consumption data. 
+                        Our baseline models incorporate state of the art knownledge on naval engineering and
+                        hydrodynamics.
+                        We can develop tailor made consumption models trained on real consumption data.
                     </p>
                     <h4 class="mb-3"><strong>Optimization algorithms</strong></h4>
                     <p class="darkgrey-text">
-                        We combine the most recent evolutionary optimization 
-                        algorithms and gradient descent variational methods 
+                        We combine the most recent evolutionary optimization
+                        algorithms and gradient descent variational methods
                         to find the optimal route according to user defined criteria.
                     </p>
 
@@ -296,9 +283,7 @@
                 <!--Grid column-->
                 <div class="col-md-6 mb-4">
                     <div class="view overlay z-depth-1-half">
-                        <img
-                            src="{{url_for('static',filename='images/demo/optimization.gif')}}"
-                            class="img-fluid"
+                        <img src="{{url_for('static',filename='images/demo/optimization.gif')}}" class="img-fluid"
                             alt="">
                         <div class="mask rgba-white-slight"></div>
                     </div>
@@ -322,8 +307,8 @@
 
                 <!--Grid column-->
                 <div class="col-md-6 mb-4">
-                    <iframe class="video-element"
-                        src="https://www.youtube.com/embed/ceQaNbNrfRQ"  allowfullscreen webkitallowfullscreen >
+                    <iframe class="video-element" src="https://www.youtube.com/embed/ceQaNbNrfRQ" allowfullscreen
+                        webkitallowfullscreen>
                     </iframe>
                     <!--Carousel Wrapper-->
                 </div>
@@ -337,13 +322,14 @@
                     <p class="darkgrey-text">
                         Try our software and explore the features
                         that our weather routing system provides.
-                        We currently compare real trajectories obtained 
-                        by AIS data to find out the estimated savings 
+                        We currently compare real trajectories obtained
+                        by AIS data to find out the estimated savings
                         that would be obtained with our optimization tools.
-                        
+
                     </p>
                     <p class="darkgrey-text">
-                        If you are interested in trying our product, please fill the form below and we will be happy to schedule a demostration. 
+                        If you are interested in trying our product, please fill the form below and we will be happy to
+                        schedule a demostration.
                     </p>
                     <br>
                     <br>
@@ -362,10 +348,8 @@
                             <div class="col-md-6">
                                 <div class="md-form form-sm"> <i class="fa
                                         fa-user prefix"></i>
-                                    <input type="text" id="form_name"
-                                        name="name" class="form-control
-                                        form-control-sm"
-                                        required>
+                                    <input type="text" id="form_name" name="name" class="form-control
+                                        form-control-sm" required>
                                     <label for="form_name">Your name</label>
                                 </div>
                             </div>
@@ -375,10 +359,8 @@
                             <div class="col-md-6">
                                 <div class="md-form form-sm"> <i class="fas
                                         fa-mobile-alt prefix"></i>
-                                    <input type="tel" id="form_phone"
-                                        name="phone" class="form-control
-                                        form-control-sm"
-                                        required>
+                                    <input type="tel" id="form_phone" name="phone" class="form-control
+                                        form-control-sm" required>
                                     <label for="form_phone">Your phone number</label>
                                 </div>
                             </div>
@@ -395,10 +377,8 @@
                             <div class="col-md-6">
                                 <div class="md-form form-sm"> <i class="fa
                                         fa-envelope prefix"></i>
-                                    <input type="email" id="form_email"
-                                        name="mail" class="form-control
-                                        form-control-sm"
-                                        required>
+                                    <input type="email" id="form_email" name="mail" class="form-control
+                                        form-control-sm" required>
                                     <label for="form_email">Your email</label>
                                 </div>
                             </div>
@@ -407,10 +387,8 @@
                             <div class="col-md-6">
                                 <div class="md-form form-sm"> <i class="fas
                                         fa-briefcase prefix"></i>
-                                    <input type="text" id="form_company"
-                                        name="company"
-                                        class="form-control form-control-sm"
-                                        required>
+                                    <input type="text" id="form_company" name="company"
+                                        class="form-control form-control-sm" required>
                                     <label for="form_company">Your company name</label>
                                 </div>
                             </div>
@@ -421,8 +399,7 @@
 
                         <!--Grid row-->
                         <div class="row">
-                            <textarea class="form-control" id="form_msg"
-                                name="msg" placeholder="Message"
+                            <textarea class="form-control" id="form_msg" name="msg" placeholder="Message"
                                 rows="4"></textarea>
                         </div>
 
@@ -431,10 +408,8 @@
                             <!--Grid column-->
                             <div class="col-md-6">
                                 <button class="btn btn-primary btn-md
-                                    centered-btn"
-                                    style="background-color: #23387a
-                                    !important;">Request a demo <i
-                                        class="fa fa-paper-plane-o ml-1"></i></button>
+                                    centered-btn" style="background-color: #23387a
+                                    !important;">Request a demo <i class="fa fa-paper-plane-o ml-1"></i></button>
                             </div>
                             <!--Grid column-->
                         </div>
@@ -461,10 +436,11 @@
 
                     <!-- Description -->
                     <p class="darkgrey-text text-center">
-                        We are a team of passionate mathematicians, computer scientists, engineers and developers committed to work together and share our knowledge to build a better world. 
+                        We are a team of passionate mathematicians, computer scientists, engineers and developers
+                        committed to work together and share our knowledge to build a better world.
                         <br>
                         If you want to join us, the team is growing!
-                       </p>
+                    </p>
 
                 </div>
             </div>
@@ -476,12 +452,10 @@
                             <div class="team-photo">
                                 <img class="img-responsive rounded-circle
                                     person-photo"
-                                    src="{{url_for('static',filename='images/team/david-gomezullate.png')}}"
-                                    width="90">
+                                    src="{{url_for('static',filename='images/team/david-gomezullate.png')}}" width="90">
                                 <img class="img-responsive rounded-circle
                                     organization-logo"
-                                    src="{{url_for('static',filename='images/logo-ucadatalab-circle.png')}}"
-                                    width="40">
+                                    src="{{url_for('static',filename='images/logo-ucadatalab-circle.png')}}" width="40">
                             </div>
                             <h5 class="mt-3 name">David Gómez-Ullate</h5>
                             <span class="darkgrey-text">Project coordinator</span>
@@ -490,8 +464,7 @@
                                     href="https://www.linkedin.com/in/david-g%C3%B3mez-ullate-oteiza-87a820b/">
                                     <i class="fab fa-linkedin mr-4"> </i>
                                 </a>
-                                <a class="li-ic icon-btn"
-                                    href="https://github.com/dgullate">
+                                <a class="li-ic icon-btn" href="https://github.com/dgullate">
                                     <i class="fab fa-github mr-4"> </i>
                                 </a>
                             </div>
@@ -502,22 +475,18 @@
                             <div class="team-photo">
                                 <img class="img-responsive rounded-circle
                                     person-photo"
-                                    src="{{url_for('static',filename='images/team/daniel-precioso.png')}}"
-                                    width="90">
+                                    src="{{url_for('static',filename='images/team/daniel-precioso.png')}}" width="90">
                                 <img class="img-responsive rounded-circle
                                     organization-logo"
-                                    src="{{url_for('static',filename='images/logo-ucadatalab-circle.png')}}"
-                                    width="40">
+                                    src="{{url_for('static',filename='images/logo-ucadatalab-circle.png')}}" width="40">
                             </div>
                             <h5 class="mt-3 name">Daniel Precioso</h5>
                             <span class="darkgrey-text">Modeling team</span>
                             <div class="mt-4 justify-content-center row">
-                                <a class="li-ic icon-btn"
-                                    href="https://www.linkedin.com/in/daniel-precioso-garcelan/">
+                                <a class="li-ic icon-btn" href="https://www.linkedin.com/in/daniel-precioso-garcelan/">
                                     <i class="fab fa-linkedin mr-4"> </i>
                                 </a>
-                                <a class="li-ic icon-btn"
-                                    href="https://github.com/daniprec">
+                                <a class="li-ic icon-btn" href="https://github.com/daniprec">
                                     <i class="fab fa-github mr-4"> </i>
                                 </a>
                             </div>
@@ -528,22 +497,18 @@
                             <div class="team-photo">
                                 <img class="img-responsive rounded-circle
                                     person-photo"
-                                    src="{{url_for('static',filename='images/team/francisco-amor.jpeg')}}"
-                                    width="90">
+                                    src="{{url_for('static',filename='images/team/francisco-amor.jpeg')}}" width="90">
                                 <img class="img-responsive rounded-circle
                                     organization-logo"
-                                    src="{{url_for('static',filename='images/logo-ucadatalab-circle.png')}}"
-                                    width="40">
+                                    src="{{url_for('static',filename='images/logo-ucadatalab-circle.png')}}" width="40">
                             </div>
                             <h5 class="mt-3 name">Francisco Amor</h5>
                             <span class="darkgrey-text">Full stack developer</span>
                             <div class="mt-4 justify-content-center row">
-                                <a class="li-ic icon-btn"
-                                    href="https://www.linkedin.com/in/francisco-amor-97b27820b/">
+                                <a class="li-ic icon-btn" href="https://www.linkedin.com/in/francisco-amor-97b27820b/">
                                     <i class="fab fa-linkedin mr-4"> </i>
                                 </a>
-                                <a class="li-ic icon-btn"
-                                    href="https://github.com/franamor98">
+                                <a class="li-ic icon-btn" href="https://github.com/franamor98">
                                     <i class="fab fa-github mr-4"> </i>
                                 </a>
                             </div>
@@ -557,13 +522,11 @@
                         <div class="bg-white p-3 text-center rounded box">
                             <div class="team-photo">
                                 <img class="img-responsive rounded-circle
-                                    person-photo"
-                                    src="{{url_for('static',filename='images/team/javier-jimenez.jpg')}}"
+                                    person-photo" src="{{url_for('static',filename='images/team/javier-jimenez.jpg')}}"
                                     width="90">
                                 <img class="img-responsive rounded-circle
                                     organization-logo"
-                                    src="{{url_for('static',filename='images/logo-ucadatalab-circle.png')}}"
-                                    width="40">
+                                    src="{{url_for('static',filename='images/logo-ucadatalab-circle.png')}}" width="40">
                             </div>
                             <h5 class="mt-3 name">Javier Jiménez</h5>
                             <span class="darkgrey-text">Full stack developer</span>
@@ -572,8 +535,7 @@
                                     href="https://www.linkedin.com/in/javier-jim%C3%A9nez-de-la-jara-5671ab193/">
                                     <i class="fab fa-linkedin mr-4"> </i>
                                 </a>
-                                <a class="li-ic icon-btn"
-                                    href="https://github.com/Javier-Jimenez99">
+                                <a class="li-ic icon-btn" href="https://github.com/Javier-Jimenez99">
                                     <i class="fab fa-github mr-4"> </i>
                                 </a>
                             </div>
@@ -583,19 +545,16 @@
                         <div class="bg-white p-3 text-center rounded box">
                             <div class="team-photo">
                                 <img class="img-responsive rounded-circle
-                                    person-photo"
-                                    src="{{url_for('static',filename='images/team/david-penha.jpeg')}}"
+                                    person-photo" src="{{url_for('static',filename='images/team/david-penha.jpeg')}}"
                                     width="90">
                                 <img class="img-responsive rounded-circle
                                     organization-logo"
-                                    src="{{url_for('static',filename='images/logo-ucadatalab-circle.png')}}"
-                                    width="40">
+                                    src="{{url_for('static',filename='images/logo-ucadatalab-circle.png')}}" width="40">
                             </div>
                             <h5 class="mt-3 name">David Peña</h5>
                             <span class="darkgrey-text">Optimization team</span>
                             <div class="mt-4 justify-content-center row">
-                                <a class="li-ic icon-btn"
-                                    href="https://www.linkedin.com/in/davidpemorales/">
+                                <a class="li-ic icon-btn" href="https://www.linkedin.com/in/davidpemorales/">
                                     <i class="fab fa-linkedin mr-4">
                                     </i>
                                 </a>
@@ -606,23 +565,19 @@
                         <div class="bg-white p-3 text-center rounded box">
                             <div class="team-photo">
                                 <img class="img-responsive rounded-circle
-                                    person-photo"
-                                    src="{{url_for('static',filename='images/team/david-gordo.jpeg')}}"
+                                    person-photo" src="{{url_for('static',filename='images/team/david-gordo.jpeg')}}"
                                     width="90">
                                 <img class="img-responsive rounded-circle
-                                    organization-logo"
-                                    src="{{url_for('static',filename='images/arbol-komorebi.png')}}"
+                                    organization-logo" src="{{url_for('static',filename='images/arbol-komorebi.png')}}"
                                     width="40">
                             </div>
                             <h5 class="mt-3 name">David Gordo</h5>
                             <span class="darkgrey-text">Business advisor</span>
                             <div class="mt-4 justify-content-center row">
-                                <a class="li-ic icon-btn"
-                                    href="https://www.linkedin.com/in/david-gordo/">
+                                <a class="li-ic icon-btn" href="https://www.linkedin.com/in/david-gordo/">
                                     <i class="fab fa-linkedin mr-4"> </i>
                                 </a>
-                                <a class="li-ic icon-btn"
-                                    href="https://github.com/davidggphy">
+                                <a class="li-ic icon-btn" href="https://github.com/davidggphy">
                                     <i class="fab fa-github mr-4"> </i>
                                 </a>
                             </div>
@@ -636,12 +591,10 @@
                         <div class="bg-white p-3 text-center rounded box">
                             <div class="team-photo">
                                 <img class="img-responsive rounded-circle
-                                    person-photo"
-                                    src="{{url_for('static',filename='images/team/victor-gallego.jpg')}}"
+                                    person-photo" src="{{url_for('static',filename='images/team/victor-gallego.jpg')}}"
                                     width="90">
                                 <img class="img-responsive rounded-circle
-                                    organization-logo"
-                                    src="{{url_for('static',filename='images/arbol-komorebi.png')}}"
+                                    organization-logo" src="{{url_for('static',filename='images/arbol-komorebi.png')}}"
                                     width="40">
                             </div>
                             <h5 class="mt-3 name">Víctor Gallego</h5>
@@ -651,8 +604,7 @@
                                     href="https://www.linkedin.com/in/victor-gallego-alcala-679b18116/">
                                     <i class="fab fa-linkedin mr-4"> </i>
                                 </a>
-                                <a class="li-ic icon-btn"
-                                    href="https://github.com/vicgalle">
+                                <a class="li-ic icon-btn" href="https://github.com/vicgalle">
                                     <i class="fab fa-github mr-4"> </i>
                                 </a>
                             </div>
@@ -663,11 +615,9 @@
                             <div class="team-photo">
                                 <img class="img-responsive rounded-circle
                                     person-photo"
-                                    src="{{url_for('static',filename='images/team/manuel-navarro.jpeg')}}"
-                                    width="90">
+                                    src="{{url_for('static',filename='images/team/manuel-navarro.jpeg')}}" width="90">
                                 <img class="img-responsive rounded-circle
-                                    organization-logo"
-                                    src="{{url_for('static',filename='images/arbol-komorebi.png')}}"
+                                    organization-logo" src="{{url_for('static',filename='images/arbol-komorebi.png')}}"
                                     width="40">
                             </div>
                             <h5 class="mt-3 name">Manuel Navarro</h5>
@@ -677,8 +627,7 @@
                                     href="https://www.linkedin.com/in/manuel-navarro-garc%C3%ADa-a1843a19a/">
                                     <i class="fab fa-linkedin mr-4"> </i>
                                 </a>
-                                <a class="li-ic icon-btn"
-                                    href="https://github.com/ManuelNavarroGarcia">
+                                <a class="li-ic icon-btn" href="https://github.com/ManuelNavarroGarcia">
                                     <i class="fab fa-github mr-4"> </i>
                                 </a>
                             </div>
@@ -689,23 +638,19 @@
                             <div class="team-photo">
                                 <img class="img-responsive rounded-circle
                                     person-photo"
-                                    src="{{url_for('static',filename='images/team/alberto-torres.jpeg')}}"
-                                    width="90">
+                                    src="{{url_for('static',filename='images/team/alberto-torres.jpeg')}}" width="90">
                                 <img class="img-responsive rounded-circle
-                                    organization-logo"
-                                    src="{{url_for('static',filename='images/arbol-komorebi.png')}}"
+                                    organization-logo" src="{{url_for('static',filename='images/arbol-komorebi.png')}}"
                                     width="40">
                             </div>
                             <h5 class="mt-3 name">Alberto Torres</h5>
-                            <span class="darkgrey-text">Lead Data Scientist</span>
+                            <span class="darkgrey-text">Data Architect</span>
                             <div class="mt-4 justify-content-center row">
-                                <a class="li-ic icon-btn"
-                                    href="https://www.linkedin.com/in/albertotb/">
+                                <a class="li-ic icon-btn" href="https://www.linkedin.com/in/albertotb/">
                                     <i class="fab fa-linkedin mr-4">
                                     </i>
                                 </a>
-                                <a class="li-ic icon-btn"
-                                    href="https://github.com/albertotb">
+                                <a class="li-ic icon-btn" href="https://github.com/albertotb">
                                     <i class="fab fa-github mr-4"> </i>
                                 </a>
                             </div>
