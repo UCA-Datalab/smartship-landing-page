@@ -2,6 +2,13 @@ version: "3.3"
 
 services:
 
+  smartship_front:
+    build: .
+    ports:
+      - 5090:5000
+    volumes:
+      - ./app:/app
+
 #  nginx:
 #    image: nginx:1.21.3-alpine
 #    ports:
@@ -24,9 +31,3 @@ services:
 #    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h &
 #      wait $${!}; done;'"
 #
-  smartship_front:
-    build: .
-    ports:
-      - 5090:5000
-    volumes:
-      - ./app:/app
