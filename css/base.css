@@ -1,0 +1,137 @@
+.card {
+    background-color: transparent !important;
+}
+
+html,
+body,
+header,
+#intro {
+    height: 100%;
+}
+
+body{
+    font-family: Arial, Helvetica, sans-serif;
+}
+#intro {
+    /*background: url('../assets/landing-image.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;*/
+    opacity: 0.95;
+}
+
+
+#background-video {
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    opacity: 0.9;
+  }
+
+.view img {
+    display: initial !important;
+}
+
+.logo-landing {
+    opacity: 1 !important;
+    max-width: 70%; 
+    height: auto;
+}
+
+
+.top-nav-collapse {
+    background-color: #23387a;
+}
+
+@media (max-width: 768px) {
+    .navbar:not(.top-nav-collapse) {
+        background-color: #23387a;
+    }
+}
+
+@media (min-width: 800px) and (max-width: 850px) {
+    .navbar:not(.top-nav-collapse) {
+        background-color: #23387a;
+    }
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.section-title {
+    margin-bottom: 3rem !important;
+    margin-top: 3rem !important;
+}
+
+.filter-blue {
+    filter: invert(30%) sepia(14%) saturate(2532%) hue-rotate(188deg) brightness(97%) contrast(93%);
+}
+
+.h-80 {
+    height: 80%;
+}
+
+.round {
+    border-radius: 5px !important;
+}
+
+.name {
+    color: #23387a
+}
+
+.work {
+    font-weight: bold;
+    font-size: 15px
+}
+
+.about span {
+    font-size: 13px
+}
+
+.v-profile {
+    color: #23387a;
+    cursor: pointer
+}
+
+.box {
+    -webkit-box-shadow: 13px 12px 5px -10px rgba(196, 194, 196, 0.72);
+    -moz-box-shadow: 13px 12px 5px -10px rgba(196, 194, 196, 0.72);
+    box-shadow: 13px 12px 5px -10px rgba(196, 194, 196, 0.72)
+}
+
+.col-md-3 {
+    margin-top: 10px
+}
+
+.team-photo {
+    position: relative;
+    top: 0;
+    left: 0;
+}
+
+.person-photo {
+    position: relative;
+    top: 0;
+    left: 0;
+}
+
+.organization-logo {
+    position: absolute;
+    bottom: 0rem;
+    right: 5rem;
+    background: white;
+}
+
+.darkgrey-text {
+    color: rgb(124, 124, 124);
+}
+
+.centered-btn {
+    transform: translateX(-50%);
+    left: 50%;
+    top: 50%;
+    position: relative;
+    margin: 0;
+}
