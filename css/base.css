@@ -70,6 +70,7 @@ body{
 
 html {
     scroll-behavior: smooth;
+    
 }
 
 .section-title {
@@ -147,3 +148,33 @@ html {
     position: relative;
     margin: 0;
 }
+
+section:before {
+    height: 70px;
+    content: "";
+    display: block;
+  }
+  
+  .icon-btn:hover{
+    color:#82bed1;
+  }
+  
+  .icon-btn{
+    color:#23387a;
+  }
+  
+  .try-it-btn:hover{
+      color: #000 !important;
+      background-color: #f8f9fa !important;
+      border-color: #f8f9fa !important;
+  }
+  .centered{
+    justify-content: center !important;
+  }
+  
+  .video-element {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    margin-top: 0.5%;
+  }
