@@ -74,8 +74,7 @@
                 $(document).scroll(function () {
                     var $nav = $(".navbar");
                     var $mask = $(".mask");
-                    console.log($(this).scrollTop(),$nav.height());
-                    var $scrolled = $(this).scrollTop() > $mask.height();
+                    var $scrolled = $(this).scrollTop() >= $mask.height();
                     $nav.toggleClass('scrolled', $scrolled);
                     if($scrolled)
                     {
@@ -86,17 +85,8 @@
                     }
                     
                 });
-
-                console.log(-$("#topLogo").width() + "px !important");
-                $("#navbarItems").css(
-                    "margin",-$("#topLogo").width() + "px !important"
-                );
             });
         </script>
-
-        <style>
-            @font-face { font-family: "HelveticaLTStd-Bold"; font-weight: bold; src: url("assets/HelveticaLTStd-Bold.otf"); } 
-        </style>
         
     </head>
 
@@ -113,17 +103,15 @@
                     <img src="assets/LOGO/Blanco/blanco_derecha.svg" id="topLogo" style="height: 2.5rem;">
                 </a>
                     
-
                 <!-- Collapse button -->
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarItems"
                     aria-controls="navbarItems" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon">
-
                     </span>
                 </button>
 
                 <!-- Collapsible content -->
-                <div class="collapse navbar-collapse" id="navbarItems">
+                <div class="collapse navbar-collapse">
                     <!-- Links -->
                     <ul class="navbar-nav mx-auto smooth-scroll justify-content-center">
                         <li class="nav-item mx-4">

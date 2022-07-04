@@ -2,6 +2,8 @@
     background-color: transparent !important;
 }
 
+@font-face { font-family: "HelveticaLTStd-Bold"; font-weight: bold; src: url("assets/HelveticaLTStd-Bold.otf"); }
+
 html,
 body,
 header,
@@ -9,9 +11,11 @@ header,
     height: 100%;
 }
 
-body{
-    font-family: Arial, Helvetica, sans-serif;
+html {
+    scroll-behavior: smooth;
+    font-family: HelveticaLTStd-Bold, bold !important;
 }
+
 #intro {
     /*background: url('../assets/landing-image.jpg') no-repeat center center fixed;
     -webkit-background-size: cover;
@@ -55,6 +59,12 @@ body{
     }
 }
 
+.navbar-collapse{
+    position:absolute;
+    width: 100%;
+    font-size: 1.1rem;
+}
+
 .navbar.scrolled{
     background-color: white !important;
 }
@@ -66,11 +76,6 @@ body{
 .navbar.scrolled navbar-toggler-icon
 {
     color: #23387a !important;
-}
-
-html {
-    scroll-behavior: smooth;
-    
 }
 
 .section-title {
