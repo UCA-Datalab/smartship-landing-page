@@ -47,6 +47,7 @@
         <!-- Bootstrap core JavaScript -->
         <script type="text/javascript"
             src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <!-- MDB core JavaScript -->
         <script type="text/javascript"
             src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
@@ -71,6 +72,31 @@
 
             gtag('config', 'G-Q7BLBHXJ7Z');
         </script>
+
+        <script>
+            $(function () {
+                $(document).scroll(function () {
+                    var $nav = $(".navbar");
+                    var $mask = $(".mask");
+                    console.log($(this).scrollTop(),$nav.height());
+                    var $scrolled = $(this).scrollTop() > $mask.height();
+                    $nav.toggleClass('scrolled', $scrolled);
+                    if($scrolled)
+                    {
+                        $("#topLogo").attr("src","assets/LOGO/Color/color_derecha.svg");
+                    }
+                    else{
+                        $("#topLogo").attr("src","assets/LOGO/Blanco/blanco_derecha.svg");
+                    }
+                    
+                });
+
+                console.log(-$("#topLogo").width() + "px !important");
+                $("#navbarItems").css(
+                    "margin",-$("#topLogo").width() + "px !important"
+                );
+            });
+        </script>
         
     </head>
 
@@ -82,40 +108,43 @@
         <header>
             <!--Navbar-->
             <nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
-                <div class="container" >
+                <!-- Navbar brand -->
+                <a class="navbar-brand" href="#">
+                    <img src="assets/LOGO/Blanco/blanco_derecha.svg" id="topLogo" style="height: 2.5rem;">
+                </a>
+                    
 
-                    <!-- Collapse button -->
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
-                        aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
+                <!-- Collapse button -->
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarItems"
+                    aria-controls="navbarItems" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon">
 
-                    <!-- Collapsible content -->
-                    <div class="collapse navbar-collapse" id="basicExampleNav">
+                    </span>
+                </button>
 
-                        <!-- Links -->
-                        <ul class="navbar-nav mx-auto smooth-scroll justify-content-center">
-                            <li class="nav-item mx-4">
-                                <a class="nav-link" href="#intro">Home
-                                </a>
-                            </li>
-                            <li class="nav-item mx-4">
-                                <a class="nav-link" href="#features">Features</a>
-                            </li>
-                            <li class="nav-item mx-4">
-                                <a class="nav-link" href="#data">Data</a>
-                            </li>
-                            <li class="nav-item mx-4">
-                                <a class="nav-link" href="#optimization">Optimization</a>
-                            </li>
-                            <li class="nav-item mx-4">
-                                <a class="nav-link" href="#demo">Demo</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <!-- Collapsible content -->
-
+                <!-- Collapsible content -->
+                <div class="collapse navbar-collapse" id="navbarItems">
+                    <!-- Links -->
+                    <ul class="navbar-nav mx-auto smooth-scroll justify-content-center">
+                        <li class="nav-item mx-4">
+                            <a class="nav-link" href="#intro"><b>Home</b>
+                            </a>
+                        </li>
+                        <li class="nav-item mx-4">
+                            <a class="nav-link" href="#features"><b>Features</b></a>
+                        </li>
+                        <li class="nav-item mx-4">
+                            <a class="nav-link" href="#data"><b>Data</b></a>
+                        </li>
+                        <li class="nav-item mx-4">
+                            <a class="nav-link" href="#optimization"><b>Optimization</b></a>
+                        </li>
+                        <li class="nav-item mx-4">
+                            <a class="nav-link" href="#demo"><b>Demo</b></a>
+                        </li>
+                    </ul>
                 </div>
+                <!-- Collapsible content -->
 
             </nav>
             <!--/.Navbar-->
