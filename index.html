@@ -115,10 +115,6 @@
                     <!-- Links -->
                     <ul class="navbar-nav mx-auto smooth-scroll justify-content-center">
                         <li class="nav-item mx-4">
-                            <a class="nav-link" href="#intro"><b>Home</b>
-                            </a>
-                        </li>
-                        <li class="nav-item mx-4">
                             <a class="nav-link" href="#features"><b>Features</b></a>
                         </li>
                         <li class="nav-item mx-4">
@@ -178,13 +174,13 @@
 
         <!--Main layout-->
         <main>
-            <div class="container">
                 <section 
                 data-aos="fade-in" data-aos-delay="150" data-aos-duration="17000" 
-                id="features" class="text-center">
+                id="features">
+                <div class="col-md-10 container">
                     <h2 class="mb-4 font-weight-bold text-center section-title">Features</h2>
                     <!--Grid row-->
-                    <div class="row d-flex justify-content-center mb-4">
+                    <div class="row d-flex justify-content-center text-center mb-4">
 
                         <!--Grid column-->
                         <div
@@ -202,14 +198,14 @@
                     </div>
 
                     <!--Grid column-->
-                    <div class="row">
+                    <div class="row d-flex justify-content-between">
 
                         <!--Grid column-->
                         <div
                         data-aos="fade-in" data-aos-delay="400" data-aos-duration="1700" 
-                        class="col-md-4 mb-5">
-                            <img src="./assets/icons/plant.svg"
-                                width="100" height="100" alt="Enviromental" />
+                        class="col-md-3 mb-5 features-item">
+                            <img src="./assets/icons/globo_azul.svg"
+                                width="70" height="70" alt="Enviromental" />
                             <h4 class="my-4 font-weight-bold">Ecofriendly</h4>
                             <p class="darkgrey-text">Maritime traffic produces 2.5% of
                                 the planet's total CO2 emissions. The
@@ -222,9 +218,9 @@
                         <!--Grid column-->
                         <div 
                         data-aos="fade-in" data-aos-delay="700" data-aos-duration="1700" 
-                        class="col-md-4 mb-5">
-                            <img src="./assets/icons/coin_pig.svg"
-                                width="100" height="100" alt="Cost" />
+                        class="col-md-3 features-item">
+                            <img src="./assets/icons/billetes_azul.svg"
+                                width="70" height="70" alt="Cost" />
                             <h4 class="my-4 font-weight-bold">Money saving</h4>
                             <p class="darkgrey-text">
                                 Fuel amounts to 60% of the total operational cost of sea transport, for a total bill of €120
@@ -238,9 +234,9 @@
                         <!--Grid column-->
                         <div 
                         data-aos="fade-in" data-aos-delay="1000" data-aos-duration="1700" 
-                        class="col-md-4 mb-5">
-                            <img src="./assets/icons/life-jacket.svg"
-                                width="100" height="100" alt="Safety" />
+                        class="col-md-3 mb-5 features-item">
+                            <img src="./assets/icons/ancla_azul.svg"
+                                width="70" height="70" alt="Safety" />
                             <h4 class="my-4 font-weight-bold">Crew safety</h4>
                             <p class="darkgrey-text">
                                 Sailing under adverse weather conditions causes 48% of maritime casualties.
@@ -249,10 +245,8 @@
                         </div>
                         <!--Grid column-->
 
-                    </div>
+                </div>
                 </section>
-
-                <hr class="my-5">
 
                 <!--Section: Data-->
                 <section  
@@ -330,7 +324,6 @@
                 </section>
                 <!--Section: Data-->
 
-                <hr class="my-5">
                 <!--Section: optimization-->
                 <section
                 data-aos="fade-in" data-aos-delay="150" data-aos-duration="17000"
@@ -508,7 +501,6 @@
                     <!--Grid row-->
                 </section>
                 <!--Section: demo -->
-            </div>
 
         </main>
         <!--Main layout-->
