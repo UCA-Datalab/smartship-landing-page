@@ -326,6 +326,65 @@
                 </section>
                 <!--Section: Data-->
 
+                <section data-aos="fade-in" data-aos-delay="150" data-aos-duration="17000" class="gradient text-white"
+                id="demo">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-md-12">
+                                <div class="contact-wrap w-100 p-md-5 p-4">
+                                    <h3 class="mb-4">Request a Demo</h3>
+                                    <div id="form-message-warning" class="mb-4"></div> 
+                                <div id="form-message-success" class="mb-4">
+                           
+                                </div>
+                                    <form method="POST" id="contactForm" name="contactForm" class="contactForm">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="label" for="name">Name</label>
+                                                    <input type="text" class="form-control" name="name" id="name" placeholder="Name" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6"> 
+                                                <div class="form-group">
+                                                    <label class="label" for="email">Surname</label>
+                                                    <input type="text" class="form-control" name="surname" id="surname" placeholder="Surname" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="label" for="subject">Email Address</label>
+                                                    <input type="email" class="form-control" name="email" id="email" placeholder="email" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="label" for="subject">Company Name</label>
+                                                    <input type="text" class="form-control" name="company" id="company" placeholder="Company" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label class="label" for="#">Message</label>
+                                                    <textarea name="text" class="form-control" id="message" cols="30" rows="4" placeholder="Message" required></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <input type="submit"  placeholder="Send Request" class="btn transButton">
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                        
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+
                 <!--Section: optimization-->
                 <section
                 data-aos="fade-in" data-aos-delay="150" data-aos-duration="17000"
@@ -375,135 +434,9 @@
                 </section>
                 <!--Section: optimization-->
                 <hr class="my-5">
-                <!--Section: demo-->
-                <section 
-                data-aos="fade-in" data-aos-delay="150" data-aos-duration="17000"
-                id="demo">
-
-                    <!-- Heading -->
-                    <h2 class="mb-5 font-weight-bold text-center">Request a demo</h2>
-                    <!--Grid row-->
-                    <div class="row justify-content-center">
-
-                        <!--Grid column-->
-                        <div class="col-md-6 mb-4">
-                            <iframe class="video-element" src="https://www.youtube.com/embed/ceQaNbNrfRQ" allowfullscreen
-                                webkitallowfullscreen>
-                            </iframe>
-                            <!--Carousel Wrapper-->
-                        </div>
-                        <!--Grid column-->
-
-                        <!--Grid column-->
-                        <div class="col-md-5">
-
-                            <!--Excerpt-->
-                            <h4 class="mb-3"><strong>Try our demo version</strong></h4>
-                            <p class="darkgrey-text">
-                                Try our software and explore the features
-                                that our weather routing system provides.
-                                We currently compare real trajectories obtained
-                                by AIS data to find out the estimated savings
-                                that would be obtained with our optimization tools.
-
-                            </p>
-                            <p class="darkgrey-text">
-                                If you are interested in trying our product, please fill the form below and we will be happy to
-                                schedule a demostration.
-                            </p>
-                            <br>
-                            <br>
-                        </div>
-                        <!--Grid column-->
-
-                        <!--Grid column-->
-                        <div class="col-lg-12 col-md-12">
-                            <!-- Form contact -->
-                            <form action="/demo_request" method="POST" class="px-5 pb-5
-                                grey-text">
-
-                                <!--Grid row-->
-                                <div class="row">
-                                    <!--Grid column-->
-                                    <div class="col-md-6">
-                                        <div class="md-form form-sm"> <i class="fa
-                                                fa-user prefix"></i>
-                                            <input type="text" id="form_name" name="name" class="form-control
-                                                form-control-sm" required>
-                                            <label for="form_name">Your name</label>
-                                        </div>
-                                    </div>
-                                    <!--Grid column-->
-
-                                    <!--Grid column-->
-                                    <div class="col-md-6">
-                                        <div class="md-form form-sm"> <i class="fas
-                                                fa-mobile-alt prefix"></i>
-                                            <input type="tel" id="form_phone" name="phone" class="form-control
-                                                form-control-sm" required>
-                                            <label for="form_phone">Your phone number</label>
-                                        </div>
-                                    </div>
-                                    <!--Grid column-->
-
-                                </div>
-                                <!--Grid row-->
-
-                                <!--Grid row-->
-                                <div class="row">
-
-
-                                    <!--Grid column-->
-                                    <div class="col-md-6">
-                                        <div class="md-form form-sm"> <i class="fa
-                                                fa-envelope prefix"></i>
-                                            <input type="email" id="form_email" name="mail" class="form-control
-                                                form-control-sm" required>
-                                            <label for="form_email">Your email</label>
-                                        </div>
-                                    </div>
-
-                                    <!--Grid column-->
-                                    <div class="col-md-6">
-                                        <div class="md-form form-sm"> <i class="fas
-                                                fa-briefcase prefix"></i>
-                                            <input type="text" id="form_company" name="company"
-                                                class="form-control form-control-sm" required>
-                                            <label for="form_company">Your company name</label>
-                                        </div>
-                                    </div>
-                                    <!--Grid column-->
-
-                                </div>
-                                <!--Grid row-->
-
-                                <!--Grid row-->
-                                <div class="row">
-                                    <textarea class="form-control" id="form_msg" name="msg" placeholder="Message"
-                                        rows="4"></textarea>
-                                </div>
-
-                                <!--Grid row-->
-                                <div class="row justify-content-md-center">
-                                    <!--Grid column-->
-                                    <div class="col-md-6">
-                                        <button class="btn btn-primary btn-md
-                                            centered-btn" style="background-color: #23387a
-                                            !important;">Request a demo <i class="fa fa-paper-plane-o ml-1"></i></button>
-                                    </div>
-                                    <!--Grid column-->
-                                </div>
-                                <!--Grid row-->
-
-                            </form>
-                            <!-- Form contact -->
-                        </div>
-                        <!--Grid column-->
-                    </div>
-                    <!--Grid row-->
-                </section>
-                <!--Section: demo -->
-
+               
+                
+            
         </main>
         <!--Main layout-->
 
@@ -516,6 +449,10 @@
         <!-- Place for extra scripts 
         <!-- ============================================================== -->
 
+        <!-- Mail -->
+        <script src="https://smtpjs.com/v3/smtp.js">
+        </script>
+        <script src="./js/form_manager.js"></script>
          <!--Animations scripts-->
          <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
          <script>
