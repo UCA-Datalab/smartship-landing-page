@@ -2,7 +2,7 @@
     background-color: transparent !important;
 }
 
-@font-face { font-family: "HelveticaLTStd-Bold"; font-weight: bold; src: url("assets/HelveticaLTStd-Bold.otf"); }
+@font-face { font-family: "HelveticaLTStd-Bold"; src: url("HelveticaLTStd-Bold.otf") format("opentype"); }
 
 html,
 body,
@@ -11,9 +11,9 @@ header,
     height: 100%;
 }
 
-html {
+html,body {
     scroll-behavior: smooth;
-    font-family: HelveticaLTStd-Bold, bold !important;
+    /*font-family:"HelveticaLTStd-Bold" !important;*/
 }
 
 #intro {
@@ -45,6 +45,22 @@ html {
 
 .top-nav-collapse {
     background-color: transparent;
+}
+
+.gradient {
+    background-image: linear-gradient(to bottom right, #76b337, #71c4d9);
+  }
+
+input,textarea{
+    width: 100%;
+    color: rgba(255, 254, 254, 1) !important;
+    background: transparent !important;
+    border: none;
+    outline: none;
+}
+.transButton{
+    background-color: transparent;
+    color:white;
 }
 
 @media (max-width: 768px) {
@@ -146,7 +162,6 @@ html {
 .darkgrey-text {
     color: rgb(99, 99, 99);
     font-size: 14px;
-    margin: 0px;
 }
 
 .centered-btn {
@@ -157,11 +172,6 @@ html {
     margin: 0;
 }
 
-section:before {
-    height: 70px;
-    content: "";
-    display: block;
-}
 
 .icon-btn:hover{
     color:#82bed1;
@@ -205,7 +215,319 @@ section:before {
     margin-bottom: 20px;
 }
 
-.my-4{
-    margin-top:1rem !important;
-    margin-bottom: 1rem !important;
+.no-padding{
+    padding:0px !important;
 }
+
+#data{
+    background-color:#a0c6d169;
+    margin-top: 100px ;
+}
+
+#div-outside{
+    height:200px;
+    position:relative;
+    margin-bottom: 40px;
+}
+
+#div-text{
+    position:absolute;
+    bottom:0px;
+}
+
+#div-gif{
+    position:absolute;
+    bottom:0px;
+    right:0px;
+}
+
+#gif{
+    border: 5px solid rgb(0, 0, 0); 
+    border-radius: 4px;
+    height:300px;
+}
+
+/* Common: BUTTONS
+--------------------------------------------------------------------------------------------------------------------- */
+.btn {
+    text-decoration: none;
+    padding: 8px 15px;
+    border: 1px solid;
+    border-radius: 50px;
+    font-size: 12px;
+    display: inline-block;
+    width: 130px;
+    position: relative;
+    text-align: center;
+    font-family: "LibreFranklin", sans-serif, sans-serif;
+    font-weight: 400; }
+    .btn--white {
+        color: #23387a;
+        border-color: white;
+        background-color: white;
+        transition: all 0.3s ease-in-out;
+        -moz-transition: all 0.3s ease-in-out;
+        -ms-transition: all 0.3s ease-in-out;
+        -o-transition: all 0.3s ease-in-out;
+        -webkit-transition: all 0.3s ease-in-out; }
+        .btn--white:hover {
+          background-color: transparent;
+          color: white;
+          border-color: white; }
+/* Common: FORM
+--------------------------------------------------------------------------------------------------------------------- */
+.forms-group {
+    height: 48px;
+    border: 1px solid white;
+    position: relative;
+    margin: 0 0 50px 0;
+    width: calc(100% / 3 - 20px);
+    font-size: 14px;
+    background-color: rgba(0, 0, 0, 0.1);
+    z-index: 0; }
+    .forms-group .input {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      outline: none;
+      padding: 10px;
+      padding-left: 8px;
+      font-size: 14px;
+      opacity: 0.8;
+      background: transparent;
+      color: white;
+      z-index: 2;
+      position: relative; }
+    .forms-group .placeholder {
+      display: inline;
+      padding: 8px 6px 8px;
+      box-sizing: content-box;
+      position: absolute;
+      top: -27px;
+      font-size: 14px;
+      left: 5px;
+      transition: top 0.2s, font-size 0.2s;
+      color: white; }
+      .forms-group .placeholder::before {
+        content: "";
+        width: 100%;
+        height: 1px;
+        background-color: transparent;
+        position: absolute;
+        top: 17px;
+        left: 0;
+        z-index: -1;
+        transition: background-color 0.1s;
+        -moz-transition: background-color 0.1s;
+        -ms-transition: background-color 0.1s;
+        -o-transition: background-color 0.1s;
+        -webkit-transition: background-color 0.1s; }
+  
+  .inputfocus + .placeholder,
+  .input:focus + .placeholder {
+    top: -18px;
+    font-size: 12px; }
+    .inputfocus + .placeholder::before,
+    .input:focus + .placeholder::before {
+      transition: background-color 0.2s 0.1s;
+      -moz-transition: background-color 0.2s 0.1s;
+      -ms-transition: background-color 0.2s 0.1s;
+      -o-transition: background-color 0.2s 0.1s;
+      -webkit-transition: background-color 0.2s 0.1s; }
+  
+  /* Common: CHECKBOX
+  --------------------------------------------------------------------------------------------------------------------- */
+  .checkbox {
+    display: block;
+    position: relative;
+    min-height: 50px; }
+    .checkbox input {
+      padding: 0;
+      height: initial;
+      width: initial;
+      margin-bottom: 0;
+      opacity: 0;
+      position: absolute;
+      left: -1px;
+      top: 3px;
+      z-index: 2; }
+    .checkbox label {
+      position: relative;
+      color: white;
+      font-size: 10px;
+      display: block;
+      min-height: 30px; }
+    .checkbox .forms-group--error {
+      color: #fc4c4c; }
+      .checkbox .forms-group--error label {
+        color: #fc4c4c; }
+  
+  .checkbox span::before {
+    content: '';
+    background-color: transparent;
+    border: 1px solid white;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0 -15px 10px -12px rgba(0, 0, 0, 0.05);
+    padding: 8px;
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+    margin-right: 5px; }
+  
+  .checkbox input:checked + span::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 3px;
+    left: 7px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg); }
+  
+
+.landing-solicited {
+    padding: 80px 0 60px;
+    background: linear-gradient(50deg, #76b337 -10%, #71c4d9 50%, #38468f 100%); }
+    @media only screen and (max-width: 480px) {
+      .landing-solicited {
+        padding: 60px 0; } }
+    @media only screen and (max-width: 375px) {
+      .landing-solicited {
+        padding: 50px 0; } }
+    .landing-solicited__title {
+      font-weight: 600;
+      color: white; }
+      @media only screen and (max-width: 768px) {
+        .landing-solicited__title {
+          font-size: 24px; } }
+      @media only screen and (max-width: 640px) {
+        .landing-solicited__title {
+          font-size: 22px;
+          line-height: 28px; } }
+      @media only screen and (max-width: 540px) {
+        .landing-solicited__title {
+          font-size: 20px;
+          max-width: 320px; } }
+      @media only screen and (max-width: 375px) {
+        .landing-solicited__title {
+          max-width: 100%;
+          font-size: 18px;
+          line-height: 24px; } }
+    .landing-solicited__text {
+      color: white; }
+      @media only screen and (max-width: 540px) {
+        .landing-solicited__text {
+          max-width: 250px; } }
+    .landing-solicited__form {
+      padding: 30px 0 0; }
+      @media only screen and (max-width: 375px) {
+        .landing-solicited__form {
+          padding: 10px 0 0; } }
+      .landing-solicited__form .checkbox {
+        margin-bottom: 15px;
+        padding: 0 0 25px; }
+        @media only screen and (max-width: 540px) {
+          .landing-solicited__form .checkbox {
+            padding: 10px 0; } }
+    .landing-solicited__bottom {
+      display: inline-flex;
+      align-content: center;
+      align-items: center; }
+      @media only screen and (max-width: 480px) {
+        .landing-solicited__bottom {
+          display: block; } }
+    .landing-solicited__list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between; }
+      .landing-solicited__list .forms-group {
+        height: 48px;
+        border: 1.3px solid white;
+        position: relative;
+        margin: 0 0 40px 0;
+        width: calc(50% - 20px);
+        font-size: 14px;
+        background-color: rgba(0, 0, 0, 0.1);
+        z-index: 0; }
+        @media only screen and (max-width: 860px) {
+          .landing-solicited__list .forms-group {
+            margin: 0 0 20px 0;
+            width: calc(50% - 8px); } }
+        @media only screen and (max-width: 720px) {
+          .landing-solicited__list .forms-group {
+            width: calc(100% / 2 - 10px); } }
+        @media only screen and (max-width: 480px) {
+          .landing-solicited__list .forms-group {
+            width: 100%;
+            margin: 0 0 10px 0; } }
+        @media only screen and (max-width: 375px) {
+          .landing-solicited__list .forms-group {
+            height: 40px; } }
+        @media only screen and (max-width: 375px) {
+          .landing-solicited__list .forms-group .input {
+            padding: 6px 10px 1px 10px;
+            font-size: 12px; } }
+        .landing-solicited__list .forms-group--error {
+          border: 1px solid #fc4c4c; }
+        @media only screen and (max-width: 375px) {
+          .landing-solicited__list .forms-group .placeholder {
+            top: 3px;
+            font-size: 12px; } }
+        @media only screen and (max-width: 860px) {
+          .landing-solicited__list .forms-group .placeholder::before {
+            top: 16px; } }
+        @media only screen and (max-width: 720px) {
+          .landing-solicited__list .forms-group .placeholder::before {
+            top: 17px; } }
+        @media only screen and (max-width: 480px) {
+          .landing-solicited__list .forms-group .inputfocus + .placeholder {
+            top: -6px;
+            font-size: 9px;
+            left: 3px; } }
+        .landing-solicited__list .forms-group .inputfocus + .placeholder::before {
+          background-color: #b9a1a2; }
+          @media only screen and (max-width: 480px) {
+            .landing-solicited__list .forms-group .inputfocus + .placeholder::before {
+              background-color: transparent; } }
+        .landing-solicited__list .forms-group:nth-child(1), .landing-solicited__list .forms-group:nth-child(2) {
+          width: calc(50% - 20px); }
+          @media only screen and (max-width: 860px) {
+            .landing-solicited__list .forms-group:nth-child(1), .landing-solicited__list .forms-group:nth-child(2) {
+              width: calc(50% - 8px); } }
+          @media only screen and (max-width: 480px) {
+            .landing-solicited__list .forms-group:nth-child(1), .landing-solicited__list .forms-group:nth-child(2) {
+              width: 100%; } }
+        .landing-solicited__list .forms-group:nth-child(1) .input:focus + .placeholder::before {
+          background-color: #b9a1a2; }
+          @media only screen and (max-width: 480px) {
+            .landing-solicited__list .forms-group:nth-child(1) .input:focus + .placeholder::before {
+              background-color: #a4a2c8; } }
+        .landing-solicited__list .forms-group:nth-child(2) .input:focus + .placeholder::before {
+          background-color: #8391cc; }
+          @media only screen and (max-width: 480px) {
+            .landing-solicited__list .forms-group:nth-child(2) .input:focus + .placeholder::before {
+              background-color: #a9a2be; } }
+        .landing-solicited__list .forms-group:nth-child(3) .input:focus + .placeholder::before {
+          background-color: #bea19c; }
+          @media only screen and (max-width: 480px) {
+            .landing-solicited__list .forms-group:nth-child(3) .input:focus + .placeholder::before {
+              background-color: #b0a2b3; } }
+        .landing-solicited__list .forms-group:nth-child(4) .input:focus + .placeholder::before {
+          background-color: #9ea3d3; }
+          @media only screen and (max-width: 480px) {
+            .landing-solicited__list .forms-group:nth-child(4) .input:focus + .placeholder::before {
+              background-color: #b8a1a6; } }
+        .landing-solicited__list .forms-group:nth-child(5) {
+          position: relative;
+          z-index: 0; }
+          .landing-solicited__list .forms-group:nth-child(5) .input:focus + .placeholder::before {
+            background-color: #bea19c; }
+        @media only screen and (max-width: 480px) {
+          .landing-solicited__list .forms-group:last-child {
+            margin: 0 0 20px 0; } }
+        .landing-solicited__list .forms-group:last-child .input:focus + .placeholder::before {
+          background-color: #aaa2bc; }
+          @media only screen and (max-width: 720px) {
+            .landing-solicited__list .forms-group:last-child .input:focus + .placeholder::before {
+              background-color: #cba085; } }
