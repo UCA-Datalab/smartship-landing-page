@@ -79,9 +79,11 @@
                     if($scrolled)
                     {
                         $("#topLogo").attr("src","assets/LOGO/Color/color_derecha.svg");
+                        $("#custom-toggle-icon").css("color","#23387a")
                     }
                     else{
                         $("#topLogo").attr("src","assets/LOGO/Blanco/blanco_derecha.svg");
+                        $("#custom-toggle-icon").css("color","#fff")
                     }
                     
                 });
@@ -105,13 +107,12 @@
                     
                 <!-- Collapse button -->
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarItems"
-                    aria-controls="navbarItems" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon">
-                    </span>
+                    aria-controls="navbarItems" aria-expanded="false" aria-label="Toggle navigation" style="z-index:200">
+                        <i class="fas fa-bars" id="custom-toggle-icon" style="color:#fff;"></i>
                 </button>
 
                 <!-- Collapsible content -->
-                <div class="collapse navbar-collapse">
+                <div class="collapse navbar-collapse" id="navbarItems">
                     <!-- Links -->
                     <ul class="navbar-nav mx-auto smooth-scroll justify-content-center">
                         <li class="nav-item mx-4">
@@ -199,15 +200,19 @@
                         <!--Grid column-->
                         <div
                         data-aos="fade-in" data-aos-delay="400" data-aos-duration="1700" 
-                        class="col-md-3 mb-5 features-item">
+                        class="col-md-3 features-item">
+                        <div class="title-block">
                             <img src="./assets/icons/globo_azul.svg"
-                                width="70" height="70" alt="Enviromental" />
+                                width="70" height="70" alt="Enviromental" class="features-icon"/>
+                            
                             <h4 class="my-4 font-weight-bold">Ecofriendly</h4>
+                        </div>
                             <p class="darkgrey-text">Maritime traffic produces 2.5% of
                                 the planet's total CO2 emissions. The
                                 International
                                 Maritime Organization aims to reduce these
                                 emissions by 40% before 2030.</p>
+                            
                         </div>
                         <!--Grid column-->
 
@@ -215,9 +220,11 @@
                         <div 
                         data-aos="fade-in" data-aos-delay="700" data-aos-duration="1700" 
                         class="col-md-3 features-item">
+                        <div class="title-block">
                             <img src="./assets/icons/billetes_azul.svg"
-                                width="70" height="70" alt="Cost" />
-                            <h4 class="my-4 font-weight-bold">Money saving</h4>
+                                width="70" height="70" alt="Cost" class="features-icon"/>
+                            <h4 class="font-weight-bold">Money saving</h4>
+                        </div>
                             <p class="darkgrey-text">
                                 Fuel amounts to 60% of the total operational cost of sea transport, for a total bill of €120
                                 Billions per year.
@@ -230,10 +237,13 @@
                         <!--Grid column-->
                         <div 
                         data-aos="fade-in" data-aos-delay="1000" data-aos-duration="1700" 
-                        class="col-md-3 mb-5 features-item">
+                        class="col-md-3 features-item">
+                        <div class="title-block">
                             <img src="./assets/icons/ancla_azul.svg"
-                                width="70" height="70" alt="Safety" />
-                            <h4 class="my-4 font-weight-bold">Crew safety</h4>
+                                width="70" height="70" alt="Safety" class="features-icon"/>
+                            
+                            <h4 class="font-weight-bold">Crew safety</h4>
+                        </div>
                             <p class="darkgrey-text">
                                 Sailing under adverse weather conditions causes 48% of maritime casualties.
                                 Crew and cargo safety must be considered when planning optimal routes.
@@ -274,8 +284,8 @@
                         <!--Grid row-->
                         <div class="row d-flex justify-content-between">
                             <!--Grid column-->
-                            <div class="col-md-3 mb-5 features-item">
-                                <h4 class="my-4 font-weight-bold">Currents</h4>
+                            <div class="col-md-3 features-item">
+                                <h4 class="font-weight-bold">Currents</h4>
                                 <div class="view overlay z-depth-1-half round data-gifs">
                                     <img src="./assets/gifs/currents.gif" class="img-fluid" alt="">
                                     <div class="mask rgba-white-slight"></div>
@@ -288,8 +298,8 @@
                             <!--Grid column-->
 
                             <!--Grid column-->
-                            <div class="col-md-3 mb-5 features-item">
-                                <h4 class="my-4 font-weight-bold">Wind</h4>
+                            <div class="col-md-3 features-item">
+                                <h4 class="font-weight-bold">Wind</h4>
                                 <div class="view overlay z-depth-1-half round data-gifs">
                                     <img src="./assets/gifs/wind.gif" class="img-fluid" alt="">
                                     <div class="mask rgba-white-slight"></div>
@@ -303,8 +313,8 @@
                             <!--Grid column-->
 
                             <!--Grid column-->
-                            <div class="col-md-3 mb-5 features-item">
-                                <h4 class="my-4 font-weight-bold">Waves</h4>
+                            <div class="col-md-3 features-item">
+                                <h4 class="font-weight-bold">Waves</h4>
 
                                 <div class="view overlay z-depth-1-half round data-gifs">
                                     <img src="./assets/gifs/waves.gif" class="img-fluid" alt="">
