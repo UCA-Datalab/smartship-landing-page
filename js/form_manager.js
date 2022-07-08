@@ -1,8 +1,6 @@
 
 function createBody(name, surname, email, company, text) {
-    var body = `<p>DEMO REQUEST</p>
-    <p> Name: `+ name + ` </p>
-    <p> Surname: `+ surname + ` </p>
+    var body = `<p>DEMO REQUEST from `+ name + surname +`</p>
     <p> Company: `+ company + ` </p>
     <p> Mail: `+ email + ` </p>
     <p> Content: </p>
@@ -12,6 +10,7 @@ function createBody(name, surname, email, company, text) {
 }
 
 document.addEventListener("submit", (e) => {
+   
 
     // Store reference to form to make later code easier to read
     form = e.target
@@ -27,11 +26,11 @@ document.addEventListener("submit", (e) => {
 
     //Send reception email to the user
     Email.send({
-        Host: "smtp.gmail.com",
-        Username: "smartshipping.contact@gmail.com",
-        Password: "maffbhelmmcuroah",
-        To: "info@smartshipping.es",
-        From: "smartshipping.contact@gmail.com",
+        Host: "smtp.elasticemail.com",
+        Username: "info@smartshipping.es",
+        Password: "ADCE70A019B98499909952271CC87A028851",
+        To: "choped123@gmail.com",
+        From: "info@smartshipping.es",
         Subject: "Demo request from " + name + " - " + company,
         Body: createBody(name, surname, email, company, text)
     }).then(
