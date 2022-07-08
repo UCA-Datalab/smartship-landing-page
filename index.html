@@ -20,12 +20,7 @@
         <!-- Base CSS -->
         <link href="./css/base.css"
             rel="stylesheet">
-        <!-- Font Awesome -->
-        <link rel="stylesheet"
-            href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
-        <!-- Google Fonts -->
-        <link rel="stylesheet"
-            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+        
         <!-- Bootstrap core CSS -->
         <link
             href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css"
@@ -100,7 +95,7 @@
             <nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
                 <!-- Navbar brand -->
                 <a class="navbar-brand" href="#">
-                    <img src="assets/LOGO/Blanco/blanco_derecha.svg" id="topLogo" style="height: 2.5rem;">
+                    <img src="assets/LOGO/Blanco/blanco_derecha.svg" class="svg" id="topLogo" style="height: 2.5rem;">
                 </a>
                     
                 <!-- Collapse button -->
@@ -325,7 +320,8 @@
                     </div>
                 </section>
                 <!--Section: Data-->
-
+                
+                <!--
                 <section data-aos="fade-in" data-aos-delay="150" data-aos-duration="17000" class="gradient text-white"
                 id="demo">
                     <div class="container">
@@ -383,8 +379,55 @@
                         </div>
                     </div>
                 </section>
+            -->
 
-
+                <section id="demo" class="landing-solicited" id="landing-solicited">
+                    <div class="container container--small">
+                        <h2 class="landing-solicited__title">Request a Demo</h2>
+                        <p class="landing-solicited__text">Fill up the form and we will contact you as soon as possible.</p>
+                        <form id="FormDemo" class="landing-solicited__form" method="post">
+                            <div class="landing-solicited__list">
+                                <div class="forms-group">
+                                    <input name="DemoName" id="DemoName" type="text" class="input" autocomplete="off" spellcheck="false" maxlength="25" required>
+                                    <label class="placeholder">Name <span>*</span></label>
+                                </div>
+                                <div class="forms-group">
+                                    <input name="DemoLastName" id="DemoLastName" type="text" class="input" autocomplete="off" spellcheck="false" maxlength="25" required>
+                                    <label class="placeholder">Surname <span>*</span></label>
+                                </div>
+                                <div class="forms-group">
+                                    <input name="DemoMail" id="DemoMail" type="mail" class="input" autocomplete="off" spellcheck="false" maxlength="30" required>
+                                    <label class="placeholder">Mail <span>*</span></label>
+                                </div>
+                                <div class="forms-group">
+                                    <input name="DemoPhone" id="DemoPhone" type="tel" class="input" autocomplete="off" spellcheck="false" maxlength="25" required>
+                                    <label class="placeholder">Phone number</label>
+                                </div>
+                                <div class="forms-group">
+                                    <input name="DemoCompany" id="DemoCompany" type="text" class="input" autocomplete="off" spellcheck="false" maxlength="30" required>
+                                    <label class="placeholder">Company <span>*</span></label>
+                                </div>
+                                <div class="forms-group">
+                                    <input type="text" name="DemoUrl" id="DemoUrl" class="input" autocomplete="off" spellcheck="false" maxlength="25" >
+                                    <label class="placeholder">Url</label>
+                                </div>
+                            </div>
+                            <div class="checkbox">
+                                <label for="DemoCheck">
+                                    <input name="DemoCheck" id="DemoCheck" type="checkbox" required>
+                                    <span>I have read and agreed with the terms and conditions</span>
+                                </label>
+                            </div>
+                            <input id="fieldKey" name="fieldKey" type="hidden" value="sL2psaLwWvvYnpxSvher">
+                            <input id="fieldLang" name="fieldLang" type="hidden" value="ES">
+                            <input type="text" name="antsp" style="display: none;">
+                            <div class="landing-solicited__bottom">
+                                <button type="submit" id="DemoSubmit" class="btn btn--white" style="opacity: 1; transform: translate(0px);color:white;">Send</button>
+                            </div>
+    
+                        </form>
+                    </div>
+                </section>
                 <!--Section: optimization-->
                 <section
                 data-aos="fade-in" data-aos-delay="150" data-aos-duration="17000"
