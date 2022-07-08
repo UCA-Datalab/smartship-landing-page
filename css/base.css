@@ -230,16 +230,16 @@ html {
     height:300px;
 }
 
-body, html {
-    scroll-snap-type: mandatory;
-    scroll-snap-type: y mandatory;
-  }
-
 #intro{
     scroll-snap-align: start;
 }
 
 section {
-    scroll-snap-align: center;
     margin-top: 50px;
-  }
+}
+#data:target{
+    padding-top: 30px;
+}
+#features, #optimization, #demo :target{
+    padding-top: 60px;
+}
