@@ -95,7 +95,7 @@
         <!--Main Navigation-->
         <header>
             <!--Navbar-->
-            <nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
+            <nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar" id="top-navbar">
                 <!-- Navbar brand -->
                 <a class="navbar-brand" href="#" style="z-index:100">
                     <img src="assets/LOGO/Blanco/blanco_derecha.svg" id="topLogo" style="height: 2.5rem;">
@@ -171,7 +171,7 @@
                 data-aos="fade-in" data-aos-delay="150" data-aos-duration="17000" 
                 id="features">
                 <div class="col-md-9 container section-container">
-                    <h2 class="mb-4 font-weight-bold section-title">Features</h2>
+                    <h2 class="font-weight-bold section-title">Features</h2>
                     <!--Grid column-->
                     <div
                     data-aos="fade-in" data-aos-delay="150" data-aos-duration="17000"
@@ -252,25 +252,17 @@
                 id="data">
                     <div class="col-md-9 container section-container">
                         <!-- Heading -->
-                        <div id="div-outside">
                             <div
                                 data-aos="fade-in" data-aos-delay="150" data-aos-duration="17000"
-                                class="col-md-6 section-intro no-padding" id="div-text">
-                                    <h2 class="mb-4 font-weight-bold section-title"> Data driven optimization model </h2>
+                                class="col-md-6 section-intro no-padding">
+                                    <h2 class="font-weight-bold section-title"> Data driven optimization model </h2>
                                     <!-- Description -->
                                     <p class="darkgrey-text">
                                         We use advance mathematical models to simulate the interaction of waves, currents and wind on a specific vessel. 
                                         <strong>Oceanographic and weather conditions are constanly changing</strong>, so optimal routes will change every day and
                                         all our data are daily updated from main weather and ocean data providers.
                                     </p>
-                                    
-                            </div>
-
-                            <div class="col-md-6 d-flex justify-content-center" id="div-gif">
-                                <img src="./assets/gifs/DemoGif.gif" id="gif" class="img-fluid" alt="">
-                            </div>
                         </div>
-                       
                        
 
                         <!--Grid row-->
@@ -332,15 +324,15 @@
                   <section 
                   data-aos="fade-in" data-aos-delay="150" data-aos-duration="17000" 
                   id="demo">
-                      <div class="col-md-9 container section-container pt-5 pb-5">
+                      <div class="col-md-9 container section-container pt-5 pb-5" id="div-outside">
                           <!-- Heading -->
                           <div class="row">
 
 
                             <div
                             data-aos="fade-in" data-aos-delay="150" data-aos-duration="17000"
-                            class="col-md-6 section-intro no-padding" >
-                                    <h2 class="mb-4 font-weight-bold section-title"> Web Demo Available! </h2>
+                            class="col-md-6 section-intro no-padding" id="demo-text">
+                                    <h2 class="font-weight-bold section-title"> Web Demo Available! </h2>
                                     <!-- Description -->
                                     <p class="darkgrey-text">
                                         Our solution is already deployed for being used in real life scenarios,
@@ -350,11 +342,9 @@
                                     </p>                                      
                             </div>
   
-                            <div class="col-md-6 d-flex justify-content-center" id="div-gif-bottom" >
+                            <div class="col-md-6 d-flex justify-content-center" id="div-gif" >
                                 <img src="./assets/gifs/DemoGif.gif" id="gif" class="img-fluid" alt="">
                             </div>
-
-
 
                           </div>
                             
@@ -439,18 +429,18 @@
          <script>
            AOS.init();
            $('.navbar-nav a').on('click', function(e) {
-
+                var headerHeight = $("#top-navbar").height()
                 var el = $($(this).attr("href"));
                 var elOffset = el.offset().top;
                 var elHeight = el.height();
                 var windowHeight = $(window).height();
                 var offset;
 
-                if (elHeight < windowHeight) {
+                if (elHeight + headerHeight < windowHeight) {
                     offset = elOffset - ((windowHeight / 2) - (elHeight / 2));
                 }
                 else {
-                    offset = elOffset;
+                    offset = elOffset - headerHeight;
                 }
                 var speed = 700;
 	  
