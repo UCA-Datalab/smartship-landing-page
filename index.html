@@ -17,6 +17,8 @@
         
         <!-- Animations -->
         <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+         <!-- Icons -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
         <!-- Base CSS -->
         <link href="./css/base.css"
             rel="stylesheet">
@@ -330,67 +332,48 @@
                     </div>
                 </section>
                 <!--Section: Data-->
-                
-                <!--
-                <section data-aos="fade-in" data-aos-delay="150" data-aos-duration="17000" class="gradient text-white"
-                id="demo">
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-md-12">
-                                <div class="contact-wrap w-100 p-md-5 p-4">
-                                    <h3 class="mb-4">Request a Demo</h3>
-                                    <div id="form-message-warning" class="mb-4"></div> 
-                                <div id="form-message-success" class="mb-4">
-                           
-                                </div>
-                                    <form method="POST" id="contactForm" name="contactForm" class="contactForm">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label class="label" for="name">Name</label>
-                                                    <input type="text" class="form-control" name="name" id="name" placeholder="Name" required>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6"> 
-                                                <div class="form-group">
-                                                    <label class="label" for="email">Surname</label>
-                                                    <input type="text" class="form-control" name="surname" id="surname" placeholder="Surname" required>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label class="label" for="subject">Email Address</label>
-                                                    <input type="email" class="form-control" name="email" id="email" placeholder="email" required>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label class="label" for="subject">Company Name</label>
-                                                    <input type="text" class="form-control" name="company" id="company" placeholder="Company" required>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <label class="label" for="#">Message</label>
-                                                    <textarea name="text" class="form-control" id="message" cols="30" rows="4" placeholder="Message" required></textarea>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <input type="submit"  placeholder="Send Request" class="btn transButton">
-                                                    
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                                        
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            -->
 
+                  <!--Section: Demo-->
+                  <section 
+                  data-aos="fade-in" data-aos-delay="150" data-aos-duration="17000" 
+                  id="demo">
+                      <div class="col-md-9 container section-container pt-5 pb-5">
+                          <!-- Heading -->
+                          <div class="row">
+
+
+                            <div
+                            data-aos="fade-in" data-aos-delay="150" data-aos-duration="17000"
+                            class="col-md-6 section-intro no-padding" >
+                                    <h2 class="mb-4 font-weight-bold section-title"> Web Demo Available! </h2>
+                                    <!-- Description -->
+                                    <p class="darkgrey-text">
+                                        Our solution is already deployed for being used in real life scenarios,
+                                         our application can make a tailor made optimization for a given parametrized vessel and a choosen route.
+                                        We gather historical data and we are also to predict in the future! Each day there is a different solution for your
+                                        operation.
+                                    </p>                                      
+                            </div>
+  
+                            <div class="col-md-6 d-flex justify-content-center" id="div-gif-bottom" >
+                                <img src="./assets/gifs/DemoGif.gif" id="gif" class="img-fluid" alt="">
+                            </div>
+
+
+
+                          </div>
+                            
+                          
+                         
+                         
+                      </div>
+                  </section>
+                  <!--Section: Demo-->
+                
+              
+
+                <!--Section: Demo request-->
+                
                 <section id="demo" class="landing-solicited" id="landing-solicited">
                     <div class="container container--small">
                         <h2 class="landing-solicited__title">Request a Demo</h2>
@@ -438,56 +421,7 @@
                         </form>
                     </div>
                 </section>
-                <!--Section: optimization-->
-                <section
-                data-aos="fade-in" data-aos-delay="150" data-aos-duration="17000"
-                id="optimization">
-
-                    <!-- Heading -->
-                    <h2 class="mb-5 font-weight-bold text-center">Optimization</h2>
-                    <!--Grid row-->
-                    <div class="row">
-
-                        <!--Grid column-->
-                        <div class="col-md-6">
-
-                            <!--Excerpt-->
-                            <h4 class="mb-3"><strong>Vessel consumption modeling</strong></h4>
-                            <p class="darkgrey-text">
-                                We use advance mathematical models to accurately
-                                simulate the interaction of waves, currents and wind on a specific vessel.
-                                Our baseline models incorporate state of the art knownledge on naval engineering and
-                                hydrodynamics.
-                                We can develop tailor made consumption models trained on real consumption data.
-                            </p>
-                            <h4 class="mb-3"><strong>Optimization algorithms</strong></h4>
-                            <p class="darkgrey-text">
-                                We combine the most recent evolutionary optimization
-                                algorithms and gradient descent variational methods
-                                to find the optimal route according to user defined criteria.
-                            </p>
-
-                        </div>
-                        <!--Grid column-->
-
-                        <!--Grid column-->
-                        <div class="col-md-6 mb-4">
-                            <div class="view overlay z-depth-1-half">
-                                <img src="./assets/gifs/astarv4.1.gif" class="img-fluid"
-                                    alt="">
-                                <div class="mask rgba-white-slight"></div>
-                            </div>
-
-                        </div>
-                        <!--Grid column-->
-
-                    </div>
-                    <!--Grid row-->
-
-                </section>
-                <!--Section: optimization-->
-                <hr class="my-5">
-               
+                
                 
             
         </main>
@@ -512,67 +446,19 @@
            AOS.init();
          </script>
     </body>
+<!--footer-->
+   
 
-    <footer class="page-footer font-small" style="background-color: #23387a;">
-        <!--Footer Links-->
-        <div class="container mt-5 mb-4 text-center text-md-left">
-            <div class="row mt-3">
-
-                <!--First column-->
-                <div class="col-md-6 col-lg-6 col-xl-6 mb-2" style="margin-top:
-                    1rem; margin-bottom: 0rem !important;">
-                    <h6 class="text-uppercase font-weight-bold">
-                        <strong>Partners</strong>
-                    </h6>
-                    <hr class="accent-2 mb-4 mt-0 d-inline-block mx-auto"
-                        style="width: 200px;background-color: #82bed1;height:
-                        2px;border: none;">
-                    <p>
-                        <a href="http://datalab.uca.es/"><img
-                                class="img-responsive"
-                                src="./assets/logos/logo_datalab.png"
-                                width="250px">
-                        </p></a>
-                    <p>
-                        <a href="https://komorebi.ai/"><img
-                                class="img-responsive"
-                                src="./assets/logos/logo_komorebi.png"
-                                width="250px">
-                        </p></a>
-
-                </div>
-                <!--/.First column-->
-
-                <!--Second column-->
-                <div class="col-md-4 col-lg-4 col-xl-4 mb-2" style="margin-top:
-                    1rem; margin-bottom: 0rem !important;">
-                    <h6 class="text-uppercase font-weight-bold">
-                        <strong>Contact</strong>
-                    </h6>
-                    <hr class="accent-2 mb-4 mt-0 d-inline-block mx-auto"
-                        style="width: 200px;background-color: #82bed1;height:
-                        2px;border: none;">
-
-                    <p><i class="fa fa-envelope mr-3"></i>
-                        datalab@uca.es</p>
-                    <p><i class="fa fa-envelope mr-3"></i>
-                        info@smartshipping.es </p>
-                    <p><i class="fab fa-instagram mr-3"></i> <a href="https://www.instagram.com/smartshipping_uca/"> smartshipping_uca </a></p>
-                </div>
-                <!--/.Second column-->
-
-            </div>
-        </div>
-        <!--/.Footer Links-->
-
-        <!-- Copyright -->
-        <div class="footer-copyright text-center py-3">© 2022 Copyright:
-            <a href="https://smartshipping.es"> smartshipping.es</a>
-        </div>
-        <!-- Copyright -->
-
-    </footer>
-    <!--Footer-->
-
+    <div class="footer-basic">
+        <footer>
+            <div class="social"><a href="#"><i class="icon ion-social-instagram"></i></a><a href="#"><i class="icon ion-social-snapchat"></i></a><a href="#"><i class="icon ion-social-twitter"></i></a><a href="#"><i class="icon ion-social-facebook"></i></a></div>
+            <ul class="list-inline">
+                <li class="list-inline-item"><a href="#">Komorebi AI</a></li>
+                <li class="list-inline-item"><a href="#">Terms</a></li>
+                <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
+            </ul>
+            <p class="copyright">SmartSgipping © 2022</p>
+        </footer>
+    </div>
 
 </html>
