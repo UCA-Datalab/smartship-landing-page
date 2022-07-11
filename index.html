@@ -15,6 +15,8 @@
         <meta property="og:title" content="Smart Shipping" />
         <meta property="og:description" content="AI powered optimization for cleaner, safer and more efficient maritime transport. "/>
         
+        <!-- JQuery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <!-- Animations -->
         <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
         <!-- Owl-Carrousel-->
@@ -23,8 +25,7 @@
         <!-- Icons -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
         <!-- Base CSS -->
-        <link href="./css/base.css"
-            rel="stylesheet">
+        <link href="./css/base.css" rel="stylesheet">
         <!-- Font Awesome -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <!-- Bootstrap core CSS -->
@@ -35,16 +36,14 @@
         <link
             href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css"
             rel="stylesheet">
-        <!-- JQuery -->
-        <script type="text/javascript"
-            src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        
         <!-- Bootstrap tooltips -->
         <script type="text/javascript"
             src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
         <!-- Bootstrap core JavaScript -->
         <script type="text/javascript"
             src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        
         <!-- MDB core JavaScript -->
         <script type="text/javascript"
             src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
@@ -73,7 +72,7 @@
                 $(document).scroll(function () {
                     var $nav = $(".navbar");
                     var $mask = $(".mask");
-                    var $scrolled = $(this).scrollTop() >= $mask.height();
+                    var $scrolled = $(this).scrollTop() >= $mask.height() * 0.5;
                     $nav.toggleClass('scrolled', $scrolled);
                     if($scrolled)
                     {
@@ -98,7 +97,7 @@
         <!--Main Navigation-->
         <header>
             <!--Navbar-->
-            <nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
+            <nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar" id="top-navbar">
                 <!-- Navbar brand -->
                 <a class="navbar-brand" href="#" style="z-index:100">
                     <img src="assets/LOGO/Blanco/blanco_derecha.svg" id="topLogo" style="height: 2.5rem;">
@@ -119,9 +118,6 @@
                         </li>
                         <li class="nav-item mx-4">
                             <a class="nav-link" href="#data"><b>Data</b></a>
-                        </li>
-                        <li class="nav-item mx-4">
-                            <a class="nav-link" href="#optimization"><b>Optimization</b></a>
                         </li>
                         <li class="nav-item mx-4">
                             <a class="nav-link" href="#demo"><b>Demo</b></a>
@@ -174,7 +170,7 @@
                 data-aos="fade-in" data-aos-delay="150" data-aos-duration="17000" 
                 id="features">
                 <div class="col-md-9 container section-container">
-                    <h2 class="mb-4 font-weight-bold section-title">Features</h2>
+                    <h2 class="font-weight-bold section-title">Features</h2>
                     <!--Grid column-->
                     <div
                     data-aos="fade-in" data-aos-delay="150" data-aos-duration="17000"
@@ -255,25 +251,17 @@
                 id="data">
                     <div class="col-md-9 container section-container">
                         <!-- Heading -->
-                        <div id="div-outside">
                             <div
                                 data-aos="fade-in" data-aos-delay="150" data-aos-duration="17000"
-                                class="col-md-6 section-intro no-padding" id="div-text">
-                                    <h2 class="mb-4 font-weight-bold section-title"> Data driven optimization model </h2>
+                                class="col-md-10 section-intro no-padding">
+                                    <h2 class="font-weight-bold section-title"> Data driven optimization model </h2>
                                     <!-- Description -->
                                     <p class="darkgrey-text">
                                         We use advance mathematical models to simulate the interaction of waves, currents and wind on a specific vessel. 
                                         <strong>Oceanographic and weather conditions are constanly changing</strong>, so optimal routes will change every day and
                                         all our data are daily updated from main weather and ocean data providers.
                                     </p>
-                                    
-                            </div>
-
-                            <div class="col-md-6 d-flex justify-content-center" id="div-gif">
-                                <img src="./assets/gifs/DemoGif.gif" id="gif" class="img-fluid" alt="">
-                            </div>
                         </div>
-                       
                        
 
                         <!--Grid row-->
@@ -335,15 +323,15 @@
                   <section 
                   data-aos="fade-in" data-aos-delay="150" data-aos-duration="17000" 
                   id="demo">
-                      <div class="col-md-9 container section-container pt-5 pb-5">
+                      <div class="col-md-9 container section-container pt-5 pb-5" id="div-outside">
                           <!-- Heading -->
                           <div class="row">
 
 
                             <div
                             data-aos="fade-in" data-aos-delay="150" data-aos-duration="17000"
-                            class="col-md-6 section-intro no-padding" >
-                                    <h2 class="mb-4 font-weight-bold section-title"> Web Demo Available! </h2>
+                            class="col-md-6 section-intro no-padding" id="demo-text">
+                                    <h2 class="font-weight-bold section-title"> Web Demo Available! </h2>
                                     <!-- Description -->
                                     <p class="darkgrey-text">
                                         Our solution is already deployed for being used in real life scenarios,
@@ -353,11 +341,9 @@
                                     </p>                                      
                             </div>
   
-                            <div class="col-md-6 d-flex justify-content-center" id="div-gif-bottom" >
+                            <div class="col-md-6 d-flex justify-content-center" id="div-gif" >
                                 <img src="./assets/gifs/DemoGif.gif" id="gif" class="img-fluid" alt="">
                             </div>
-
-
 
                           </div>
                             
@@ -365,15 +351,13 @@
                          
                          
                       </div>
-                  </section>
                   <!--Section: Demo-->
                 
               
 
                 <!--Section: Demo request-->
-                
-                <section id="demo" class="landing-solicited" id="landing-solicited">
-                    <div class="container container--small">
+                <div class="landing-solicited" id="landing-solicited">
+                    <div class="container container--small" >
                         <h2 class="landing-solicited__title">Request a Demo</h2>
                         <p class="landing-solicited__text">Fill up the form and we will contact you as soon as possible.</p>
                         <form id="FormDemo" class="landing-solicited__form" method="post">
@@ -418,6 +402,7 @@
     
                         </form>
                     </div>
+                </div>
                 </section>
                 
                 <!--Partners-->
@@ -526,23 +511,40 @@
             })
 
            AOS.init();
-           $('.nav-bar a').on('click', function(e) { 
-                var el = $( e.target.getAttribute('href') );
-                var elOffset = el.offset().top;
-                var elHeight = el.height();
-                var windowHeight = $(window).height();
+           $('.navbar a').on('click', function(e) {
+                $('.navbar-collapse').collapse('hide');
+                var idTag = $(this).attr("href")
                 var offset;
-
-                console.log("aksdjask");
-
-                if (elHeight < windowHeight) {
-                    offset = elOffset - ((windowHeight / 2) - (elHeight / 2));
+                if(idTag == "#")
+                {
+                    offset = 0;
                 }
-                else {
-                    offset = elOffset;
+                else{
+                    var el = $(idTag);
+                    var headerHeight = $(".navbar-brand").height()
+                    var elOffset = el.offset().top;
+                    var elHeight = el.height();
+                    var windowHeight = $(window).height();
+                    
+
+                    if (elHeight + headerHeight < windowHeight) {
+                        offset = elOffset - ((windowHeight / 2) - (elHeight / 2));
+                    }
+                    else {
+                        offset = elOffset - headerHeight;
+                    }
                 }
+                
                 var speed = 700;
-                $('html, body').animate({scrollTop:offset}, speed);
+	  
+                $('html, body').animate(
+                    {
+                        scrollTop: offset
+                    },
+                    speed
+                );
+                
+                e.preventDefault();
             });
          </script>
          

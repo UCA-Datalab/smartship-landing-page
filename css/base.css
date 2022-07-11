@@ -11,10 +11,10 @@ header,
     height: 100%;
 }
 
-html,body {
+/*html,body {
     scroll-behavior: smooth;
-    /*font-family:"HelveticaLTStd-Bold" !important;*/
-}
+    font-family:"HelveticaLTStd-Bold" !important;
+}*/
 
 #intro {
     /*background: url('../assets/landing-image.jpg') no-repeat center center fixed;
@@ -96,8 +96,8 @@ input,textarea{
 }
 
 .section-title {
-    margin-bottom: 1.5rem !important;
-    margin-top: 1.5rem !important;
+    padding-bottom: 1.5rem !important;
+    padding-top: 1.5rem !important;
 }
 
 .filter-blue {
@@ -221,31 +221,12 @@ input,textarea{
 
 #data{
     background-color:#a0c6d169;
-    margin-top: 100px ;
-}
-
-#div-outside{
-    height:200px;
-    position:relative;
-    margin-bottom: 40px;
-}
-
-#div-text{
-    position:absolute;
-    bottom:0px;
 }
 
 #div-gif{
     position:absolute;
-    bottom:0px;
-    right:0px;
-}
-
-
-#div-gif-bottom{
-  position:absolute;
-  bottom:-100px;
-  right:-40px;
+    bottom:-100px;
+    right:-40px;
 }
 
 #gif{
@@ -304,20 +285,10 @@ input,textarea{
         width: 50px;
         height: 50px;
     }
-    #data{
-        margin-top: 10px;
-        padding-top: 30px;
-    }
     #div-outside{
-        height:unset;
-        position:unset;
-        margin-bottom: 15px;
+        padding-top: 10px !important;
     }
-    
-    #div-text{
-        position:unset;
-        bottom:unset;
-    }
+
     #div-gif{
         position:unset;
         bottom:unset;
@@ -325,6 +296,12 @@ input,textarea{
     }
     #gif{
         height: 175px;
+    }
+    #demo-text{
+      padding:0px 15px 0px 15px !important
+    }
+    .forms-group{
+      margin-bottom: 20px !important;
     }
 }
 /* Common: BUTTONS
