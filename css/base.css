@@ -285,6 +285,9 @@ input,textarea{
     #demo-text{
       padding:0px 15px 0px 15px !important
     }
+    .forms-group{
+      margin-bottom: 20px !important;
+    }
 }
 /* Common: BUTTONS
 --------------------------------------------------------------------------------------------------------------------- */

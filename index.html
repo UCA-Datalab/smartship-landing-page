@@ -15,13 +15,14 @@
         <meta property="og:title" content="Smart Shipping" />
         <meta property="og:description" content="AI powered optimization for cleaner, safer and more efficient maritime transport. "/>
         
+        <!-- JQuery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <!-- Animations -->
         <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
          <!-- Icons -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
         <!-- Base CSS -->
-        <link href="./css/base.css"
-            rel="stylesheet">
+        <link href="./css/base.css" rel="stylesheet">
         <!-- Font Awesome -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <!-- Bootstrap core CSS -->
@@ -32,16 +33,14 @@
         <link
             href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css"
             rel="stylesheet">
-        <!-- JQuery -->
-        <script type="text/javascript"
-            src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        
         <!-- Bootstrap tooltips -->
         <script type="text/javascript"
             src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
         <!-- Bootstrap core JavaScript -->
         <script type="text/javascript"
             src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        
         <!-- MDB core JavaScript -->
         <script type="text/javascript"
             src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
@@ -116,9 +115,6 @@
                         </li>
                         <li class="nav-item mx-4">
                             <a class="nav-link" href="#data"><b>Data</b></a>
-                        </li>
-                        <li class="nav-item mx-4">
-                            <a class="nav-link" href="#optimization"><b>Optimization</b></a>
                         </li>
                         <li class="nav-item mx-4">
                             <a class="nav-link" href="#demo"><b>Demo</b></a>
@@ -428,20 +424,30 @@
          <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
          <script>
            AOS.init();
-           $('.navbar-nav a').on('click', function(e) {
-                var headerHeight = $("#top-navbar").height()
-                var el = $($(this).attr("href"));
-                var elOffset = el.offset().top;
-                var elHeight = el.height();
-                var windowHeight = $(window).height();
+           $('.navbar a').on('click', function(e) {
+                $('.navbar-collapse').collapse('hide');
+                var idTag = $(this).attr("href")
                 var offset;
+                if(idTag == "#")
+                {
+                    offset = 0;
+                }
+                else{
+                    var el = $(idTag);
+                    var headerHeight = $(".navbar-brand").height()
+                    var elOffset = el.offset().top;
+                    var elHeight = el.height();
+                    var windowHeight = $(window).height();
+                    
 
-                if (elHeight + headerHeight < windowHeight) {
-                    offset = elOffset - ((windowHeight / 2) - (elHeight / 2));
+                    if (elHeight + headerHeight < windowHeight) {
+                        offset = elOffset - ((windowHeight / 2) - (elHeight / 2));
+                    }
+                    else {
+                        offset = elOffset - headerHeight;
+                    }
                 }
-                else {
-                    offset = elOffset - headerHeight;
-                }
+                
                 var speed = 700;
 	  
                 $('html, body').animate(
@@ -449,10 +455,10 @@
                         scrollTop: offset
                     },
                     speed
-                    );
-                });
-
+                );
+                
                 e.preventDefault();
+            });
          </script>
     </body>
 <!--footer-->
