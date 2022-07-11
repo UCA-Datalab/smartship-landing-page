@@ -22,7 +22,8 @@
         <!-- Base CSS -->
         <link href="./css/base.css"
             rel="stylesheet">
-        
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <!-- Bootstrap core CSS -->
         <link
             href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css"
@@ -64,9 +65,7 @@
             gtag('js', new Date());
 
             gtag('config', 'G-Q7BLBHXJ7Z');
-        </script>
 
-        <script>
             $(function () {
                 $(document).scroll(function () {
                     var $nav = $(".navbar");
@@ -105,7 +104,7 @@
                 <!-- Collapse button -->
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarItems"
                     aria-controls="navbarItems" aria-expanded="false" aria-label="Toggle navigation" style="z-index:200">
-                        <i class="fas fa-bars" id="custom-toggle-icon" style="color:#fff;"></i>
+                        <i class="fa fa-bars" id="custom-toggle-icon" style="color:#fff;"></i>
                 </button>
 
                 <!-- Collapsible content -->
@@ -113,7 +112,7 @@
                     <!-- Links -->
                     <ul class="navbar-nav mx-auto smooth-scroll justify-content-center">
                         <li class="nav-item mx-4">
-                            <a class="nav-link" href="#features"><b>Features</b></a>
+                            <a class="nav-link" href="#features" id="link-features"><b>Features</b></a>
                         </li>
                         <li class="nav-item mx-4">
                             <a class="nav-link" href="#data"><b>Data</b></a>
@@ -155,10 +154,6 @@
                                 <h4 class="white-text my-4">
                                     AI powered optimization for cleaner, safer and more efficient maritime transport.
                                 </h4>
-                                <a class="white-text" href="#demo">
-                                    <button type="button" href="#demo" class="btn
-                                        btn-outline-white try-it-btn">Try
-                                        it!</button></a>
                             </div>
                         </div>
                     </div>
@@ -220,7 +215,7 @@
                         <div class="title-block">
                             <img src="./assets/icons/billetes_azul.svg"
                                 width="70" height="70" alt="Cost" class="features-icon"/>
-                            <h4 class="font-weight-bold">Money saving</h4>
+                            <h4 class="my-4 font-weight-bold">Money saving</h4>
                         </div>
                             <p class="darkgrey-text">
                                 Fuel amounts to 60% of the total operational cost of sea transport, for a total bill of €120
@@ -239,7 +234,7 @@
                             <img src="./assets/icons/ancla_azul.svg"
                                 width="70" height="70" alt="Safety" class="features-icon"/>
                             
-                            <h4 class="font-weight-bold">Crew safety</h4>
+                            <h4 class="my-4 font-weight-bold">Crew safety</h4>
                         </div>
                             <p class="darkgrey-text">
                                 Sailing under adverse weather conditions causes 48% of maritime casualties.
@@ -444,6 +439,24 @@
          <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
          <script>
            AOS.init();
+           $('.nav-bar a').on('click', function(e) { 
+                var el = $( e.target.getAttribute('href') );
+                var elOffset = el.offset().top;
+                var elHeight = el.height();
+                var windowHeight = $(window).height();
+                var offset;
+
+                console.log("aksdjask");
+
+                if (elHeight < windowHeight) {
+                    offset = elOffset - ((windowHeight / 2) - (elHeight / 2));
+                }
+                else {
+                    offset = elOffset;
+                }
+                var speed = 700;
+                $('html, body').animate({scrollTop:offset}, speed);
+            });
          </script>
     </body>
 <!--footer-->
