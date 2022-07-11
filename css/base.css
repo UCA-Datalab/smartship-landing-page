@@ -235,6 +235,21 @@ input,textarea{
     height:300px;
 }
 
+.vertical-centered-element {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  max-height: 150px;
+  width: auto !important;
+}
+.vertical-center-container {
+  position: relative;
+  height: 150px;
+  padding-left: 3%;
+  padding-right: 3%;
+}
+
 .video-container {
     position: relative;
     width: 100%;
