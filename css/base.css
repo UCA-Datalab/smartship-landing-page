@@ -11,10 +11,10 @@ header,
     height: 100%;
 }
 
-html,body {
+/*html,body {
     scroll-behavior: smooth;
-    /*font-family:"HelveticaLTStd-Bold" !important;*/
-}
+    font-family:"HelveticaLTStd-Bold" !important;
+}*/
 
 #intro {
     /*background: url('../assets/landing-image.jpg') no-repeat center center fixed;

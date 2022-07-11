@@ -70,7 +70,7 @@
                 $(document).scroll(function () {
                     var $nav = $(".navbar");
                     var $mask = $(".mask");
-                    var $scrolled = $(this).scrollTop() >= $mask.height();
+                    var $scrolled = $(this).scrollTop() >= $mask.height() * 0.5;
                     $nav.toggleClass('scrolled', $scrolled);
                     if($scrolled)
                     {
@@ -362,15 +362,13 @@
                          
                          
                       </div>
-                  </section>
                   <!--Section: Demo-->
                 
               
 
                 <!--Section: Demo request-->
-                
-                <section id="demo" class="landing-solicited" id="landing-solicited">
-                    <div class="container container--small">
+                <div class="landing-solicited" id="landing-solicited">
+                    <div class="container container--small" >
                         <h2 class="landing-solicited__title">Request a Demo</h2>
                         <p class="landing-solicited__text">Fill up the form and we will contact you as soon as possible.</p>
                         <form id="FormDemo" class="landing-solicited__form" method="post">
@@ -415,6 +413,7 @@
     
                         </form>
                     </div>
+                </div>
                 </section>
                 
                 
@@ -439,14 +438,13 @@
          <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
          <script>
            AOS.init();
-           $('.nav-bar a').on('click', function(e) { 
-                var el = $( e.target.getAttribute('href') );
+           $('.navbar-nav a').on('click', function(e) {
+
+                var el = $($(this).attr("href"));
                 var elOffset = el.offset().top;
                 var elHeight = el.height();
                 var windowHeight = $(window).height();
                 var offset;
-
-                console.log("aksdjask");
 
                 if (elHeight < windowHeight) {
                     offset = elOffset - ((windowHeight / 2) - (elHeight / 2));
@@ -455,8 +453,16 @@
                     offset = elOffset;
                 }
                 var speed = 700;
-                $('html, body').animate({scrollTop:offset}, speed);
-            });
+	  
+                $('html, body').animate(
+                    {
+                        scrollTop: offset
+                    },
+                    speed
+                    );
+                });
+
+                e.preventDefault();
          </script>
     </body>
 <!--footer-->
