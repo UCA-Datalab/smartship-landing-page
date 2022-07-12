@@ -234,6 +234,12 @@ input,textarea{
     border-radius: 4px;
     height:300px;
 }
+#logo_komorebi_footer{
+  width: 15%;
+  min-width: 200px;
+  height: auto;
+  margin-bottom: 10px;
+}
 
 .vertical-centered-element {
   margin: 0;
