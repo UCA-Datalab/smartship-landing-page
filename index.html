@@ -143,7 +143,7 @@
                             <div class="col-md-10">
                                 <!-- Heading 
                                 <h2 class="display-4 font-weight-bold white-text pt-5 mb-2">Travel</h2>-->
-                                <img src="assets\LOGO\Blanco\blanco_abajo.svg" alt="smartshipping"
+                                <img src="assets\LOGO\Color\color_abajo.svg" alt="smartshipping"
                                     class=" logo-landing">
 
                                 <!-- Divider -->
@@ -169,7 +169,7 @@
                 <section 
                 data-aos="fade-in" data-aos-delay="150" data-aos-duration="17000" 
                 id="features">
-                <div class="col-md-9 container section-container">
+                <div class="col-md-9 container">
                     <h2 class="font-weight-bold section-title">Features</h2>
                     <!--Grid column-->
                     <div
@@ -249,70 +249,83 @@
                 <section 
                 data-aos="fade-in" data-aos-delay="150" data-aos-duration="17000" 
                 id="data">
-                    <div class="col-md-9 container section-container">
-                        <!-- Heading -->
-                            <div
-                                data-aos="fade-in" data-aos-delay="150" data-aos-duration="17000"
-                                class="col-md-10 section-intro no-padding">
-                                    <h2 class="font-weight-bold section-title"> Data driven optimization model </h2>
-                                    <!-- Description -->
-                                    <p class="darkgrey-text">
-                                        We use advance mathematical models to simulate the interaction of waves, currents and wind on a specific vessel. 
-                                        <strong>Oceanographic and weather conditions are constanly changing</strong>, so optimal routes will change every day and
-                                        all our data are daily updated from main weather and ocean data providers.
-                                    </p>
-                        </div>
-                       
-
+                    <div class="col-md-9 container">
+                        
                         <!--Grid row-->
                         <div class="row d-flex justify-content-between">
-                            <!--Grid column-->
-                            <div class="col-md-3 features-item">
-                                <h4 class="font-weight-bold">Currents</h4>
-                                <div class="view overlay z-depth-1-half round data-gifs">
-                                    <img src="./assets/gifs/currents.gif" class="img-fluid" alt="">
-                                    <div class="mask rgba-white-slight"></div>
-                                </div>
+                            <div
+                                data-aos="fade-in" data-aos-delay="150" data-aos-duration="17000"
+                                class="col-md-6 section-intro">
+                                <h2 class="font-weight-bold section-title"> Data driven optimization model </h2>
+                                <!-- Description -->                                    
                                 <p class="darkgrey-text">
-                                    Sea currents can reach 10% of a typical cargo vessel speed.
+                                    We use advance mathematical models to accurately simulate the interaction of waves, currents and wind on a specific vessel. Our baseline models incorporate state of the art knownledge on naval engineering and hydrodynamics. We can develop tailor made consumption models trained on real consumption data.
                                 </p>
-
-                            </div>
-                            <!--Grid column-->
-
-                            <!--Grid column-->
-                            <div class="col-md-3 features-item">
-                                <h4 class="font-weight-bold">Wind</h4>
-                                <div class="view overlay z-depth-1-half round data-gifs">
-                                    <img src="./assets/gifs/wind.gif" class="img-fluid" alt="">
-                                    <div class="mask rgba-white-slight"></div>
-                                </div>
-
                                 <p class="darkgrey-text">
-                                    Wind adds further resistance specially in container ships that have a large cross section.
+                                    We combine the most recent evolutionary optimization algorithms and gradient descent variational methods to find the optimal route according to user defined criteria.
                                 </p>
-
-                            </div>
-                            <!--Grid column-->
-
-                            <!--Grid column-->
-                            <div class="col-md-3 features-item">
-                                <h4 class="font-weight-bold">Waves</h4>
-
-                                <div class="view overlay z-depth-1-half round data-gifs">
-                                    <img src="./assets/gifs/waves.gif" class="img-fluid" alt="">
-                                    <div class="mask rgba-white-slight"></div>
-                                </div>
-
                                 <p class="darkgrey-text">
-                                    We model the added resistance due to swell and waves on a given vessel.
-                                    High transverse waves can be potentially dangerous.
-
+                                    Oceanographic and weather conditions are constanly changing, so optimal routes will change every day. Also on a given day, the optimal route will be different for each vessel. All our data are daily updated from main weather and ocean data providers.                                    
                                 </p>
-
+                                <br>
+                                <div class="row d-flex justify-content-around">
+                                    <a class="bn31 bn-data" href="#currents"><span class="bn31span bn-data-span">Currents</span></a>
+                                    <a class="bn31 bn-data" href="#wind"><span class="bn31span bn-data-span">Wind</span></a>
+                                    <a class="bn31 bn-data" href="#waves"><span class="bn31span bn-data-span">Waves</span></a>
+                                </div>
                             </div>
+                        
                             <!--Grid column-->
+                            <div class="col d-flex justify-content-center text-center">
+                                <div class="owl-carousel owl-theme col-md-10" id="data-carousel">
+                                    <div class="item features-item" data-hash="currents">
+                                        
+                                        <div class="view overlay z-depth-1-half data-gifs">
+                                            <img src="./assets/gifs/currents.gif" class="img-fluid" alt="">
+                                            <div class="mask rgba-white-slight"></div>
+                                        </div>
+                                        <h4 class="font-weight-bold">Currents</h4>
+                                        <p class="darkgrey-text m-0">
+                                            Sea currents can reach 10% of a typical cargo vessel speed. Detailed real-time knowledge of sea currents can have a considerable impact on fuel consumption.
+                                        </p>
 
+                                    </div>
+                                    <!--Grid column-->
+
+                                    <!--Grid column-->
+                                    <div class="item features-item" data-hash="wind">
+                                        
+                                        <div class="view overlay z-depth-1-half data-gifs">
+                                            <img src="./assets/gifs/wind.gif" class="img-fluid" alt="">
+                                            <div class="mask rgba-white-slight"></div>
+                                        </div>
+                                        <h4 class="font-weight-bold">Wind</h4>    
+                                    
+                                        <p class="darkgrey-text m-0">
+                                            Wind adds further resistance specially in container ships that have a large cross section. Wind changes on a shorter time scale. It is essential to have freshly updated data and reliable forecasts.
+                                        </p>
+
+                                    </div>
+                                    <!--Grid column-->
+
+                                    <!--Grid column-->
+                                    <div class="item features-item" data-hash="waves">
+                                        
+
+                                        <div class="view overlay z-depth-1-half data-gifs">
+                                            <img src="./assets/gifs/waves.gif" class="img-fluid" alt="">
+                                            <div class="mask rgba-white-slight"></div>
+                                        </div>
+                                        <h4 class="font-weight-bold">Waves</h4>
+                                        <p class="darkgrey-text m-0">
+                                            We model the added resistance due to swell and waves on a given vessel. High transverse waves can be potentially dangerous.
+
+                                        </p>
+
+                                    </div>
+                                    <!--Grid column-->
+                                </div>
+                            </div>
                         </div>
                         <!--Grid row-->
                     </div>
@@ -323,14 +336,14 @@
                   <section 
                   data-aos="fade-in" data-aos-delay="150" data-aos-duration="17000" 
                   id="demo">
-                      <div class="col-md-9 container section-container pt-5 pb-5" id="div-outside">
+                      <div class="col-md-9 container pt-5 pb-5" id="div-outside">
                           <!-- Heading -->
                           <div class="row">
 
 
                             <div
                             data-aos="fade-in" data-aos-delay="150" data-aos-duration="17000"
-                            class="col-md-6 section-intro no-padding" id="demo-text">
+                            class="col-md-6 section-intro p-0" id="demo-text">
                                     <h2 class="font-weight-bold section-title"> Web Demo Available! </h2>
                                     <!-- Description -->
                                     <p class="darkgrey-text">
@@ -409,7 +422,7 @@
                 <section 
                   data-aos="fade-in" data-aos-delay="150" data-aos-duration="17000" 
                   id="demo">
-                      <div class="col-md-9 container section-container pt-5 pb-5">
+                      <div class="col-md-9 container pt-5 pb-5">
                           <!-- Heading -->
                           <div class="row">
 
@@ -424,7 +437,7 @@
                                     </p>                                      
                             </div>
   
-                            <div class="owl-carousel owl-theme ">
+                            <div class="owl-carousel owl-theme " id="partners-carousel">
                                 <div class="item text-center d-flex justify-content-center  vertical-center-container">
                                     <img src="./assets/logos/logo-universidad-politecnica-de-cartagena.png" class="img-fluid vertical-centered-element" >
                                 </div>
@@ -474,7 +487,21 @@
          <script>
             $(document).ready(function(){
 
-                var owl = $('.owl-carousel');
+                $('#data-carousel').owlCarousel({
+                    items: 1,
+                    loop: false,
+                    center: true,
+                    margin: 10,
+                    URLhashListener: true,
+                    autoplay:true,
+                    autoplayTimeout:8000,
+                    autoplayHoverPause: true,
+                    startPosition: 'URLHash',
+                    smartSpeed: 750,
+                    dots:false
+                })
+
+                var owl = $('#partners-carousel');
                 owl.owlCarousel({
                     loop:true,
                     margin:10,
