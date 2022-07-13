@@ -1,175 +1,222 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
 
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <!-- Tell the browser to be responsive to screen width -->
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="">
-        <meta name="author" content="">
-    
-        <meta property="og:image" content="./assets/vessel.png" />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://smartshipping.es"/>
-        <meta property="og:title" content="Smart Shipping" />
-        <meta property="og:description" content="AI powered optimization for cleaner, safer and more efficient maritime transport. "/>
-        
-        <!-- JQuery -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-        <!-- Animations -->
-        <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-        <!-- Owl-Carrousel-->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <!-- Icons -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-        <!-- Base CSS -->
-        <link href="./css/base.css" rel="stylesheet">
-        <!-- Font Awesome -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <!-- Bootstrap core CSS -->
-        <link
-            href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css"
-            rel="stylesheet">
-        <!-- Material Design Bootstrap -->
-        <link
-            href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css"
-            rel="stylesheet">
-        
-        <!-- Bootstrap tooltips -->
-        <script type="text/javascript"
-            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
-        <!-- Bootstrap core JavaScript -->
-        <script type="text/javascript"
-            src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
-        
-        <!-- MDB core JavaScript -->
-        <script type="text/javascript"
-            src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
-        <title>Smart Shipping</title>
-        <link rel="icon"
-            href="./assets/logos/logo_no_text_square.png">
+    <meta property="og:image" content="./assets/vessel.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://smartshipping.es" />
+    <meta property="og:title" content="Smart Shipping" />
+    <meta
+      property="og:description"
+      content="AI powered optimization for cleaner, safer and more efficient maritime transport. "
+    />
 
+    <!-- JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- Animations -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <!-- Owl-Carrousel-->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
+      integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"
+      integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css"
+    />
+    <!-- Base CSS -->
+    <link href="./css/base.css" rel="stylesheet" />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <!-- Bootstrap core CSS -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Material Design Bootstrap -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css"
+      rel="stylesheet"
+    />
 
-        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-        <![endif]-->
+    <!-- Bootstrap tooltips -->
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"
+    ></script>
+    <!-- Bootstrap core JavaScript -->
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"
+    ></script>
 
-            <!-- Global site tag (gtag.js) - Google Analytics -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q7BLBHXJ7Z"></script>
-        <script>
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
+    <!-- MDB core JavaScript -->
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"
+    ></script>
+    <title>Smart Shipping</title>
+    <link rel="icon" href="./assets/logos/logo_no_text_square.png" />
 
-            gtag('config', 'G-Q7BLBHXJ7Z');
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
 
-            $(function () {
-                $(document).scroll(function () {
-                    var $nav = $(".navbar");
-                    var $mask = $(".mask");
-                    var $scrolled = $(this).scrollTop() >= $mask.height() * 0.5;
-                    $nav.toggleClass('scrolled', $scrolled);
-                    if($scrolled)
-                    {
-                        $("#topLogo").attr("src","assets/LOGO/Color/color_derecha.svg");
-                        $("#custom-toggle-icon").css("color","#23387a")
-                    }
-                    else{
-                        $("#topLogo").attr("src","assets/LOGO/Blanco/blanco_derecha.svg");
-                        $("#custom-toggle-icon").css("color","#fff")
-                    }
-                    
-                });
-            });
-        </script>
-        
-    </head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-Q7BLBHXJ7Z"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
 
+      gtag("config", "G-Q7BLBHXJ7Z");
 
+      $(function () {
+        $(document).scroll(function () {
+          var $nav = $(".navbar");
+          var $mask = $(".mask");
+          var $scrolled = $(this).scrollTop() >= $mask.height() * 0.5;
+          $nav.toggleClass("scrolled", $scrolled);
+          if ($scrolled) {
+            $("#topLogo").attr("src", "assets/LOGO/Color/color_derecha.svg");
+            $("#custom-toggle-icon").css("color", "#23387a");
+          } else {
+            $("#topLogo").attr("src", "assets/LOGO/Blanco/blanco_derecha.svg");
+            $("#custom-toggle-icon").css("color", "#fff");
+          }
+        });
+      });
+    </script>
+  </head>
 
-    <body>
+  <body>
+    <!--Main Navigation-->
+    <header>
+      <!--Navbar-->
+      <nav
+        class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar"
+        id="top-navbar"
+      >
+        <!-- Navbar brand -->
+        <a class="navbar-brand" href="#" style="z-index: 100">
+          <img
+            src="assets/LOGO/Blanco/blanco_derecha.svg"
+            id="topLogo"
+            style="height: 2.5rem"
+          />
+        </a>
 
-        <!--Main Navigation-->
-        <header>
-            <!--Navbar-->
-            <nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar" id="top-navbar">
-                <!-- Navbar brand -->
-                <a class="navbar-brand" href="#" style="z-index:100">
-                    <img src="assets/LOGO/Blanco/blanco_derecha.svg" id="topLogo" style="height: 2.5rem;">
-                </a>
-                    
-                <!-- Collapse button -->
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarItems"
-                    aria-controls="navbarItems" aria-expanded="false" aria-label="Toggle navigation" style="z-index:200">
-                        <i class="fa fa-bars" id="custom-toggle-icon" style="color:#fff;"></i>
-                </button>
+        <!-- Collapse button -->
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarItems"
+          aria-controls="navbarItems"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+          style="z-index: 200"
+        >
+          <i class="fa fa-bars" id="custom-toggle-icon" style="color: #fff"></i>
+        </button>
 
-                <!-- Collapsible content -->
-                <div class="collapse navbar-collapse" id="navbarItems">
-                    <!-- Links -->
-                    <ul class="navbar-nav mx-auto smooth-scroll justify-content-center">
-                        <li class="nav-item mx-4">
-                            <a class="nav-link" href="#features" id="link-features"><b>Features</b></a>
-                        </li>
-                        <li class="nav-item mx-4">
-                            <a class="nav-link" href="#data"><b>Data</b></a>
-                        </li>
-                        <li class="nav-item mx-4">
-                            <a class="nav-link" href="#demo"><b>Demo</b></a>
-                        </li>
-                    </ul>
-                </div>
-                <!-- Collapsible content -->
+        <!-- Collapsible content -->
+        <div class="collapse navbar-collapse" id="navbarItems">
+          <!-- Links -->
+          <ul class="navbar-nav mx-auto smooth-scroll justify-content-center">
+            <li class="nav-item mx-4">
+              <a class="nav-link" href="#features" id="link-features"
+                ><b>Features</b></a
+              >
+            </li>
+            <li class="nav-item mx-4">
+              <a class="nav-link" href="#data"><b>Data</b></a>
+            </li>
+            <li class="nav-item mx-4">
+              <a class="nav-link" href="#demo"><b>Demo</b></a>
+            </li>
+          </ul>
+        </div>
+        <!-- Collapsible content -->
+      </nav>
+      <!--/.Navbar-->
 
-            </nav>
-            <!--/.Navbar-->
-
-            <!--Mask-->
-            <div id="intro" class="view">
-                
-                <video id="background-video" autoplay loop muted poster="assets/videos/sea1_cover.jpg">
-                    <source src="./assets/videos/sea1.mp4" type="video/mp4">
-                </video>
-                <div class="mask rgba-black-strong">
-                    <div class="container-fluid d-flex align-items-center
-                        justify-content-center h-100">
-
-                        <div class="row d-flex justify-content-center text-center">
-                            <div class="col-md-10">
-                                <!-- Heading 
+      <!--Mask-->
+      <div id="intro" class="view">
+        <video
+          id="background-video"
+          autoplay
+          loop
+          muted
+          poster="assets/videos/sea1_cover.jpg"
+        >
+          <source src="./assets/videos/sea1.mp4" type="video/mp4" />
+        </video>
+        <div class="mask rgba-black-strong">
+          <div
+            class="container-fluid d-flex align-items-center justify-content-center h-100"
+          >
+            <div class="row d-flex justify-content-center text-center">
+              <div class="col-md-10">
+                <!-- Heading 
                                 <h2 class="display-4 font-weight-bold white-text pt-5 mb-2">Travel</h2>-->
-                                <img src="assets\LOGO\Blanco\blanco_abajo.svg" alt="smartshipping"
-                                    class=" logo-landing">
+                <img
+                  src="assets\LOGO\Color\color_abajo.svg"
+                  alt="smartshipping"
+                  class="logo-landing"
+                />
 
-                                <!-- Divider -->
-                                <hr class="hr-light">
+                <!-- Divider -->
+                <hr class="hr-light" />
 
-                                <!-- Description -->
-                                <h4 class="white-text my-4">
-                                    AI powered optimization for cleaner, safer and more efficient maritime transport.
-                                </h4>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <!-- Description -->
+                <h4 class="white-text my-4">
+                  AI powered optimization for cleaner, safer and more efficient
+                  maritime transport.
+                </h4>
+              </div>
             </div>
-            <!--/.Mask-->
+          </div>
+        </div>
+      </div>
+      <!--/.Mask-->
+    </header>
+    <!--Main Navigation-->
 
+    <!--Main layout-->
+    <main>
 
-        </header>
-        <!--Main Navigation-->
-
-        <!--Main layout-->
-        <main>
-
-            <section 
-            data-aos="fade-in" data-aos-delay="150" data-aos-duration="17000" data-aos-id="video_intro"
-            id="video_intro">
+        <section 
+        data-aos="fade-in" data-aos-delay="150" data-aos-duration="17000" data-aos-id="video_intro"
+        id="video_intro">
             <div class="col-md-9 container section-container">
                 <h2 class="font-weight-bold section-title"><strong>SmartShipping</strong> by Komorebi</h2>        
                 <!--Grid column-->
@@ -222,450 +269,663 @@
                     </div>
                 </div>
             </div>
-            </section>
+        </section>
 
-                <section 
-                data-aos="fade-in" data-aos-delay="150" data-aos-duration="17000" 
-                id="features">
-                <div class="col-md-9 container section-container">
-                    <h2 class="font-weight-bold section-title">Features</h2>
-                    <!--Grid column-->
-                    <div
-                    data-aos="fade-in" data-aos-delay="150" data-aos-duration="17000"
-                    class="section-intro">
+      <section
+        data-aos="fade-in"
+        data-aos-delay="150"
+        data-aos-duration="17000"
+        id="features"
+      >
+        <div class="col-md-9 container">
+          <h2 class="font-weight-bold section-title">Features</h2>
+          <!--Grid column-->
+          <div
+            data-aos="fade-in"
+            data-aos-delay="150"
+            data-aos-duration="17000"
+            class="section-intro"
+          >
+            <!-- Description -->
+            <p class="darkgrey-text">
+              In the world of maritime transport, there are major challenges to
+              be solved in the coming years.
+            </p>
+          </div>
 
-                        <!-- Description -->
-                        <p class="darkgrey-text">In the world of maritime transport,
-                            there are major challenges to be
-                            solved
-                            in
-                            the coming years.</p>
+          <!--Grid column-->
+          <div class="row d-flex justify-content-between">
+            <!--Grid column-->
+            <div
+              data-aos="fade-in"
+              data-aos-delay="400"
+              data-aos-duration="1700"
+              class="col-md-3 features-item"
+            >
+              <div class="title-block">
+                <img
+                  src="./assets/icons/globo_azul.svg"
+                  width="70"
+                  height="70"
+                  alt="Enviromental"
+                  class="features-icon"
+                />
 
-                    </div>
-
-                    <!--Grid column-->
-                    <div class="row d-flex justify-content-between">
-
-                        <!--Grid column-->
-                        <div
-                        data-aos="fade-in" data-aos-delay="400" data-aos-duration="1700" 
-                        class="col-md-3 features-item">
-                        <div class="title-block">
-                            <img src="./assets/icons/globo_azul.svg"
-                                width="70" height="70" alt="Enviromental" class="features-icon"/>
-                            
-                            <h4 class="my-4 font-weight-bold">Ecofriendly</h4>
-                        </div>
-                            <p class="darkgrey-text">Maritime traffic produces 2.5% of
-                                the planet's total CO2 emissions. The
-                                International
-                                Maritime Organization aims to reduce these
-                                emissions by 40% before 2030.</p>
-                            
-                        </div>
-                        <!--Grid column-->
-
-                        <!--Grid column-->
-                        <div 
-                        data-aos="fade-in" data-aos-delay="700" data-aos-duration="1700" 
-                        class="col-md-3 features-item">
-                        <div class="title-block">
-                            <img src="./assets/icons/billetes_azul.svg"
-                                width="70" height="70" alt="Cost" class="features-icon"/>
-                            <h4 class="my-4 font-weight-bold">Money saving</h4>
-                        </div>
-                            <p class="darkgrey-text">
-                                Fuel amounts to 60% of the total operational cost of sea transport, for a total bill of €120
-                                Billions per year.
-                                Optimizing routes can save 3-10% of this sum at almost no extra cost.
-
-                            </p>
-                        </div>
-                        <!--Grid column-->
-
-                        <!--Grid column-->
-                        <div 
-                        data-aos="fade-in" data-aos-delay="1000" data-aos-duration="1700" 
-                        class="col-md-3 features-item">
-                        <div class="title-block">
-                            <img src="./assets/icons/ancla_azul.svg"
-                                width="70" height="70" alt="Safety" class="features-icon"/>
-                            
-                            <h4 class="my-4 font-weight-bold">Crew safety</h4>
-                        </div>
-                            <p class="darkgrey-text">
-                                Sailing under adverse weather conditions causes 48% of maritime casualties.
-                                Crew and cargo safety must be considered when planning optimal routes.
-                            </p>
-                        </div>
-                        <!--Grid column-->
-                    </div>
-                </div>
-                </section>
-
-                <!--Section: Data-->
-                <section 
-                data-aos="fade-in" data-aos-delay="150" data-aos-duration="17000" 
-                id="data">
-                    <div class="col-md-9 container section-container">
-                        <!-- Heading -->
-                            <div
-                                data-aos="fade-in" data-aos-delay="150" data-aos-duration="17000"
-                                class="col-md-10 section-intro no-padding">
-                                    <h2 class="font-weight-bold section-title"> Data driven optimization model </h2>
-                                    <!-- Description -->
-                                    <p class="darkgrey-text">
-                                        We use advance mathematical models to simulate the interaction of waves, currents and wind on a specific vessel. 
-                                        <strong>Oceanographic and weather conditions are constanly changing</strong>, so optimal routes will change every day and
-                                        all our data are daily updated from main weather and ocean data providers.
-                                    </p>
-                        </div>
-                       
-
-                        <!--Grid row-->
-                        <div class="row d-flex justify-content-between">
-                            <!--Grid column-->
-                            <div class="col-md-3 features-item">
-                                <h4 class="font-weight-bold">Currents</h4>
-                                <div class="view overlay z-depth-1-half round data-gifs">
-                                    <img src="./assets/gifs/currents.gif" class="img-fluid" alt="">
-                                    <div class="mask rgba-white-slight"></div>
-                                </div>
-                                <p class="darkgrey-text">
-                                    Sea currents can reach 10% of a typical cargo vessel speed.
-                                </p>
-
-                            </div>
-                            <!--Grid column-->
-
-                            <!--Grid column-->
-                            <div class="col-md-3 features-item">
-                                <h4 class="font-weight-bold">Wind</h4>
-                                <div class="view overlay z-depth-1-half round data-gifs">
-                                    <img src="./assets/gifs/wind.gif" class="img-fluid" alt="">
-                                    <div class="mask rgba-white-slight"></div>
-                                </div>
-
-                                <p class="darkgrey-text">
-                                    Wind adds further resistance specially in container ships that have a large cross section.
-                                </p>
-
-                            </div>
-                            <!--Grid column-->
-
-                            <!--Grid column-->
-                            <div class="col-md-3 features-item">
-                                <h4 class="font-weight-bold">Waves</h4>
-
-                                <div class="view overlay z-depth-1-half round data-gifs">
-                                    <img src="./assets/gifs/waves.gif" class="img-fluid" alt="">
-                                    <div class="mask rgba-white-slight"></div>
-                                </div>
-
-                                <p class="darkgrey-text">
-                                    We model the added resistance due to swell and waves on a given vessel.
-                                    High transverse waves can be potentially dangerous.
-
-                                </p>
-
-                            </div>
-                            <!--Grid column-->
-
-                        </div>
-                        <!--Grid row-->
-                    </div>
-                </section>
-                <!--Section: Data-->
-
-                  <!--Section: Demo-->
-                  <section 
-                  data-aos="fade-in" data-aos-delay="150" data-aos-duration="17000" 
-                  id="demo">
-                      <div class="col-md-9 container section-container pt-5 pb-5" id="div-outside">
-                          <!-- Heading -->
-                          <div class="row">
-
-
-                            <div
-                            data-aos="fade-in" data-aos-delay="150" data-aos-duration="17000"
-                            class="col-md-6 section-intro no-padding" id="demo-text">
-                                    <h2 class="font-weight-bold section-title"> Web Demo Available! </h2>
-                                    <!-- Description -->
-                                    <p class="darkgrey-text">
-                                        Our solution is already deployed for being used in real life scenarios,
-                                         our application can make a tailor made optimization for a given parametrized vessel and a choosen route.
-                                        We gather historical data and we are also to predict in the future! Each day there is a different solution for your
-                                        operation.
-                                    </p>                                      
-                            </div>
-  
-                            <div class="col-md-6 d-flex justify-content-center" id="div-gif" >
-                                <img src="./assets/gifs/DemoGif.gif" id="gif" class="img-fluid" alt="">
-                            </div>
-
-                          </div>
-                            
-                          
-                         
-                         
-                      </div>
-                  <!--Section: Demo-->
-                
-              
-
-                <!--Section: Demo request-->
-                <div class="landing-solicited" id="landing-solicited">
-                    <div class="container container--small" >
-                        <h2 class="landing-solicited__title">Request a Demo</h2>
-                        <p class="landing-solicited__text">Fill up the form and we will contact you as soon as possible.</p>
-                        <form id="FormDemo" class="landing-solicited__form" method="post">
-                            <div class="landing-solicited__list">
-                                <div class="forms-group">
-                                    <input name="DemoName" id="DemoName" type="text" class="input" autocomplete="off" spellcheck="false" maxlength="25" required>
-                                    <label class="placeholder">Name <span>*</span></label>
-                                </div>
-                                <div class="forms-group">
-                                    <input name="DemoLastName" id="DemoLastName" type="text" class="input" autocomplete="off" spellcheck="false" maxlength="25" required>
-                                    <label class="placeholder">Surname <span>*</span></label>
-                                </div>
-                                <div class="forms-group">
-                                    <input name="DemoMail" id="DemoMail" type="mail" class="input" autocomplete="off" spellcheck="false" maxlength="30" required>
-                                    <label class="placeholder">Mail <span>*</span></label>
-                                </div>
-                                <div class="forms-group">
-                                    <input name="DemoPhone" id="DemoPhone" type="tel" class="input" autocomplete="off" spellcheck="false" maxlength="25" required>
-                                    <label class="placeholder">Phone number</label>
-                                </div>
-                                <div class="forms-group">
-                                    <input name="DemoCompany" id="DemoCompany" type="text" class="input" autocomplete="off" spellcheck="false" maxlength="30" required>
-                                    <label class="placeholder">Company <span>*</span></label>
-                                </div>
-                                <div class="forms-group">
-                                    <input type="text" name="DemoUrl" id="DemoUrl" class="input" autocomplete="off" spellcheck="false" maxlength="25" >
-                                    <label class="placeholder">Url</label>
-                                </div>
-                            </div>
-                            <div class="checkbox">
-                                <label for="DemoCheck">
-                                    <input name="DemoCheck" id="DemoCheck" type="checkbox" required>
-                                    <span>I have read and agreed with the terms and conditions</span>
-                                </label>
-                            </div>
-                            <input id="fieldKey" name="fieldKey" type="hidden" value="sL2psaLwWvvYnpxSvher">
-                            <input id="fieldLang" name="fieldLang" type="hidden" value="ES">
-                            <input type="text" name="antsp" style="display: none;">
-                            <div class="landing-solicited__bottom">
-                                <button type="submit" id="DemoSubmit" class="btn btn--white" style="opacity: 1; transform: translate(0px);color:white;">Send</button>
-                            </div>
-    
-                        </form>
-                    </div>
-                </div>
-                </section>
-                
-                <!--Partners-->
-                <section 
-                  data-aos="fade-in" data-aos-delay="150" data-aos-duration="17000" 
-                  id="demo">
-                      <div class="col-md-9 container section-container pt-5 pb-5">
-                          <!-- Heading -->
-                          <div class="row">
-
-
-                            <div
-                            data-aos="fade-in" data-aos-delay="150" data-aos-duration="17000"
-                            class="col-md-6 section-intro pb-5" >
-                                    <h2 class="font-weight-bold section-title"> Partners </h2>
-                                    <!-- Description -->
-                                    <p class="darkgrey-text">
-                                        We count with the support of a international set of academic and industrial partners.
-                                    </p>                                      
-                            </div>
-  
-                            <div class="owl-carousel owl-theme ">
-                                <div class="item text-center d-flex justify-content-center  vertical-center-container">
-                                    <img src="./assets/logos/logo-universidad-politecnica-de-cartagena.png" class="img-fluid vertical-centered-element" >
-                                </div>
-                                <div class="item text-center d-flex justify-content-center  vertical-center-container">
-                                    <img src="./assets/logos/cimne-simple-logo.png"  class="img-fluid vertical-centered-element">
-                                </div>
-                                <div class="item text-center d-flex justify-content-center  vertical-center-container">
-                                    <img src="./assets/logos/UPM.png"  class="img-fluid vertical-centered-element"  >
-                                </div>
-                                <div class="item text-center d-flex justify-content-center  vertical-center-container">
-                                    <img src="./assets/logos/mare_logo.png"  class="img-fluid vertical-centered-element">
-                                </div>
-                                <div class="item text-center d-flex justify-content-center  vertical-center-container">
-                                    <img src="./assets/logos/Logo_UCA.png"   class="img-fluid vertical-centered-element">
-                                </div>
-                                <div class="item text-center d-flex justify-content-center  vertical-center-container">
-                                    <img src="./assets/logos/logo-ceeibahiadecadiz.png"  class="img-fluid vertical-centered-element">
-                                </div>
-                                <div class="item text-center d-flex justify-content-center  vertical-center-container">
-                                    <img src="./assets/logos/Dalhausi.png"  class="img-fluid vertical-centered-element">
-                                </div>
-                                <div class="item text-center d-flex justify-content-center vertical-center-container">
-                                    <img src="./assets/logos/zona_franca.png"  class="img-fluid vertical-centered-element">
-                                </div>
-                                <div class="item text-center d-flex justify-content-center  vertical-center-container">
-                                    <img src="./assets/logos/Fundacion-BBVA.svg.png"  class="img-fluid vertical-centered-element">
-                                </div>
-                                
-                                
-
-                                
-                               
-                            </div>
-
-
-
-                          </div>
-                            
-                          
-                         
-                         
-                      </div>
-                  </section>
-                  <!--/Partners-->
-                
-            
-        </main>
-        <!--Main layout-->
-
-        <!--========================================================== -->
-        <!--Owl-Carousel-->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.min.js" integrity="sha512-rCjfoab9CVKOH/w/T6GbBxnAH5Azhy4+q1EXW5XEURefHbIkRbQ++ZR+GBClo3/d3q583X/gO4FKmOFuhkKrdA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-        <!-- Mail -->
-        <script src="https://smtpjs.com/v3/smtp.js">
-        </script>
-        <script src="./js/form_manager.js"></script>
-         <!--Animations scripts-->
-         <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-         <script>
-
-            function animateValue(obj, start, end, duration, decimals) {
-                let startTimestamp = null;
-                const step = (timestamp) => {
-                    if (!startTimestamp) startTimestamp = timestamp;
-                    const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-                    decimals 
-                    ? obj.innerHTML = (progress * (end - start) + start).toFixed(2)
-                    : obj.innerHTML = Math.floor(progress * (end - start) + start);
-                    if (progress < 1) {
-                    window.requestAnimationFrame(step);
-                    }
-                };
-                window.requestAnimationFrame(step);
-            }
-
-
-            $(document).ready(function(){
-
-                document.addEventListener('aos:in:video_intro', () => {
-                    const money= document.getElementById("money");
-                    const fuel= document.getElementById("fuel");
-                    const emissions= document.getElementById("emissions");
-                    animateValue(money, 0,22000, 2000, false);
-                    animateValue(fuel, 0,30, 2300, false);
-                    animateValue(emissions, 0,100, 2500, false);
-                
-                });
-
-                
-                var owl = $('.owl-carousel');
-                owl.owlCarousel({
-                    loop:true,
-                    margin:10,
-                    nav:false,
-                    center:true,                   
-                    autoplay:true,
-                    autoplayTimeout:3000,
-                    autoplayHoverPause:true,
-                    responsive:{
-                        200:{
-                            items:1
-                        },
-                        460:{
-                            items:3
-                        },
-                        720:{
-                            items:4
-                        },
-                        1000:{
-                            items:5
-                        }
-                    }
-                })
-
-                owl.on('mousewheel', '.owl-stage', function (e) {
-                    if (e.deltaY>0) {
-                        owl.trigger('next.owl');
-                    } else {
-                        owl.trigger('prev.owl');
-                    }
-                    e.preventDefault();
-                });
-                
-            })
-
-           AOS.init();
-           $('.navbar a').on('click', function(e) {
-                $('.navbar-collapse').collapse('hide');
-                var idTag = $(this).attr("href")
-                var offset;
-                if(idTag == "#")
-                {
-                    offset = 0;
-                }
-                else{
-                    var el = $(idTag);
-                    var headerHeight = $(".navbar-brand").height()
-                    var elOffset = el.offset().top;
-                    var elHeight = el.height();
-                    var windowHeight = $(window).height();
-                    
-
-                    if (elHeight + headerHeight < windowHeight) {
-                        offset = elOffset - ((windowHeight / 2) - (elHeight / 2));
-                    }
-                    else {
-                        offset = elOffset - headerHeight;
-                    }
-                }
-                
-                var speed = 700;
-	  
-                $('html, body').animate(
-                    {
-                        scrollTop: offset
-                    },
-                    speed
-                );
-                
-                e.preventDefault();
-            });
-         </script>
-         
-    </body>
-<!--footer-->
-   
-    <hr>
-    <div class="footer-basic">
-        <footer>
-            <div class="row justify-content-center">
-                <a class="text-center" href="https://www.komorebi.ai">
-                    <img   src="./assets/logos/logo_komorebi.png" id="logo_komorebi_footer">
-                </a>
+                <h4 class="my-4 font-weight-bold">Ecofriendly</h4>
+              </div>
+              <p class="darkgrey-text">
+                Maritime traffic produces 2.5% of the planet's total CO2
+                emissions. The International Maritime Organization aims to
+                reduce these emissions by 40% before 2030.
+              </p>
             </div>
-            
-            <ul class="list-inline">
-                <li class="list-inline-item"><a href="https://komorebi.ai/aviso-legal/">Legal Warning</a></li>
-                <li class="list-inline-item"><a href="https://komorebi.ai/politica-de-privacidad/">Privacy Policy</a></li>
-                <li class="list-inline-item"><a href="https://komorebi.ai/cookies/">Cookies Policy</a></li>
-            </ul>
-            <p class="copyright">© 2022 SmartShipping </p>
-        </footer>
-    </div>
+            <!--Grid column-->
 
+            <!--Grid column-->
+            <div
+              data-aos="fade-in"
+              data-aos-delay="700"
+              data-aos-duration="1700"
+              class="col-md-3 features-item"
+            >
+              <div class="title-block">
+                <img
+                  src="./assets/icons/billetes_azul.svg"
+                  width="70"
+                  height="70"
+                  alt="Cost"
+                  class="features-icon"
+                />
+                <h4 class="my-4 font-weight-bold">Money saving</h4>
+              </div>
+              <p class="darkgrey-text">
+                Fuel amounts to 60% of the total operational cost of sea
+                transport, for a total bill of €120 Billions per year.
+                Optimizing routes can save 3-10% of this sum at almost no extra
+                cost.
+              </p>
+            </div>
+            <!--Grid column-->
+
+            <!--Grid column-->
+            <div
+              data-aos="fade-in"
+              data-aos-delay="1000"
+              data-aos-duration="1700"
+              class="col-md-3 features-item"
+            >
+              <div class="title-block">
+                <img
+                  src="./assets/icons/ancla_azul.svg"
+                  width="70"
+                  height="70"
+                  alt="Safety"
+                  class="features-icon"
+                />
+
+                <h4 class="my-4 font-weight-bold">Crew safety</h4>
+              </div>
+              <p class="darkgrey-text">
+                Sailing under adverse weather conditions causes 48% of maritime
+                casualties. Crew and cargo safety must be considered when
+                planning optimal routes.
+              </p>
+            </div>
+            <!--Grid column-->
+          </div>
+        </div>
+      </section>
+
+      <!--Section: Data-->
+      <section
+        data-aos="fade-in"
+        data-aos-delay="150"
+        data-aos-duration="17000"
+        id="data"
+      >
+        <div class="col-md-9 container">
+          <!--Grid row-->
+          <div class="row d-flex justify-content-between">
+            <div
+              data-aos="fade-in"
+              data-aos-delay="150"
+              data-aos-duration="17000"
+              class="col-md-6 section-intro"
+            >
+              <h2 class="font-weight-bold section-title">
+                Data driven optimization model
+              </h2>
+              <!-- Description -->
+              <p class="darkgrey-text">
+                We use advance mathematical models to accurately simulate the
+                interaction of waves, currents and wind on a specific vessel.
+                Our baseline models incorporate state of the art knownledge on
+                naval engineering and hydrodynamics. We can develop tailor made
+                consumption models trained on real consumption data.
+              </p>
+              <p class="darkgrey-text">
+                We combine the most recent evolutionary optimization algorithms
+                and gradient descent variational methods to find the optimal
+                route according to user defined criteria.
+              </p>
+              <p class="darkgrey-text">
+                Oceanographic and weather conditions are constanly changing, so
+                optimal routes will change every day. Also on a given day, the
+                optimal route will be different for each vessel. All our data
+                are daily updated from main weather and ocean data providers.
+              </p>
+              <br />
+              <div class="row d-flex justify-content-around">
+                <a class="bn31 bn-data" href="#currents"
+                  ><span class="bn31span bn-data-span">Currents</span></a
+                >
+                <a class="bn31 bn-data" href="#wind"
+                  ><span class="bn31span bn-data-span">Wind</span></a
+                >
+                <a class="bn31 bn-data" href="#waves"
+                  ><span class="bn31span bn-data-span">Waves</span></a
+                >
+              </div>
+            </div>
+
+            <!--Grid column-->
+            <div class="col d-flex justify-content-center text-center">
+              <div class="owl-carousel owl-theme col-md-10" id="data-carousel">
+                <div class="item features-item" data-hash="currents">
+                  <div class="view overlay z-depth-1-half data-gifs">
+                    <img
+                      src="./assets/gifs/currents.gif"
+                      class="img-fluid"
+                      alt=""
+                    />
+                    <div class="mask rgba-white-slight"></div>
+                  </div>
+                  <h4 class="font-weight-bold">Currents</h4>
+                  <p class="darkgrey-text m-0">
+                    Sea currents can reach 10% of a typical cargo vessel speed.
+                    Detailed real-time knowledge of sea currents can have a
+                    considerable impact on fuel consumption.
+                  </p>
+                </div>
+                <!--Grid column-->
+
+                <!--Grid column-->
+                <div class="item features-item" data-hash="wind">
+                  <div class="view overlay z-depth-1-half data-gifs">
+                    <img
+                      src="./assets/gifs/wind.gif"
+                      class="img-fluid"
+                      alt=""
+                    />
+                    <div class="mask rgba-white-slight"></div>
+                  </div>
+                  <h4 class="font-weight-bold">Wind</h4>
+
+                  <p class="darkgrey-text m-0">
+                    Wind adds further resistance specially in container ships
+                    that have a large cross section. Wind changes on a shorter
+                    time scale. It is essential to have freshly updated data and
+                    reliable forecasts.
+                  </p>
+                </div>
+                <!--Grid column-->
+
+                <!--Grid column-->
+                <div class="item features-item" data-hash="waves">
+                  <div class="view overlay z-depth-1-half data-gifs">
+                    <img
+                      src="./assets/gifs/waves.gif"
+                      class="img-fluid"
+                      alt=""
+                    />
+                    <div class="mask rgba-white-slight"></div>
+                  </div>
+                  <h4 class="font-weight-bold">Waves</h4>
+                  <p class="darkgrey-text m-0">
+                    We model the added resistance due to swell and waves on a
+                    given vessel. High transverse waves can be potentially
+                    dangerous.
+                  </p>
+                </div>
+                <!--Grid column-->
+              </div>
+            </div>
+          </div>
+          <!--Grid row-->
+        </div>
+      </section>
+      <!--Section: Data-->
+
+      <!--Section: Demo-->
+      <section
+        data-aos="fade-in"
+        data-aos-delay="150"
+        data-aos-duration="17000"
+        id="demo"
+      >
+        <div class="col-md-9 container pt-5 pb-5" id="div-outside">
+          <!-- Heading -->
+          <div class="row">
+            <div
+              data-aos="fade-in"
+              data-aos-delay="150"
+              data-aos-duration="17000"
+              class="col-md-6 section-intro p-0"
+              id="demo-text"
+            >
+              <h2 class="font-weight-bold section-title">
+                Web Demo Available!
+              </h2>
+              <!-- Description -->
+              <p class="darkgrey-text">
+                Our solution is already deployed for being used in real life
+                scenarios, our application can make a tailor made optimization
+                for a given parametrized vessel and a choosen route. We gather
+                historical data and we are also to predict in the future! Each
+                day there is a different solution for your operation.
+              </p>
+            </div>
+
+            <div class="col-md-6 d-flex justify-content-center" id="div-gif">
+              <img
+                src="./assets/gifs/DemoGif.gif"
+                id="gif"
+                class="img-fluid"
+                alt=""
+              />
+            </div>
+          </div>
+        </div>
+        <!--Section: Demo-->
+
+        <!--Section: Demo request-->
+        <div class="landing-solicited" id="landing-solicited">
+          <div class="container container--small">
+            <h2 class="landing-solicited__title">Request a Demo</h2>
+            <p class="landing-solicited__text">
+              Fill up the form and we will contact you as soon as possible.
+            </p>
+            <form id="FormDemo" class="landing-solicited__form" method="post">
+              <div class="landing-solicited__list">
+                <div class="forms-group">
+                  <input
+                    name="DemoName"
+                    id="DemoName"
+                    type="text"
+                    class="input"
+                    autocomplete="off"
+                    spellcheck="false"
+                    maxlength="25"
+                    required
+                  />
+                  <label class="placeholder">Name <span>*</span></label>
+                </div>
+                <div class="forms-group">
+                  <input
+                    name="DemoLastName"
+                    id="DemoLastName"
+                    type="text"
+                    class="input"
+                    autocomplete="off"
+                    spellcheck="false"
+                    maxlength="25"
+                    required
+                  />
+                  <label class="placeholder">Surname <span>*</span></label>
+                </div>
+                <div class="forms-group">
+                  <input
+                    name="DemoMail"
+                    id="DemoMail"
+                    type="mail"
+                    class="input"
+                    autocomplete="off"
+                    spellcheck="false"
+                    maxlength="30"
+                    required
+                  />
+                  <label class="placeholder">Mail <span>*</span></label>
+                </div>
+                <div class="forms-group">
+                  <input
+                    name="DemoPhone"
+                    id="DemoPhone"
+                    type="tel"
+                    class="input"
+                    autocomplete="off"
+                    spellcheck="false"
+                    maxlength="25"
+                    required
+                  />
+                  <label class="placeholder">Phone number</label>
+                </div>
+                <div class="forms-group">
+                  <input
+                    name="DemoCompany"
+                    id="DemoCompany"
+                    type="text"
+                    class="input"
+                    autocomplete="off"
+                    spellcheck="false"
+                    maxlength="30"
+                    required
+                  />
+                  <label class="placeholder">Company <span>*</span></label>
+                </div>
+                <div class="forms-group">
+                  <input
+                    type="text"
+                    name="DemoUrl"
+                    id="DemoUrl"
+                    class="input"
+                    autocomplete="off"
+                    spellcheck="false"
+                    maxlength="25"
+                  />
+                  <label class="placeholder">Url</label>
+                </div>
+              </div>
+              <div class="checkbox">
+                <label for="DemoCheck">
+                  <input
+                    name="DemoCheck"
+                    id="DemoCheck"
+                    type="checkbox"
+                    required
+                  />
+                  <span
+                    >I have read and agreed with the terms and conditions</span
+                  >
+                </label>
+              </div>
+              <input
+                id="fieldKey"
+                name="fieldKey"
+                type="hidden"
+                value="sL2psaLwWvvYnpxSvher"
+              />
+              <input id="fieldLang" name="fieldLang" type="hidden" value="ES" />
+              <input type="text" name="antsp" style="display: none" />
+              <div class="landing-solicited__bottom">
+                <button
+                  type="submit"
+                  id="DemoSubmit"
+                  class="btn btn--white"
+                  style="opacity: 1; transform: translate(0px); color: white"
+                >
+                  Send
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <!--Partners-->
+      <section
+        data-aos="fade-in"
+        data-aos-delay="150"
+        data-aos-duration="17000"
+        id="demo"
+      >
+        <div class="col-md-9 container pt-5 pb-5">
+          <!-- Heading -->
+          <div class="row">
+            <div
+              data-aos="fade-in"
+              data-aos-delay="150"
+              data-aos-duration="17000"
+              class="col-md-6 section-intro pb-5"
+            >
+              <h2 class="font-weight-bold section-title">Partners</h2>
+              <!-- Description -->
+              <p class="darkgrey-text">
+                We count with the support of a international set of academic and
+                industrial partners.
+              </p>
+            </div>
+
+            <div class="owl-carousel owl-theme" id="partners-carousel">
+              <div
+                class="item text-center d-flex justify-content-center vertical-center-container"
+              >
+                <img
+                  src="./assets/logos/logo-universidad-politecnica-de-cartagena.png"
+                  class="img-fluid vertical-centered-element"
+                />
+              </div>
+              <div
+                class="item text-center d-flex justify-content-center vertical-center-container"
+              >
+                <img
+                  src="./assets/logos/cimne-simple-logo.png"
+                  class="img-fluid vertical-centered-element"
+                />
+              </div>
+              <div
+                class="item text-center d-flex justify-content-center vertical-center-container"
+              >
+                <img
+                  src="./assets/logos/UPM.png"
+                  class="img-fluid vertical-centered-element"
+                />
+              </div>
+              <div
+                class="item text-center d-flex justify-content-center vertical-center-container"
+              >
+                <img
+                  src="./assets/logos/mare_logo.png"
+                  class="img-fluid vertical-centered-element"
+                />
+              </div>
+              <div
+                class="item text-center d-flex justify-content-center vertical-center-container"
+              >
+                <img
+                  src="./assets/logos/Logo_UCA.png"
+                  class="img-fluid vertical-centered-element"
+                />
+              </div>
+              <div
+                class="item text-center d-flex justify-content-center vertical-center-container"
+              >
+                <img
+                  src="./assets/logos/logo-ceeibahiadecadiz.png"
+                  class="img-fluid vertical-centered-element"
+                />
+              </div>
+              <div
+                class="item text-center d-flex justify-content-center vertical-center-container"
+              >
+                <img
+                  src="./assets/logos/Dalhausi.png"
+                  class="img-fluid vertical-centered-element"
+                />
+              </div>
+              <div
+                class="item text-center d-flex justify-content-center vertical-center-container"
+              >
+                <img
+                  src="./assets/logos/zona_franca.png"
+                  class="img-fluid vertical-centered-element"
+                />
+              </div>
+              <div
+                class="item text-center d-flex justify-content-center vertical-center-container"
+              >
+                <img
+                  src="./assets/logos/Fundacion-BBVA.svg.png"
+                  class="img-fluid vertical-centered-element"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!--/Partners-->
+    </main>
+    <!--Main layout-->
+
+    <!--========================================================== -->
+    <!--Owl-Carousel-->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
+      integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.min.js"
+      integrity="sha512-rCjfoab9CVKOH/w/T6GbBxnAH5Azhy4+q1EXW5XEURefHbIkRbQ++ZR+GBClo3/d3q583X/gO4FKmOFuhkKrdA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <!-- Mail -->
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+    <script src="./js/form_manager.js"></script>
+    <!--Animations scripts-->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+
+        function animateValue(obj, start, end, duration, decimals) {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                decimals 
+                ? obj.innerHTML = (progress * (end - start) + start).toFixed(2)
+                : obj.innerHTML = Math.floor(progress * (end - start) + start);
+                if (progress < 1) {
+                window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+
+
+      $(document).ready(function () {
+
+        document.addEventListener('aos:in:video_intro', () => {
+            const money= document.getElementById("money");
+            const fuel= document.getElementById("fuel");
+            const emissions= document.getElementById("emissions");
+            animateValue(money, 0,22000, 2000, false);
+            animateValue(fuel, 0,30, 2300, false);
+            animateValue(emissions, 0,100, 2500, false);
+        
+        });
+
+        $("#data-carousel").owlCarousel({
+          items: 1,
+          loop: false,
+          center: true,
+          margin: 10,
+          URLhashListener: true,
+          autoplay: true,
+          autoplayTimeout: 8000,
+          autoplayHoverPause: true,
+          startPosition: "URLHash",
+          smartSpeed: 750,
+          dots: false,
+        });
+
+        var owl = $("#partners-carousel");
+        owl.owlCarousel({
+          loop: true,
+          margin: 10,
+          nav: false,
+          center: true,
+          autoplay: true,
+          autoplayTimeout: 3000,
+          autoplayHoverPause: true,
+          responsive: {
+            200: {
+              items: 1,
+            },
+            460: {
+              items: 3,
+            },
+            720: {
+              items: 4,
+            },
+            1000: {
+              items: 5,
+            },
+          },
+        });
+
+        owl.on("mousewheel", ".owl-stage", function (e) {
+          if (e.deltaY > 0) {
+            owl.trigger("next.owl");
+          } else {
+            owl.trigger("prev.owl");
+          }
+          e.preventDefault();
+        });
+      });
+
+      AOS.init();
+      $(".navbar a").on("click", function (e) {
+        $(".navbar-collapse").collapse("hide");
+        var idTag = $(this).attr("href");
+        var offset;
+        if (idTag == "#") {
+          offset = 0;
+        } else {
+          var el = $(idTag);
+          var headerHeight = $(".navbar-brand").height();
+          var elOffset = el.offset().top;
+          var elHeight = el.height();
+          var windowHeight = $(window).height();
+
+          if (elHeight + headerHeight < windowHeight) {
+            offset = elOffset - (windowHeight / 2 - elHeight / 2);
+          } else {
+            offset = elOffset - headerHeight;
+          }
+        }
+
+        var speed = 700;
+
+        $("html, body").animate(
+          {
+            scrollTop: offset,
+          },
+          speed
+        );
+
+        e.preventDefault();
+      });
+    </script>
+  </body>
+  <!--footer-->
+
+  <hr />
+  <div class="footer-basic">
+    <footer>
+      <div class="row justify-content-center">
+        <a class="text-center" href="https://www.komorebi.ai">
+          <img
+            src="./assets/logos/logo_komorebi.png"
+            id="logo_komorebi_footer"
+          />
+        </a>
+      </div>
+
+      <ul class="list-inline">
+        <li class="list-inline-item">
+          <a href="https://komorebi.ai/aviso-legal/">Legal Warning</a>
+        </li>
+        <li class="list-inline-item">
+          <a href="https://komorebi.ai/politica-de-privacidad/"
+            >Privacy Policy</a
+          >
+        </li>
+        <li class="list-inline-item">
+          <a href="https://komorebi.ai/cookies/">Cookies Policy</a>
+        </li>
+      </ul>
+      <p class="copyright">© 2022 SmartShipping</p>
+    </footer>
+  </div>
 </html>
