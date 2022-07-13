@@ -216,8 +216,6 @@ section {
 }
 .features-item{
     padding: 0,20px;
-.features-item {
-  padding: 0, 20px;
 }
 
 .section-intro {
@@ -234,7 +232,7 @@ section {
 .section-container{
     padding:2rem,0px
 }
-.data-gifs{
+.data-gifs {
   margin: 10px;
   margin-bottom: 20px;
   border-radius: 200px !important;
