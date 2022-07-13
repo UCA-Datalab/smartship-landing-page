@@ -197,6 +197,20 @@ input,textarea{
     margin-top: 0.5%;
 }
 
+.video-short-intro{
+  width: 90%;
+  height: auto;
+  position: absolute;
+  top: -65px;
+  left: 20px;
+  z-index: 20;
+}
+
+.numbers-text{
+  color: #84ad3d;
+  font-weight: bold;
+  font-size: 50px;
+}
 .features-item{
     padding: 0,20px;
 }
@@ -204,6 +218,12 @@ input,textarea{
 .section-intro{
     padding: 0px;
     max-width: 30%;
+}
+
+
+.section-video{
+  padding: 0px;
+  max-width: 50%;
 }
 
 .section-container{
