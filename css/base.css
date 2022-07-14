@@ -87,6 +87,7 @@ textarea {
 
 .navbar.scrolled .nav-link {
   color: #23387a !important;
+  font-weight: 500;
 }
 
 .navbar.scrolled navbar-toggler-icon {
@@ -844,4 +845,25 @@ h4 {
 
 .bn-data .bn-data-span {
   background: #d1eef7;
+}
+
+.parallax {
+  /* The image used */
+  background-image: url("../assets/horizontal_vessel.jpg");
+
+  /* Set a specific height */
+  min-height: 500px;
+
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.parallax-text {
+  font-size: 40px;
+  font-weight: 700;
+  color: white;
+  text-shadow: 3px 3px 5px black;
 }
