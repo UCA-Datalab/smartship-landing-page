@@ -2,22 +2,12 @@
   background-color: transparent !important;
 }
 
-@font-face {
-  font-family: "HelveticaLTStd-Bold";
-  src: url("HelveticaLTStd-Bold.otf") format("opentype");
-}
-
 html,
 body,
 header,
 #intro {
   height: 100%;
 }
-
-/*html,body {
-    scroll-behavior: smooth;
-    font-family:"HelveticaLTStd-Bold" !important;
-}*/
 
 #intro {
   /*background: url('../assets/landing-image.jpg') no-repeat center center fixed;
@@ -33,6 +23,12 @@ header,
   height: 100vh;
   object-fit: cover;
   opacity: 0.9;
+}
+
+body {
+  font-family: DD-TTNorms, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol" !important;
 }
 
 .view img {
@@ -164,8 +160,17 @@ section {
 }
 
 .darkgrey-text {
-  color: rgb(99, 99, 99);
-  font-size: 14px;
+  color: rgb(88, 88, 88);
+  font-size: 18px;
+  font-weight: 500;
+}
+
+h2 {
+  font-size: 32px !important;
+}
+
+h4 {
+  font-size: 28px !important;
 }
 
 .centered-btn {
@@ -200,22 +205,19 @@ section {
   margin-top: 0.5%;
 }
 
-.video-short-intro{
+.video-short-intro {
   width: 90%;
   height: auto;
-  position: absolute;
-  top: -65px;
-  left: 20px;
   z-index: 20;
 }
 
-.numbers-text{
+.numbers-text {
   color: #84ad3d;
   font-weight: bold;
   font-size: 50px;
 }
-.features-item{
-    padding: 0,20px;
+.features-item {
+  padding: 0, 20px;
 }
 
 .section-intro {
@@ -223,14 +225,13 @@ section {
   max-width: 30%;
 }
 
-
-.section-video{
+.section-video {
   padding: 0px;
   max-width: 50%;
 }
 
-.section-container{
-    padding:2rem,0px
+.section-container {
+  padding: 2rem, 0px;
 }
 .data-gifs {
   margin: 10px;
