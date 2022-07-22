@@ -8,7 +8,7 @@ function createBody(name, surname, email, company, tel, url) {
 
     return body;
 }
-
+API_KEY = "AIzaSyDmiLWshXAml2cAKr--D30mW6IGYeG3rDQ";
 document.addEventListener("submit", (e) => {
    
 
@@ -29,8 +29,8 @@ document.addEventListener("submit", (e) => {
     Email.send({
         Host: "smtp.elasticemail.com",
         Username: "francisco.amor@smartshipping.es",
-        Password: "077FB9D43E02D06FF891C259D2CF44538C49",
-        To: "choped123@gmail.com",
+        Password: "BC69528419BF939044F67046BCB801E7DB7A",
+        To: "javijj99@gmail.com",
         From: "francisco.amor@smartshipping.es",
         Subject: "Demo request from " + name + " - " + company,
         Body: createBody(name, surname, email, company, tel, url)
