@@ -1,10 +1,10 @@
 
-function createBody(name, surname, email, company, text) {
-    var body = `<p>DEMO REQUEST from `+ name + surname +`</p>
+function createBody(name, surname, email, company, tel, url) {
+    var body = `<p>DEMO REQUEST from `+ name  + ` ` + surname +`</p>
     <p> Company: `+ company + ` </p>
     <p> Mail: `+ email + ` </p>
-    <p> Content: </p>
-    <p> `+ text + ` </p>`;
+    <p> Phone: `+ tel + ` </p>
+    <p> web: `+ url + ` </p>`;
 
     return body;
 }
@@ -19,9 +19,10 @@ document.addEventListener("submit", (e) => {
     var name = form.name.value;
     var surname = form.surname.value;
     var company = form.company.value;
-    var text = form.text.value;
+    var tel = form.tel.value;
+    var url = form.url.value;
 
-    console.log(createBody(name, surname, email, company, text))
+    console.log(createBody(name, surname, email, company, tel,url))
     //console.log(email, name, surname, institution)
 
     //Send reception email to the user
@@ -32,7 +33,7 @@ document.addEventListener("submit", (e) => {
         To: "choped123@gmail.com",
         From: "info@smartshipping.es",
         Subject: "Demo request from " + name + " - " + company,
-        Body: createBody(name, surname, email, company, text)
+        Body: createBody(name, surname, email, company, tel, url)
     }).then(
         message => console.log(message)
     );
