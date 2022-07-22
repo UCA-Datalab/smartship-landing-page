@@ -28,10 +28,10 @@ document.addEventListener("submit", (e) => {
     //Send reception email to the user
     Email.send({
         Host: "smtp.elasticemail.com",
-        Username: "info@smartshipping.es",
-        Password: "ADCE70A019B98499909952271CC87A028851",
+        Username: "francisco.amor@smartshipping.es",
+        Password: "077FB9D43E02D06FF891C259D2CF44538C49",
         To: "choped123@gmail.com",
-        From: "info@smartshipping.es",
+        From: "francisco.amor@smartshipping.es",
         Subject: "Demo request from " + name + " - " + company,
         Body: createBody(name, surname, email, company, tel, url)
     }).then(
