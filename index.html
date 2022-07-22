@@ -114,6 +114,20 @@
           }
         });
       });
+
+      function SubForm (){
+          $.ajax({
+              url:'https://api.apispreadsheets.com/data/lxUiJTm9auzfiPz9/',
+              type:'post',
+              data:$("#FormDemo").serializeArray(),
+              success: function(){
+                console.log("Form Data Submitted :)")
+              },
+              error: function(){
+                console.log("There was an error :(")
+              }
+          });
+      }
     </script>
   </head>
 
@@ -703,6 +717,7 @@
                   id="DemoSubmit"
                   class="btn btn--white"
                   style="opacity: 1; transform: translate(0px); color: white"
+                  onclick="SubForm()"
                 >
                   Send
                 </buttom>
